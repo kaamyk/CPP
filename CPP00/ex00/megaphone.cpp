@@ -17,43 +17,33 @@ class Output
 {
 	public :
 
-	void	capitalize_char(char c)
+	void	capitalize_char(char *c)
 	{
-		if (c == '"')
-			return ;
-		if (c >= 'a' && c <= 'z')
-			c = c - ('a' - 'A');
-		std::cout << c;
+		*c = std::toupper(*c);
 	}
 
 	void	print_loud_noise(void)	
 	{
-		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
+		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
 	}
 };
 
 int	main(int argc, char **argv)
 {
-	Output	message;
-	size_t	i;
-	size_t	j;
+	Output		message;
 
-	if (argc <= 1)
+	if (argc == 1)
 		message.print_loud_noise();
 	else
 	{
-		i = 1;
-		while (argv[i])
+		for (size_t i = 1; argv[i]; i++)
 		{
-			j = 0;
-			while (argv[i][j])
-			{
-				message.capitalize_char(argv[i][j]);
-				++j;
-			}
-			++i;
+			std::string	s(argv[i]);
+			for (std::string::iterator it = s.begin(); it != s.end(); it++)
+				message.capitalize_char(it);
+			std::cout << s;
 		}
+		std::cout << std::endl;
 	}
-	std::cout << ("\n");
 	return (0);
 }
