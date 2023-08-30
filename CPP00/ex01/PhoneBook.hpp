@@ -3,18 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by xuluu             #+#    #+#             */
-/*   Updated: 2023/08/22 12:55:23 by anvincen         ###   ########.fr       */
+/*   Updated: 2023/08/30 17:51:18 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
+#ifndef PHONEBOOK_HPP
+# define PHONEBOOK_HPP
+
+# include <iostream>
+# include "Contact.hpp"
 
 class PhoneBook
 {
 	public :
 
-	char	
-}
+	PhoneBook();
+
+	Contact	contact[8];
+};
+
+#endif
