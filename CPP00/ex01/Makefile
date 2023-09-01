@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: antoine <antoine@student.42.fr>            +#+  +:+       +#+         #
+#    By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/07 17:59:08 by xuluu             #+#    #+#              #
-#    Updated: 2023/08/30 18:00:27 by antoine          ###   ########.fr        #
+#    Updated: 2023/08/31 10:46:01 by anvincen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 		= phonebook
 
-SRC 		= main.cpp Contact.cpp\
+SRC 		= main.cpp Contact.cpp PhoneBook.cpp\
 
 OBJ 		= $(SRC:.cpp=.o)
 

@@ -3,55 +3,63 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by xuluu             #+#    #+#             */
-/*   Updated: 2023/08/30 19:27:54 by antoine          ###   ########.fr       */
+/*   Updated: 2023/09/01 17:16:35 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
 
+//			CONSTRUCTOR && DESTRUCTOR
+
 Contact::Contact(void)
 {
-	std::string	tmp;
-
-	std::cout << "First name : ";
-	getline(std::cin, tmp);
-	std::cout << "Your input is : " << tmp << std::endl;
-	first_name = tmp;
-	std::cout << first_name << std::endl;
-
-	std::cout << "Last name : ";
-	getline(std::cin, tmp);
-	// std::cin >> tmp;
-	std::cout << "Your input is : " << tmp << std::endl;
-	last_name = tmp;
-	std::cout << last_name << std::endl;
-
-	std::cout << "Nickname : ";
-	getline(std::cin, tmp);
-	// std::cin >> tmp;
-	std::cout << "Your input is : " << tmp << std::endl;
-	nickname = tmp;
-	std::cout << nickname << std::endl;
-
-	std::cout << "Phone number : ";
-	getline(std::cin, tmp);
-	// std::cin >> tmp;
-	std::cout << "Your input is : " << tmp << std::endl;
-	phone_number = tmp;
-	std::cout << phone_number << std::endl;
-
-	std::cout << "Darkest secret : ";
-	getline(std::cin, tmp);
-	// std::cin >> tmp;
-	std::cout << "Your input is : " << tmp << std::endl;
-	darkest_secret = tmp;
-	std::cout << darkest_secret << std::endl;
+	std::cout << "In the Contact's constructor" << std::endl;
+	return ;
 }
 
 Contact::~Contact(void)
 {
-	std::cout << "In destructor" << std::endl;
+	std::cout << "In the Contact's destructor" << std::endl;
 }
+
+
+//			FUNCTIONS TO STORE INPUTS (PUBLIC)
+
+void	Contact::printInformations(size_t index)
+{
+	(void)index;
+	std::cout << this->firstName << std::endl;
+	std::cout << this->lastName << std::endl;
+	std::cout << this->nickName << std::endl;
+	std::cout << this->phoneNumber << std::endl;
+	std::cout << this->darkestSecret << std::endl;
+}
+
+void	Contact::setFirstName(std::string s)
+{
+	this->firstName = s;
+}
+
+void	Contact::setLastName(std::string s)
+{
+	this->lastName = s;
+}
+
+void	Contact::setNickName(std::string s)
+{
+	this->nickName = s;
+}
+
+void	Contact::setPhoneNumber(std::string s)
+{
+	this->phoneNumber = s;
+}
+
+void	Contact::setDarkestSecret(std::string s)
+{
+	this->darkestSecret = s;
+}
+
