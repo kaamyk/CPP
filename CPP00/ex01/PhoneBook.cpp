@@ -6,7 +6,7 @@
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/04 21:50:27 by antoine          ###   ########.fr       */
+/*   Updated: 2023/09/04 22:00:29 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,23 @@ void	PhoneBook::determineIndex(void)
 
 bool	PhoneBook::inputParsing(char c, std::string input, size_t *nbUnvalidInputs)
 {
-	if (c == 'P'
-		&& input.empty() == 0
-		&& input.find_first_not_of("0123456789") != std::string::npos)
+	if (c == 'P')
 	{
-		std::cout << "/!\\ The phone number has to contains only digits /!\\" << std::endl;
-		++(*nbUnvalidInputs);
-		return (1);
+		if (input.empty() == 0)
+		{
+			if (input.find_first_not_of("0123456789") != std::string::npos)
+			{
+				std::cout << "/!\\ The phone number has to contains only digits /!\\" << std::endl;
+				++(*nbUnvalidInputs);
+				return (1);
+			}
+			else if (input.length() > 10)
+			{
+				std::cout << "/!\\ The phone number must be 10 digits or less /!\\" << std::endl;
+				++(*nbUnvalidInputs);
+				return (1);
+			}
+		}
 	}
 	else if (input.empty() == 1)
 	{
