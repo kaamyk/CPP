@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+         #
+#    By: antoine <antoine@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/07 17:59:08 by xuluu             #+#    #+#              #
-#    Updated: 2023/08/31 10:46:01 by anvincen         ###   ########.fr        #
+#    Updated: 2023/09/04 10:30:24 by antoine          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ all 	: $(NAME)
 
 $(NAME) :	$(OBJ)
 	$(CC) $(CPPFLAGS) $(OBJ) -o $(NAME)
+	@clear
 
 clean 	:
 	rm -f $(OBJ)
