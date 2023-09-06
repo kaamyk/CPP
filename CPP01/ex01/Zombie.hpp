@@ -1,35 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   randomChump.cpp                                    :+:      :+:    :+:   */
+/*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/06 14:24:13 by antoine          ###   ########.fr       */
+/*   Updated: 2023/09/06 16:22:44 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
-#include <unistd.h> 
-#include <iostream>
+#include <string>
 
-
-void	randomChump(std::string name)
+class	Zombie
 {
-	Zombie			chump(name);
+	private	:
+		std::string		_name;
 
-
-	writeScript("Guide : Alright! Call " << name << ", he may responde !\n
-		\t > * You scream somthing to " << name << " * <")
-	std::cout << ".";
-	sleep(1);
-	std::cout << ".";
-	sleep(1);
-	std::cout << "." << std::endl << std::endl;
-	sleep(1);
-	chump.announce();
-	std::cout << std::endl
-	<< "Guide : * Unconfortable * Well ... That was interesting ... Let's forget it and move on ..."
-	<< std::endl << std::endl;
-}
+	public	:
+		Zombie(void);
+		Zombie(std::string name);
+		~Zombie(void);
+		
+		void	announce(void);
+		void	giveName(std::string name);
+};

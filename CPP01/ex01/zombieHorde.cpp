@@ -1,35 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   randomChump.cpp                                    :+:      :+:    :+:   */
+/*   zombieHorde.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/06 14:24:13 by antoine          ###   ########.fr       */
+/*   Updated: 2023/09/06 16:23:07 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
-#include <unistd.h> 
 #include <iostream>
 
-
-void	randomChump(std::string name)
+Zombie* zombieHorde(int N, std::string name)
 {
-	Zombie			chump(name);
+	Zombie	*horde = new Zombie[N];
 
-
-	writeScript("Guide : Alright! Call " << name << ", he may responde !\n
-		\t > * You scream somthing to " << name << " * <")
-	std::cout << ".";
-	sleep(1);
-	std::cout << ".";
-	sleep(1);
-	std::cout << "." << std::endl << std::endl;
-	sleep(1);
-	chump.announce();
-	std::cout << std::endl
-	<< "Guide : * Unconfortable * Well ... That was interesting ... Let's forget it and move on ..."
-	<< std::endl << std::endl;
+	if (horde == NULL)
+		std::cout << "Horde allocation failed." << std::endl;
+	for (size_t i = 0; i < N; ++i)
+		horde[i].giveName(name);
+	return (horde);
 }

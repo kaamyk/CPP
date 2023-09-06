@@ -1,35 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   randomChump.cpp                                    :+:      :+:    :+:   */
+/*   Zombie.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/06 14:24:13 by antoine          ###   ########.fr       */
+/*   Updated: 2023/09/06 16:22:23 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
-#include <unistd.h> 
 #include <iostream>
+#include "Zombie.hpp"
 
+//			CONSTRUCTOR
 
-void	randomChump(std::string name)
+//	DEFAULT
+Zombie::Zombie(void)
 {
-	Zombie			chump(name);
+	return ;
+}
+
+//	WITH A NAME PARAMETER
+Zombie::Zombie(std::string name) : _name(name)
+{
+	return ;
+}
+
+//			DESTRUCTOR
+Zombie::~Zombie(void)
+{
+	return ;
+}
 
 
-	writeScript("Guide : Alright! Call " << name << ", he may responde !\n
-		\t > * You scream somthing to " << name << " * <")
-	std::cout << ".";
-	sleep(1);
-	std::cout << ".";
-	sleep(1);
-	std::cout << "." << std::endl << std::endl;
-	sleep(1);
-	chump.announce();
-	std::cout << std::endl
-	<< "Guide : * Unconfortable * Well ... That was interesting ... Let's forget it and move on ..."
-	<< std::endl << std::endl;
+//			PUBLIC FUNCTIONS
+
+void	Zombie::announce(void)
+{
+	std::cout << this->_name;
+	std::cout << " : BraiiiiiiinnnzzzZ..." << std::endl;
+}
+
+void	Zombie::giveName(std::string name)
+{
+	this->_name = name;
+	return ;
 }
