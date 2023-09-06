@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.hpp                                         :+:      :+:    :+:   */
+/*   Weapon.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/06 21:08:58 by antoine          ###   ########.fr       */
+/*   Updated: 2023/09/06 21:18:40 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ZOMBIE_H
-# define ZOMBIE_H
 #include <string>
 
-class	Zombie
+class	Weapon
 {
-	private	:
-		std::string		_name;
+	private :
+		std::string	_type;
 
-	public	:
-		Zombie(void);
-		Zombie(std::string name);
-		~Zombie(void);
-		
-		void	announce(void);
-		void	giveName(std::string name);
+	public :
+		//CONSTRUCTOR && DESTRUCTOR
+		Weapon();
+		Weapon(std::string type);
+		~Weapon();
+
+		std::string const	&getType(void);
+		void				setType( std::string );
 };
-
-#endif

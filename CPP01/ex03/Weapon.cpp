@@ -1,31 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.hpp                                         :+:      :+:    :+:   */
+/*   Weapon.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/06 21:08:58 by antoine          ###   ########.fr       */
+/*   Updated: 2023/09/06 21:15:56 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ZOMBIE_H
-# define ZOMBIE_H
-#include <string>
+#ifndef WEAPON_HPP
+# define WEAPON_HPP
+# include <string>
+# include "Weapon.hpp"
 
-class	Zombie
+//			CONSTRUCTOR
+Weapon::Weapon( void )
 {
-	private	:
-		std::string		_name;
+	return ;
+}
 
-	public	:
-		Zombie(void);
-		Zombie(std::string name);
-		~Zombie(void);
-		
-		void	announce(void);
-		void	giveName(std::string name);
-};
+Weapon::Weapon(std::string type) : _type(type)
+{
+	return ;
+}
+
+//			DESTRUCTOR
+Weapon::~Weapon( void )
+{
+	return ;
+}
+
+std::string const	&Weapon::getType( void )
+{
+	return ( this->_type );
+}
+
+void				Weapon::setType( std::string newType )
+{
+	this->_type = newType;
+	return ;
+}
 
 #endif
