@@ -6,7 +6,7 @@
 #    By: antoine <antoine@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/07 17:59:08 by anvincen          #+#    #+#              #
-#    Updated: 2023/09/05 19:07:33 by antoine          ###   ########.fr        #
+#    Updated: 2023/09/06 11:19:31 by antoine          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ CFLAGS =	-Wall -Wextra -Werror
 
 CPPFLAGS =	-std=c++98
 
-VGFLAGS = 	-g3
+VGFLAGS = 	-g
 
 all		: $(OBJS) $(NAME)
 
@@ -38,9 +38,11 @@ all		: $(OBJS) $(NAME)
 		@$(CPPC) $(CPPFLAGS) -c $< -o $@
 		@echo "Source files compiled => >>> OK <<<"
 
-$(NAME)	: $(OBJ)
+$(NAME)	: $(OBJS)
 		@$(CPPC) $(CFLAGS) $(CPPFLAGS) $(OBJS) -o $(NAME)
 
+vg	 	: $(OBJS)
+		@$(CPPC) $(CFLAGS) $(CPPFLAGS) $(VGFLAGS) $(OBJS) -o $(NAME)
 clean	:
 	@echo "Removing objects files ..."
 	rm -f $(OBJS)
