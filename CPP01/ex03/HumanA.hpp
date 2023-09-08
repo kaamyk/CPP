@@ -6,7 +6,7 @@
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/06 21:21:49 by antoine          ###   ########.fr       */
+/*   Updated: 2023/09/08 15:09:33 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 class	HumanA
 {
 	private :
-		Weapon		_weapon;
+		Weapon		&_weapon;
 		std::string	_name;
 
 	public :

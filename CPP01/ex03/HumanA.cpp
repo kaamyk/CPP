@@ -6,7 +6,7 @@
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/06 21:16:35 by antoine          ###   ########.fr       */
+/*   Updated: 2023/09/08 15:10:23 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ HumanA::~HumanA( void )
 void	HumanA::attack( void )
 {
 	std::cout << this->_name
-	<< "attacks with their" << this->_type.getType() << std::endl;
+	<< "attacks with their " << this->_weapon.getType() << std::endl;
 	return ;
 }
