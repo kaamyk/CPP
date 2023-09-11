@@ -6,7 +6,7 @@
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/11 14:23:30 by antoine          ###   ########.fr       */
+/*   Updated: 2023/09/11 14:43:09 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ void	Harl::warning( void )
 
 void	Harl::error( void )
 {
-	std::cout << "Error : Hold on ! You have to do something here !";
+	std::cout << "Error : Hold on ! You have to do something here !" << std::endl;
 	return ;
 }
 
-void	Harl::complain( std::string level )
+void	Harl::complain( std::string level, size_t minimumLevel )
 {
 	typedef	void (Harl::*fctPtr)(void);
 
@@ -61,8 +61,14 @@ void	Harl::complain( std::string level )
 
 	for (size_t i = 0; i < 4; ++i)
 	{
-		if (levels[i].compare(level) == 0)
-			(this->*functions[i])();
+		if (i >= minimumLevel && levels[i].compare(level) == 0)
+		{
+			while (i < 4)
+			{
+				(this->*functions[i])();
+				++i;
+			}
+		}
 	}
 	return ;
 }
