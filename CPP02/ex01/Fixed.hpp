@@ -1,27 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/15 12:38:14 by antoine          ###   ########.fr       */
+/*   Updated: 2023/09/18 16:02:40 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include "Fixed.hpp"
+#ifndef FIXED_HPP
+# define FIXED_HPP
 
-int	main(void)
+# include <iostream>
+
+class	Fixed
 {
-	Fixed a;
-	Fixed b( a );
-	Fixed c;
+	private :
+		int					_raw;
+		static const int	_fractionalBits = 8;
 
-	c = b;
-	std::cout << a.getRawBits() << std::endl;
-	std::cout << b.getRawBits() << std::endl;
-	std::cout << c.getRawBits() << std::endl;
-	return (0);
-}
+	public :
+		Fixed( void );
+		Fixed( const Fixed &source );
+		Fixed( float const &n);
+		Fixed( int const &n );
+		~Fixed( void );
+		Fixed&	operator=( const Fixed &a );
+
+		int		getRawBits( void ) const;
+		void	setRawBits( int const raw );
+		float	toFloat( void ) const;
+		int		toInt( void ) const;
+
+};
+
+ std::ostream&  operator<<( std::ostream &o, const Fixed& n );
+
+#endif

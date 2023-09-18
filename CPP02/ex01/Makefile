@@ -6,7 +6,7 @@
 #    By: antoine <antoine@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/07 17:59:08 by anvincen          #+#    #+#              #
-#    Updated: 2023/09/18 11:20:23 by antoine          ###   ########.fr        #
+#    Updated: 2023/09/18 15:09:20 by antoine          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ all		:	$(OBJS) $(NAME)
 
 $(NAME)	:	$(OBJS)
 	@echo -e '\033[0;34mObjects compilation : \x1b[32m>>> OK <<<\x1b[37m'
-	@echo -e '\033[0;34mCompiling executable ...'
+	@echo -e '\033[0;34mCompiling executable ...\x1b[37m'
 	@$(CCPP) $(CFLAGS) $(CPPFLAGS) $(OBJS) -o $(NAME)
 	@echo -e '\033[0;34mExecutable compilation : \x1b[32m>>> OK <<<\x1b[37m'
 
