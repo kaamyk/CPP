@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/18 23:26:57 by antoine          ###   ########.fr       */
+/*   Updated: 2023/09/19 13:36:17 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,24 +100,25 @@ bool	Fixed::operator!=( const Fixed& a )
 	return (0);
 }
 
-int		Fixed::operator+( const Fixed& a)
+Fixed	Fixed::operator+( const Fixed& a)
 {
-	return ( this->_raw + a._raw );
+	return ( this->toFloat() + a.toFloat() );
 }
 
-int		Fixed::operator-( const Fixed& a)
+Fixed	Fixed::operator-( const Fixed& a)
 {
-	return ( this->_raw - a._raw );
+	return ( this->toFloat() - a.toFloat() );
 }
 
-int		Fixed::operator*( const Fixed& a)
+Fixed	Fixed::operator*( const Fixed& a)
 {
-	return ( this->_raw * a._raw );
+	std::cout << this->toFloat() << " * " << a.toFloat() << " = " << this->toFloat() * a.toFloat() << std::endl;
+	return ( Fixed(this->toFloat() * a.toFloat()) );
 }
 
-int		Fixed::operator/( const Fixed& a)
+Fixed	Fixed::operator/( const Fixed& a)
 {
-	return ( this->_raw / a._raw );
+	return ( this->toFloat() / a.toFloat() );
 }
 
 Fixed &	Fixed::operator++( void )

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/18 23:01:36 by antoine          ###   ########.fr       */
+/*   Updated: 2023/09/19 13:35:00 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ class	Fixed
 		bool	operator<=( const Fixed& a );
 		bool	operator==( const Fixed& a );
 		bool	operator!=( const Fixed& a );
-		int		operator+( const Fixed& a );
-		int		operator-( const Fixed& a );
-		int		operator*( const Fixed& a );
-		int		operator/( const Fixed& a );
+		Fixed	operator+( const Fixed& a );
+		Fixed	operator-( const Fixed& a );
+		Fixed	operator*( const Fixed& a );
+		Fixed	operator/( const Fixed& a );
 		Fixed&	operator++( void );
 		Fixed	operator++( int );
 		Fixed&	operator--( void );
