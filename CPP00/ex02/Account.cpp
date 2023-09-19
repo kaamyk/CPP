@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Account.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/05 15:40:02 by antoine          ###   ########.fr       */
+/*   Updated: 2023/09/19 12:35:50 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	Account::getNbWithdrawals(void)
 
 void	Account::displayAccountsInfos(void)
 {
-	std::cout << "\n\n";
+	// std::cout << "\n\n";
 	Account::_displayTimestamp();
 	std::cout << "accounts:" << Account::_nbAccounts <<
 	";total:" << Account::_totalAmount <<
@@ -87,7 +87,6 @@ void	Account::displayAccountsInfos(void)
 
 void	Account::displayStatus(void) const
 {
-	// [19920104_091532] index:0;amount:42;deposits:0;withdrawals:0
 	Account::_displayTimestamp();
 	std::cout << "index:" << Account::_accountIndex
 	<< ";amount:" << Account::_amount
@@ -124,7 +123,6 @@ void	Account::_displayTimestamp(void)
 
 void	Account::makeDeposit(int deposit)
 {
-	// [19920104_091532] index:0;p_amount:42;deposit:5;amount:47;nb_deposits:1
 	Account::_displayTimestamp();
 	std::cout << "index:" << Account::_accountIndex
 	<< ";p_amount:" << Account::_amount

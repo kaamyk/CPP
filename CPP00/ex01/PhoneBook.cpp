@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/04 22:00:29 by antoine          ###   ########.fr       */
+/*   Updated: 2023/09/19 11:41:59 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,8 @@
 
 //			CONSTRUCTOR && DESTRUCTOR
 
-PhoneBook::PhoneBook()
+PhoneBook::PhoneBook() : index(-1), nbContacts(0), stop(false)
 {
-	index = -1;
-	nbContacts = 0;
-	stop = false;
 	return ;
 }
 
@@ -41,7 +38,7 @@ void	PhoneBook::determineIndex(void)
 		this->index = 0;
 }
 
-bool	PhoneBook::inputParsing(char c, std::string input, size_t *nbUnvalidInputs)
+bool	PhoneBook::inputParsing(char c, std::string input, size_t &nbUnvalidInputs)
 {
 	if (c == 'P')
 	{
@@ -50,13 +47,13 @@ bool	PhoneBook::inputParsing(char c, std::string input, size_t *nbUnvalidInputs)
 			if (input.find_first_not_of("0123456789") != std::string::npos)
 			{
 				std::cout << "/!\\ The phone number has to contains only digits /!\\" << std::endl;
-				++(*nbUnvalidInputs);
+				++nbUnvalidInputs;
 				return (1);
 			}
 			else if (input.length() > 10)
 			{
 				std::cout << "/!\\ The phone number must be 10 digits or less /!\\" << std::endl;
-				++(*nbUnvalidInputs);
+				++nbUnvalidInputs;
 				return (1);
 			}
 		}
@@ -64,7 +61,7 @@ bool	PhoneBook::inputParsing(char c, std::string input, size_t *nbUnvalidInputs)
 	else if (input.empty() == 1)
 	{
 		std::cout << "/!\\ Your input needs to be at least one character long /!\\" << std::endl;
-		++(*nbUnvalidInputs);
+		++nbUnvalidInputs;
 		return (1);
 	}
 	return (0) ;
@@ -82,14 +79,14 @@ std::string	PhoneBook::getContactInfo(std::string info)
 	{
 		std::cout << ">>> " << info << " :  " ;
 		std::getline(std::cin, inputTmp);
-		if (inputParsing(info[0], inputTmp, &nbUnvalidInputs) == 0)
+		if (inputParsing(info[0], inputTmp, nbUnvalidInputs) == 0)
 			break ;
 	}
 	checkTooMuchTries(nbUnvalidInputs);
 	return (inputTmp);
 }
 
-void	PhoneBook::checkTooMuchTries(size_t nbUnvalidInputs)
+void	PhoneBook::checkTooMuchTries(size_t &nbUnvalidInputs)
 {
 	if (nbUnvalidInputs == 3)
 	{
@@ -140,32 +137,31 @@ void	PhoneBook::browseBook(void)
 	}
 }
 
-bool	PhoneBook::getSearchInput(std::string input, size_t *nbUnvalidInputs)
+bool	PhoneBook::getSearchInput(std::string input, size_t &nbUnvalidInputs)
 {
 	int inputNb;
 
-	while (*nbUnvalidInputs < 3)
+	while (nbUnvalidInputs < 3)
 	{
 		std::cout << ">>> Write the index of the contact you want to see :  ";
 		getline(std::cin, input);
 		if (input.find_first_not_of("0123456789") != std::string::npos)
 		{
 			std::cout << "\t/!\\ The index must contains only digits. Please retry ... /!\\" << std::endl;
-			++(*nbUnvalidInputs);
+			++nbUnvalidInputs;
 			continue ;
 		}
 		inputNb = std::atoi(&input[0]);
 		if (inputNb < 1 || inputNb > 8 || (size_t) inputNb > nbContacts)
 		{
 			std::cout << "\t/!\\ The index must be between 1 and " << nbContacts << " included /!\\" << std::endl;
-			++(*nbUnvalidInputs);
+			++nbUnvalidInputs;
 			continue ;
 		}
 		break ;
 	}
 	return (inputNb);
 }
-
 bool	PhoneBook::searchContact(void)
 {
 	std::string	input;
@@ -177,10 +173,11 @@ bool	PhoneBook::searchContact(void)
 			  << "\t+----------+----------+----------+----------+" << std::endl;
 	browseBook();
 	nbUnvalidInputs = 0;
-	indexToSearch = getSearchInput(input, &nbUnvalidInputs);
+	indexToSearch = getSearchInput(input, nbUnvalidInputs);
 	if (nbUnvalidInputs == 3)
 	{
 		checkTooMuchTries(nbUnvalidInputs);
+		stop = false;
 		return (1);
 	}
 	contactList[indexToSearch].displayAllInformations();
@@ -189,9 +186,6 @@ bool	PhoneBook::searchContact(void)
 
 bool	PhoneBook::exitPhoneBook(void)
 {
-	std::cout << "In function exitPhoneBook()" << std::endl;
+	std::cout << "\t\t--- Goodbye ! ---\n" << std::endl;
 	return (0);
 }
-
-//			FUNCTION TO GET AN INPUT (PUBLIC)
-

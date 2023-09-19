@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by xuluu             #+#    #+#             */
-/*   Updated: 2023/09/04 21:12:57 by antoine          ###   ########.fr       */
+/*   Updated: 2023/09/19 11:22:48 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ class PhoneBook
 		//	UTILS
 		void		determineIndex(void);
 		void		browseBook(void);
-		bool		inputParsing(char c, std::string input, size_t *n);
+		bool		inputParsing(char c, std::string input, size_t &n);
 		std::string	getContactInfo(std::string info);
-		void		checkTooMuchTries(size_t nbUnvalidInputs);
-		bool		getSearchInput(std::string input, size_t *nbUnvalidInputs);
+		void		checkTooMuchTries(size_t &nbUnvalidInputs);
+		bool		getSearchInput(std::string input, size_t &nbUnvalidInputs);
 };
 
 #endif
