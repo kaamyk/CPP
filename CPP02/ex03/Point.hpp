@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Point.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/19 16:40:29 by anvincen         ###   ########.fr       */
+/*   Updated: 2023/09/20 12:23:14 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,12 @@ class	Point
 		Point( Fixed x, Fixed y );
 		~Point( void );
 
-		Fixed&	getAbscissa( void );
-		Fixed&	getOrdinate( void );
+		Fixed&	getAbs( void );
+		Fixed&	getOrd( void );
+		// void	setAbscissa( Fixed a );
+		// void	setOrdinate( Fixed o );
+		// void	setCoordinates( Fixed a, Fixed o );
+
 };
 
 #endif

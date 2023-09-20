@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/19 16:46:03 by anvincen         ###   ########.fr       */
+/*   Updated: 2023/09/20 12:37:25 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ Fixed	Fixed::operator-( const Fixed& a)
 
 Fixed	Fixed::operator*( const Fixed& a)
 {
-	std::cout << this->toFloat() << " * " << a.toFloat() << " = " << this->toFloat() * a.toFloat() << std::endl;
+	// std::cout << this->toFloat() << " * " << a.toFloat() << " = " << this->toFloat() * a.toFloat() << std::endl;
 	return ( Fixed(this->toFloat() * a.toFloat()) );
 }
 

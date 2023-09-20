@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/19 17:39:40 by anvincen         ###   ########.fr       */
+/*   Updated: 2023/09/20 13:14:44 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,49 +14,32 @@
 #include "Fixed.hpp"
 #include "Point.hpp"
 
-void	defineArea(Point triangle[3], Point *(area[4]))
-{
-	Point	tmp;
-	Fixed	a( tmp.getAbscissa() );
-	Fixed	o( tmp.getOrdinate() );
-
-	tmp = triangle[0];
-	a.min(a, triangle[1].getAbscissa());
-	o.min(o, triangle[2].getAbscissa());
-	*area[0] = tmp;
-
-	tmp = triangle[0];
-	a.max(a, triangle[1].getAbscissa());
-	o.max(o, triangle[2].getAbscissa());
-	*area[1] = tmp;
-
-	tmp = triangle[0];
-	a.min(a, triangle[1].getOrdinate());
-	o.min(o, triangle[2].getOrdinate());
-	*area[3] = tmp;
-
-	tmp = triangle[0];
-	a.max(a, triangle[1].getOrdinate());
-	o.max(o, triangle[2].getOrdinate());
-	*area[4] = tmp;
-}
+bool	bsp( Point A, Point B, Point C, Point P );
 
 int	main( void )
 {
-	Point	A;
-	Point	B( Fixed(2), Fixed(3) );
+	Point	A( Fixed(0), Fixed(1) );
+	Point	B( Fixed(1), Fixed(3) );
 	Point	C( Fixed(2), Fixed(0.5f) );
-	Point	triangle[3] = {A, B, C};
-	Point	area[4] = {};
+	Point	P1( Fixed(5), Fixed(5) );
+	Point	P2( Fixed(1), Fixed(1) );
+	Point	P3( Fixed(1.5f), Fixed(1.5f) );
 
-	area = defineArea(triangle, &area);
-	std::cout << "A (" << A.getAbscissa() << ", " << A.getOrdinate() <<  ")" << std::endl;
-	std::cout << "B (" << B.getAbscissa() << ", " << B.getOrdinate() <<  ")" << std::endl;
-	std::cout << "C (" << C.getAbscissa() << ", " << C.getOrdinate() <<  ")" << std::endl;
-	for(size_t i = 0; i < 4; ++i)
-	{
-		std::cout << "area[" << i << "] == ( " << area[i].getAbscissa() << ", "
-			<< area[i].getOrdinate() << " )" << std::endl;
-	}
+	std::cout << "A (" << A.getAbs() << ", " << A.getOrd() <<  ")" << std::endl;
+	std::cout << "B (" << B.getAbs() << ", " << B.getOrd() <<  ")" << std::endl;
+	std::cout << "C (" << C.getAbs() << ", " << C.getOrd() <<  ")" << std::endl;
+
+	if (bsp(A, B, C, P1) == 0)
+		std::cout << "P1 is NOT in ABC" << std::endl;
+	else
+		std::cout << "P1 is in ABC" << std::endl;
+	if (bsp(A, B, C, P2) == 0)
+		std::cout << "P2 is NOT in ABC" << std::endl;
+	else
+		std::cout << "P2 is in ABC" << std::endl;
+	if (bsp(A, B, C, P3) == 0)
+		std::cout << "P3 is NOT in ABC" << std::endl;
+	else
+		std::cout << "P3 is in ABC" << std::endl;
 	return 0;
 }

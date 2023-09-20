@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Point.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/19 16:40:30 by anvincen         ###   ########.fr       */
+/*   Updated: 2023/09/20 12:22:51 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,31 @@ Point::~Point( void )
 	return ;
 }
 
-Fixed&	Point::getAbscissa( void )
+Fixed&	Point::getAbs( void )
 {
 	return ( this->_x );
 }
 
-Fixed&	Point::getOrdinate( void )
+Fixed&	Point::getOrd( void )
 {
 	return ( this->_y );
 }
+
+// void	Point::setAbscissa( Fixed a )
+// {
+// 	this->_x = a;
+// 	return ;
+// }
+
+// void	Point::setOrdinate( Fixed o )
+// {
+// 	this->_y = o;
+// 	return ;
+// }
+
+// void	Point::setCoordinates( Fixed a, Fixed o )
+// {
+// 	this->setAbscissa(a);
+// 	this->setOrdinate(o);
+// 	return ;
+// }
