@@ -10,27 +10,36 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLAPTRAP_H
-# define CLAPTRAP_H
+#include <iostream>
+#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
-# include <string>
-# include <iostream>
-
-class	ClapTrap
+ScavTrap::ScavTrap( void ) : ClapTrap()
 {
-	private :
-		std::string	_name;
-		size_t		_hitPoint;
-		size_t		_energyPoint;
-		size_t		_attackDamage;
+	std::cout << "In ScavTrap default constructor" << std::endl;
+	this->_hitPoint = 100;
+	this->_energyPoint = 50;
+	this->_attackDamage = 20;
+	return ;
+}
 
-	public :
-		ClapTrap( void );
-		ClapTrap( std::string name );
-		~ClapTrap( void );
-		void	attack( const std::string& target );
-		void	takeDamage( unsigned int amount);
-		void	beRepaired( unsigned int amount);
-};
+ScavTrap::ScavTrap( std::string name ) : ClapTrap( name )
+{
+	std::cout << "In ScavTrap named constructor" << std::endl;
+	this->_name = name;
+	this->_hitPoint = 100;
+	this->_energyPoint = 50;
+	this->_attackDamage = 20;
+	return ;
+}
 
-#endif
+ScavTrap::~ScavTrap( void )
+{
+	return ;
+}
+
+void	ScavTrap::guardGate( void )
+{
+	std::cout << "The ScavTrap is now in Gate keeper mode !" << std::endl;
+	return ;
+}

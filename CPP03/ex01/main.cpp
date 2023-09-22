@@ -11,14 +11,17 @@
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
 int	main( void )
 {
 	ClapTrap	toto("toto");
+	ScavTrap	tutu("tutu");
 
 	toto.takeDamage( 2 );	
-	toto.attack( "Octor" );	
-	toto.takeDamage( 4 );
+	tutu.takeDamage( 2 );	
+	toto.attack( "tutu" );	
+	tutu.takeDamage( 4 );
 	toto.beRepaired( 5 );
 	return ( 0 );
 }
