@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Fixed.cpp                                          :+:      :+:    :+:   */
+/*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/15 14:31:46 by antoine          ###   ########.fr       */
+/*   Updated: 2023/09/23 12:35:09 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,27 @@ ClapTrap::~ClapTrap( void )
 	return ;
 }
 
-void	ClapTrap::attack( const std::string& target )
+std::string&	ClapTrap::getName( void )
+{
+	return ( this->_name );
+}
+
+size_t&			ClapTrap::getHitPoint( void )
+{
+	return ( this->_hitPoint );
+}
+
+size_t&		ClapTrap::getEnergyPoint( void )
+{
+	return ( this->_energyPoint ); 
+}
+
+size_t&			ClapTrap::getAttackDamage( void )
+{
+	return (this->_attackDamage);
+}
+
+void			ClapTrap::attack( const std::string& target )
 {
 	std::cout << "ClapTrap " << this->_name
 	<< "attacks " << target
@@ -40,15 +60,17 @@ void	ClapTrap::attack( const std::string& target )
 	return ;
 }
 
-void	ClapTrap::takeDamage( unsigned int amount )
+void			ClapTrap::takeDamage( unsigned int amount )
 {
 	std::cout << this->_name
 	<< " takes damage from ClapTrap ! Oh my god ! " << amount
 	<< " points of damage ?! Ouch ..." << std::endl;
+	this->_energyPoint = this->_energyPoint - amount;
+	std::cout << this->_energyPoint << " energy points left !" << std::endl;
 	return ;
 }
 
-void	ClapTrap::beRepaired( unsigned int amount )
+void			ClapTrap::beRepaired( unsigned int amount )
 {
 	std::cout << "That was a lot for " << this->_name
 	<< " ! Let's give him a bit of rest ... " << amount

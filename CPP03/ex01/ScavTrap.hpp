@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Fixed.cpp                                          :+:      :+:    :+:   */
+/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/15 14:31:46 by antoine          ###   ########.fr       */
+/*   Updated: 2023/09/23 12:30:20 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ class	ScavTrap : public ClapTrap
 		ScavTrap( std::string name );
 		~ScavTrap( void );
 		void guardGate( void );
+		ScavTrap&	operator=( ClapTrap& src );
 };
 
 #endif

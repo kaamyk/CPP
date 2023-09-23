@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Fixed.cpp                                          :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/15 14:31:46 by antoine          ###   ########.fr       */
+/*   Updated: 2023/09/23 12:32:28 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main( void )
 	toto.takeDamage( 2 );	
 	tutu.takeDamage( 2 );	
 	toto.attack( "tutu" );	
-	tutu.takeDamage( 4 );
+	tutu.takeDamage( toto.getAttackDamage() );
 	toto.beRepaired( 5 );
 	return ( 0 );
 }

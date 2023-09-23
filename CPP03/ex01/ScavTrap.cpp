@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Fixed.cpp                                          :+:      :+:    :+:   */
+/*   ScavTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/15 14:31:46 by antoine          ###   ########.fr       */
+/*   Updated: 2023/09/23 12:32:41 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ ScavTrap::ScavTrap( void ) : ClapTrap()
 	return ;
 }
 
-ScavTrap::ScavTrap( std::string name ) : ClapTrap( name )
+ScavTrap::ScavTrap( std::string const name ) : ClapTrap( name )
 {
 	std::cout << "In ScavTrap named constructor" << std::endl;
 	this->_name = name;
