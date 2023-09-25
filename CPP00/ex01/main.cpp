@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/19 11:37:38 by anvincen         ###   ########.fr       */
+/*   Updated: 2023/09/25 11:09:56 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,14 @@ int	main(void)
 	{
 		std::cout << "Enter Input : ";
 		input = getCommand();
-		if (input.length() == 0)
-			break ;
+		if (input.length() == 0 || input == "EXIT")
+			if (book.exitPhoneBook() == 0)
+				break ;
 		std::cout << std::endl;
 		if (input == "ADD")
 			book.addContact();
 		else if (input == "SEARCH")
 			book.searchContact();
-		else if (input == "EXIT")
-		{
-			if (book.exitPhoneBook() == 0)
-				break ;
-		}
 		else
 			std::cout << "\t>>> Invalid input ! Please type your command. <<<" << std::endl;
 	}

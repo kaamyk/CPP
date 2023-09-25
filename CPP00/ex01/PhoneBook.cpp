@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/19 11:41:59 by anvincen         ###   ########.fr       */
+/*   Updated: 2023/09/25 11:15:05 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,12 +132,10 @@ bool	PhoneBook::addContact(void)
 void	PhoneBook::browseBook(void)
 {
 	for (size_t i = 0; i < this->nbContacts; i++)
-	{
 		contactList[i].displayInformations(i + 1);
-	}
 }
 
-bool	PhoneBook::getSearchInput(std::string input, size_t &nbUnvalidInputs)
+size_t	PhoneBook::getSearchInput(std::string input, size_t &nbUnvalidInputs)
 {
 	int inputNb;
 
@@ -151,10 +149,12 @@ bool	PhoneBook::getSearchInput(std::string input, size_t &nbUnvalidInputs)
 			++nbUnvalidInputs;
 			continue ;
 		}
+		std::cout << "input == " << input << std::endl;
 		inputNb = std::atoi(&input[0]);
+		std::cout << "inputNb == " << inputNb << std::endl;
 		if (inputNb < 1 || inputNb > 8 || (size_t) inputNb > nbContacts)
 		{
-			std::cout << "\t/!\\ The index must be between 1 and " << nbContacts << " included /!\\" << std::endl;
+			std::cout << "\t/!\\ The index must be between 1 and " << nbContacts << " included /!\\\n" << std::endl;
 			++nbUnvalidInputs;
 			continue ;
 		}
@@ -171,16 +171,22 @@ bool	PhoneBook::searchContact(void)
 	std::cout << "\t+----------+----------+----------+----------+" << std::endl
 			  << "\t|   INDEX  |FIRST NAME| LAST NAME| NICKNAME |" << std::endl
 			  << "\t+----------+----------+----------+----------+" << std::endl;
+	if (!this->nbContacts)
+	{
+		std::cout << "\t\tYour phone book is empty\n\t\t====== Back to main menu ======" << std::endl;
+		return (0);
+	}
 	browseBook();
 	nbUnvalidInputs = 0;
 	indexToSearch = getSearchInput(input, nbUnvalidInputs);
+	std::cout << "indexToSearch == " << indexToSearch << std::endl;
 	if (nbUnvalidInputs == 3)
 	{
 		checkTooMuchTries(nbUnvalidInputs);
 		stop = false;
 		return (1);
 	}
-	contactList[indexToSearch].displayAllInformations();
+	contactList[indexToSearch - 1].displayAllInformations();
 	return (0);
 }
 
