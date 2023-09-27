@@ -6,7 +6,7 @@
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/11 14:23:30 by antoine          ###   ########.fr       */
+/*   Updated: 2023/09/27 18:16:39 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	Harl::warning( void )
 	std::cout << "Warning : Hum ... There is a problem ... I am just warning you, I can handle it !" << std::endl;
 	return ;
 }
-
 
 void	Harl::error( void )
 {
