@@ -6,7 +6,7 @@
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/11 14:43:09 by antoine          ###   ########.fr       */
+/*   Updated: 2023/09/27 19:19:14 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,22 @@ void	Harl::error( void )
 	return ;
 }
 
-void	Harl::complain( std::string level, size_t minimumLevel )
+void	Harl::setMinimumLevel(std::string arg)
+{
+	std::string	levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+
+	for (size_t	i = 0; i < 4; ++i)
+		if (arg.compare(levels[i]) == 0)
+		{
+			this->_minimumLevel = i;
+			return ;
+		}
+	this->_minimumLevel = 4;
+	return ;
+}
+
+
+void	Harl::complain( std::string level )
 {
 	typedef	void (Harl::*fctPtr)(void);
 
@@ -59,15 +74,17 @@ void	Harl::complain( std::string level, size_t minimumLevel )
 								&Harl::warning,
 								&Harl::error};
 
+	if (this->_minimumLevel == 4)
+	{
+		std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
+		return ;
+	}
 	for (size_t i = 0; i < 4; ++i)
 	{
-		if (i >= minimumLevel && levels[i].compare(level) == 0)
+		if (i >= this->_minimumLevel && levels[i].compare(level) == 0)
 		{
-			while (i < 4)
-			{
-				(this->*functions[i])();
-				++i;
-			}
+			(this->*functions[i])();
+			break ;
 		}
 	}
 	return ;
