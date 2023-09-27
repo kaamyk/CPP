@@ -6,7 +6,7 @@
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/09 14:03:49 by antoine          ###   ########.fr       */
+/*   Updated: 2023/09/27 17:53:11 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	replace(std::ifstream &infile, std::ofstream &outfile, std::string toFind, 
 			posFind = line.find(toFind);
 			while(posFind != std::string::npos)
 			{
-				line.erase(posFind, newString.length());
+				line.erase(posFind, toFind.length());
 				line.insert(posFind, newString);
 				posFind = line.find(toFind);
 				if (posFind == std::string::npos)
@@ -66,6 +66,11 @@ int		main(int ac, char **av)
 					toFind,
 					newString;
 
+	if (ac != 4)
+	{
+		std::cout << "Invalid number of arguments" << std::endl;
+		return (1);
+	}
 	std::ifstream	infile(av[1]);
 	outfileName = av[1];
 	outfileName.append(".replace");
