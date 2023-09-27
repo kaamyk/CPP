@@ -6,13 +6,13 @@
 #    By: antoine <antoine@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/07 17:59:08 by anvincen          #+#    #+#              #
-#    Updated: 2023/09/27 10:42:14 by antoine          ###   ########.fr        #
+#    Updated: 2023/09/27 12:05:16 by antoine          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	attack
+NAME		=	animal
 
-SRCS		=	main.cpp	ClapTrap.cpp
+SRCS		=	main.cpp	Animal.cpp	Dog.cpp	Cat.cpp
 
 OBJS		=	$(SRCS:.cpp=.o)
 

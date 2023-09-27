@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
+/*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/27 11:59:29 by antoine          ###   ########.fr       */
+/*   Updated: 2023/09/27 11:59:10 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCAV_TRAP_HPP
-# define SCAV_TRAP_HPP
+#include "Cat.hpp"
 
-# include "ClapTrap.hpp"
-
-class	ScavTrap : public ClapTrap
+Cat::Cat( void ) : _type( "Cat" )
 {
-	private :
-		
-	public :
-		ScavTrap( void );
-		ScavTrap( std::string name );
-		~ScavTrap( void );
-		void guardGate( void );
-		ScavTrap&	operator=( ClapTrap& src );
-};
+	std::cout << "In Cat constructor" << std::endl;
+	return ;
+}
 
-#endif
+Cat::~Cat( void )
+{
+	return ;
+}
+
+void	Cat::sound( void )
+{
+	std::cout << "MeowMeow I am a cat !" << std::endl;
+	return ;
+}

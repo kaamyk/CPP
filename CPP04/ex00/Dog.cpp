@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
+/*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/27 11:59:29 by antoine          ###   ########.fr       */
+/*   Updated: 2023/09/27 12:19:31 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCAV_TRAP_HPP
-# define SCAV_TRAP_HPP
+#include "Dog.hpp"
 
-# include "ClapTrap.hpp"
-
-class	ScavTrap : public ClapTrap
+Dog::Dog( void ) : _type( "Dog" )
 {
-	private :
-		
-	public :
-		ScavTrap( void );
-		ScavTrap( std::string name );
-		~ScavTrap( void );
-		void guardGate( void );
-		ScavTrap&	operator=( ClapTrap& src );
-};
+	std::cout << "In Dog constructor" << std::endl;
+	return ;
+}
 
-#endif
+Dog::~Dog( void )
+{
+	return ;
+}
+
+void	Dog::sound( void )
+{
+	std::cout << "WafWaf I am a dog !" << std::endl;
+	return ;
+}

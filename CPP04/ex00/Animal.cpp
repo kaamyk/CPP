@@ -1,30 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
+/*   Animal.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/27 11:59:29 by antoine          ###   ########.fr       */
+/*   Updated: 2023/09/27 12:19:54 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCAV_TRAP_HPP
-# define SCAV_TRAP_HPP
+#include "Animal.hpp"
 
-# include "ClapTrap.hpp"
-
-class	ScavTrap : public ClapTrap
+Animal::Animal( void ) : _type( "Animal" );
 {
-	private :
-		
-	public :
-		ScavTrap( void );
-		ScavTrap( std::string name );
-		~ScavTrap( void );
-		void guardGate( void );
-		ScavTrap&	operator=( ClapTrap& src );
-};
+	std::cout << "In Animal constructor" << std::enl;
+	return ;
+}
 
-#endif
+Animal::~Animal( void )
+{
+	std::cout << "In Animal destructor" << std::endl;
+	return ;
+}
+
+void	Animal::makeSound( void )
+{
+	this->sound();
+	return ;
+}
+
+const std::string&	Animal::getType( void )
+{
+	str::cout << "In " << this->getType() << "getType() fucntion" << std::endl;
+	return (this->_type);
+}
