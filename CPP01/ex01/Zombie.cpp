@@ -6,7 +6,7 @@
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/06 16:22:23 by antoine          ###   ########.fr       */
+/*   Updated: 2023/09/27 16:34:27 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ Zombie::Zombie(std::string name) : _name(name)
 //			DESTRUCTOR
 Zombie::~Zombie(void)
 {
+	std::cerr << "In " << this->_name << " destructor" << std::endl;
 	return ;
 }
 
