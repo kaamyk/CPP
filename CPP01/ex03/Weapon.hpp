@@ -6,7 +6,7 @@
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/06 21:18:40 by antoine          ###   ########.fr       */
+/*   Updated: 2023/09/27 17:07:04 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ class	Weapon
 		std::string	_type;
 
 	public :
-		//CONSTRUCTOR && DESTRUCTOR
 		Weapon();
 		Weapon(std::string type);
 		~Weapon();

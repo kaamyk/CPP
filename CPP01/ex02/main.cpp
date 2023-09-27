@@ -6,7 +6,7 @@
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/06 16:47:35 by antoine          ###   ########.fr       */
+/*   Updated: 2023/09/27 16:45:09 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,5 @@ int	main(void)
 	std::cout << "string value is " << s <<std::endl;
 	std::cout << "stringPTR value is " << *stringPTR <<std::endl;
 	std::cout << "stringREF value is " << stringREF <<std::endl;
-	std::cout << "\nWell, that's all folks !\n\n" << std::endl;
+	std::cout << "\n\tWell, that's all folks !\n" << std::endl;
 }
