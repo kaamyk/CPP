@@ -6,7 +6,7 @@
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/06 14:24:13 by antoine          ###   ########.fr       */
+/*   Updated: 2023/09/27 16:29:19 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@
 
 void	randomChump(std::string name)
 {
-	Zombie			chump(name);
+	Zombie	chump(name);
 
 
-	writeScript("Guide : Alright! Call " << name << ", he may responde !\n
-		\t > * You scream somthing to " << name << " * <")
+	std::cout << "Guide : Alright! Call " << name << ", he may responde !\n"
+		<< "\t > * You scream somthing to " << name << " * <";
 	std::cout << ".";
 	sleep(1);
 	std::cout << ".";
