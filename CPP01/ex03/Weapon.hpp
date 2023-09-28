@@ -3,12 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   Weapon.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/27 17:07:04 by antoine          ###   ########.fr       */
+/*   Updated: 2023/09/28 15:22:35 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef WEAPON_HPP
+# define WEAPON_HPP
 
 #include <string>
 
@@ -25,3 +28,5 @@ class	Weapon
 		std::string const	&getType(void);
 		void				setType( std::string );
 };
+
+#endif

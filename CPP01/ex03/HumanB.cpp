@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   HumanB.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/27 17:13:46 by antoine          ###   ########.fr       */
+/*   Updated: 2023/09/28 16:32:24 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 HumanB::HumanB(std::string name) : _name(name)
 {
+	this->_weapon = new Weapon("");
 	return ;
 }
 
@@ -30,8 +31,11 @@ HumanB::~HumanB(void)
 
 void	HumanB::attack(void)
 {
-	std::cout << this->_name
-	<< " attacks with their " << this->_weapon->getType() << std::endl;
+	std::cout << this->_name << " attacks with their "; 
+	if (this->_weapon->getType().empty() == 1)
+		std::cout << " ... uuuh ... NOTHING ? Bare hands really ?" << std::endl;
+	else
+		std::cout << this->_weapon->getType() << std::endl;
 	return ;
 }
 
