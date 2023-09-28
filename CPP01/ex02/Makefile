@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: antoine <antoine@student.42.fr>            +#+  +:+       +#+         #
+#    By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/07 17:59:08 by anvincen          #+#    #+#              #
-#    Updated: 2023/09/06 16:32:46 by antoine          ###   ########.fr        #
+#    Updated: 2023/09/28 14:40:59 by anvincen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,14 +29,17 @@ all		: $(OBJS) $(NAME)
 %.o		: %.cpp
 		@clear
 		@echo "Compiling sources files "
+		@sleep 0.1
 		@clear
 		@echo "Compiling sources files ."
+		@sleep 0.1
 		@clear
 		@echo "Compiling sources files .."
+		@sleep 0.1
 		@clear
 		@echo "Compiling sources files ..."
 		@$(CPPC) $(CPPFLAGS) -c $< -o $@
-		@echo "Source files compiled => >>> OK <<<"
+		@echo -e 'Source files compiled => \x1b[32m>>> OK <<<\x1b[37m'
 
 $(NAME)	: $(OBJS)
 		@$(CPPC) $(CFLAGS) $(CPPFLAGS) $(OBJS) -o $(NAME)
@@ -47,11 +50,11 @@ clean	:
 	@echo "Removing objects files ..."
 	rm -f $(OBJS)
 	@clear
-	@echo "Objects files removed => >>> OK <<<"
+	@echo -e 'Objects files removed => \x1b[32m>>> OK <<<\x1b[37m'
 
 fclean	: clean
 	@echo "Removing executable ..."
 	rm -f $(NAME)
-	@echo "Executable removed => >>> OK <<<"
+	@echo -e 'Executable removed => \x1b[32m>>> OK <<<\x1b[37m'
 
 re		: fclean	all

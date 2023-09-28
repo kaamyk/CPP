@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/27 16:45:09 by antoine          ###   ########.fr       */
+/*   Updated: 2023/09/28 14:41:57 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(void)
 
 	std::cout << "string address is " << &s <<std::endl;
 	std::cout << "stringPTR address is " << stringPTR <<std::endl;
-	std::cout << "stringREF address is " << &stringREF <<std::endl;
+	std::cout << "stringREF address is \n" << &stringREF <<std::endl;
 	std::cout << "string value is " << s <<std::endl;
 	std::cout << "stringPTR value is " << *stringPTR <<std::endl;
 	std::cout << "stringREF value is " << stringREF <<std::endl;

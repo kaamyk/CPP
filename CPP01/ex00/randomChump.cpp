@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   randomChump.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/27 16:29:19 by antoine          ###   ########.fr       */
+/*   Updated: 2023/09/28 14:26:52 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,5 @@ void	randomChump(std::string name)
 	std::cout << std::endl
 	<< "Guide : * Unconfortable * Well ... That was interesting ... Let's forget it and move on ..."
 	<< std::endl << std::endl;
+	return ;
 }

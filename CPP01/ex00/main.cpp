@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/09 14:14:25 by antoine          ###   ########.fr       */
+/*   Updated: 2023/09/28 14:30:45 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	main(void)
 
 
 		std::cout << "Guide : So ! What do you want to do ?" << std::endl;
-		std::cout << "1 : Meet one of threee important zombies || 2 : Meet a chumb || 3 : Quit" << std::endl;
+		std::cout << "1 : Meet one of three important zombies || 2 : Meet a chumb || 3 : Quit" << std::endl;
 
 		option = getInput("Please type '1', '2' or '3' :  ", "");
 		if (option.empty() == 1)
