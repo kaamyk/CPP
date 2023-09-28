@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/27 19:19:45 by antoine          ###   ########.fr       */
+/*   Updated: 2023/09/28 17:31:13 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,7 @@ int	main(int ac, char **av)
 	}
 	else if (ac > 2)
 		std::cout << "\t > Only the first parameter will be considered. <" << std::endl;
-	harl.setMinimumLevel(av[1]);
-	harl.complain( "DEBUG" );
-	harl.complain( "INFO" );
-	harl.complain( "WARNING" );
-	harl.complain( "ERROR" );
-	return (0);
+	harl.complain( av[1] );
+	std::cout << std::endl;
+	return ( 0 );
 }

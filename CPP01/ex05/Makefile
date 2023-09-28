@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: antoine <antoine@student.42.fr>            +#+  +:+       +#+         #
+#    By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/07 17:59:08 by anvincen          #+#    #+#              #
-#    Updated: 2023/09/11 14:01:22 by antoine          ###   ########.fr        #
+#    Updated: 2023/09/28 17:05:47 by anvincen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,10 +27,22 @@ VGFLAGS		=	-g
 all		:	$(OBJS) $(NAME)
 
 %.o		:	%.c
+	@clear
+	@echo "Compiling $< |"
+	@sleep 0.1
+	@clear
+	@echo "Compiling $< /"
+	@sleep 0.1
+	@clear
+	@echo "Compiling $< --"
+	@sleep 0.1
+	@clear
+	@echo "Compiling $< \\"
+	@clear
 	@$(CCPP) $(CFLAGS) $(CPPFLAGS) -c $< -o $@ 
-	@echo "Compiling " $< "..."
 
 $(NAME)	:	$(OBJS)
+	@clear
 	@$(CCPP) $(CFLAGS) $(CPPFLAGS) $(OBJS) -o $(NAME)
 
 clean	:
@@ -40,6 +52,6 @@ clean	:
 fclean	:	clean
 	@echo "Deleting " $(NAME) "..."
 	@rm -f $(NAME)
-	@echo "fclean : >>> OK <<<"
+	@echo -e 'fclean : \x1b[32m>>> OK <<<\x1b[37m'
 
 re		: fclean	all

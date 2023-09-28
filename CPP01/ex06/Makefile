@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: antoine <antoine@student.42.fr>            +#+  +:+       +#+         #
+#    By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/07 17:59:08 by anvincen          #+#    #+#              #
-#    Updated: 2023/09/11 14:01:22 by antoine          ###   ########.fr        #
+#    Updated: 2023/09/28 17:34:06 by anvincen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ all		:	$(OBJS) $(NAME)
 	@echo "Compiling " $< "..."
 
 $(NAME)	:	$(OBJS)
+	@clear
 	@$(CCPP) $(CFLAGS) $(CPPFLAGS) $(OBJS) -o $(NAME)
 
 clean	:

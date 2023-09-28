@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Harl.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/27 19:19:14 by antoine          ###   ########.fr       */
+/*   Updated: 2023/09/28 17:29:56 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	Harl::setMinimumLevel(std::string arg)
 
 void	Harl::complain( std::string level )
 {
+	int		nb_l;
 	typedef	void (Harl::*fctPtr)(void);
 
 	std::string	levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
@@ -74,18 +75,23 @@ void	Harl::complain( std::string level )
 								&Harl::warning,
 								&Harl::error};
 
-	if (this->_minimumLevel == 4)
+	for (nb_l = 0; nb_l < 4 && levels[nb_l].compare(level) != 0; ++nb_l)
+			;
+	switch (nb_l)
 	{
-		std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
-		return ;
-	}
-	for (size_t i = 0; i < 4; ++i)
-	{
-		if (i >= this->_minimumLevel && levels[i].compare(level) == 0)
-		{
-			(this->*functions[i])();
-			break ;
-		}
+		case (0) :
+			(this->*functions[0])();
+			++nb_l;
+		case (1) :
+			(this->*functions[1])();
+			++nb_l;
+		case (2) :
+			(this->*functions[2])();
+			++nb_l;
+		case (3) :
+			(this->*functions[3])();
+		default :
+			std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
 	}
 	return ;
 }
