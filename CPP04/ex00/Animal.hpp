@@ -6,7 +6,7 @@
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/27 12:17:28 by antoine          ###   ########.fr       */
+/*   Updated: 2023/09/29 20:03:10 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,19 @@
 
 class	Animal
 {
-	private :
-		const std::string	_type;
+	protected :
+		std::string	_type;
 
 	public :
 		Animal( void );
+		Animal( std::string const type );
+		Animal( Animal const& source );
 		~Animal( void );
 
-		void				makeSound( void );
-		const std::string&	getType( void );
+		Animal&		operator=( Animal const& source);
+
+		void				makeSound( void ) const;
+		std::string const&	getType( void ) const;
 };
 
 #endif

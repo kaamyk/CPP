@@ -6,7 +6,7 @@
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/27 12:16:59 by antoine          ###   ########.fr       */
+/*   Updated: 2023/09/29 20:04:23 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@
 
 class	Dog : public Animal
 {
-	private :
-
 	public :
 		Dog( void );
+		Dog(Dog const & src);
 		~Dog( void );
 
-		void	sound( void );
+		Dog&	operator=( Dog const& source );
 
+		void	makeSound( void ) const;
 };
 
 #endif
