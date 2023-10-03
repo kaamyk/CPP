@@ -6,7 +6,7 @@
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/29 20:00:21 by antoine          ###   ########.fr       */
+/*   Updated: 2023/10/03 15:59:36 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,7 @@ Animal&	Animal::operator=( Animal const& source)
 
 void	Animal::makeSound( void ) const
 {
-	std::cout << "makeSound() -> " << this->_type << std::endl;
-	std::cout << "VNFJKSLVBNSGILSBIGL" << std::endl;
+	std::cout << "GROUGROU I am a bad unknown animal" << std::endl;
 	return ;
 }
 

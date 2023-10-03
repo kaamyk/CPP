@@ -6,16 +6,15 @@
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/29 20:04:09 by antoine          ###   ########.fr       */
+/*   Updated: 2023/10/03 16:02:49 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cat.hpp"
 
-Cat::Cat( void ) : Animal()
+Cat::Cat( void ) : Animal("Cat")
 {
 	std::cout << "In Cat constructor" << std::endl;
-	this->_type = "Cat";
 	return ;
 }
 
@@ -28,6 +27,7 @@ Cat::Cat(Cat const & src) : Animal()
 
 Cat::~Cat( void )
 {
+	std::cout << "In Cat destructor" << std::endl;
 	return ;
 }
 

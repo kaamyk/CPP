@@ -6,7 +6,7 @@
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/29 20:03:10 by antoine          ###   ########.fr       */
+/*   Updated: 2023/10/03 16:27:26 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ class	Animal
 		Animal( void );
 		Animal( std::string const type );
 		Animal( Animal const& source );
-		~Animal( void );
+		virtual ~Animal( void );
 
 		Animal&		operator=( Animal const& source);
 
-		void				makeSound( void ) const;
+		virtual void		makeSound( void ) const;
 		std::string const&	getType( void ) const;
 };
 
