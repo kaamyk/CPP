@@ -1,39 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AMateria.cpp                                       :+:      :+:    :+:   */
+/*   Character.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/04 18:06:05 by anvincen         ###   ########.fr       */
+/*   Updated: 2023/10/04 18:12:43 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/AMateria.hpp"
+#ifndef CHARACTER_HPP
+#define CHARACTER_HPP
 
-AMAteria::AMateria( void )
-{
-	return ;
-}
+#include <iostream>
 
-AMateria::AMateria( const std::string& source )
-{
-	this->_type = source;
-	return ;
-}
+#include "../includes/Cure.hpp"
+#include "../includes/Ice.hpp"
 
-AMateria::~AMateria( void )
+class Character
 {
-	return ;
-}
+	private:
+		std::string	_name;
+		AMateria*	_stuff[4];
 
-std::string const&	getType( void ) const
-{
-	return (this->_type);
-}
+	public:
+		Character( void );
+		~Character( void );
+		std::string const &	getName() const;
+		void				equip(AMateria* m);
+		void				unequip(int idx);
+		void				use(int idx, ICharacter& target);
+};
 
-void				use( ICharacter& target)
-{
-	return ;
-}
+#endif
