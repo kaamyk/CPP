@@ -1,45 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Ice.cpp                                            :+:      :+:    :+:   */
+/*   MateriaSource.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/05 16:48:38 by antoine          ###   ########.fr       */
+/*   Updated: 2023/10/05 19:32:23 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Ice.hpp"
+#include "MaterialSource.hpp"
 
-Ice::Ice( void ): public AMateria("ice")
+MateriaSource::MateriaSource( void )
 {
-	std::cout << "In Ice default constructor" << std::endl;
+	std::cout << "In MateriaSource default constructor" << std::endl;
+	for (unsigned int i = 0; i < 4; ++i)
+	{
+		delete _stock[i];
+		_stock[i] = NULL;
+	}
 	return ;
 }
 
-Ice::Ice ( const Ice& source): AMateria("ice")
+MateriaSource::MateriaSource( MateriaSource const& source )
 {
-	std::cout << "In Ice copy constructor" << std::endl;
+	std::cout << "In MateriaSource copy constructor" << std::endl;
 	if (this != &source)
 		*this = source;
 	return ;
 }
 
-Ice::~Ice ( void )
+void	learnMateria( AMateria* source )
 {
-	std::cout << "In Ice destructor" << std::endl;
-	return ;
-}
-
-void	Ice::use( const ICharacter& target)
-{
-	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
-	return ;
-}
-
-Ice*	Ice::clone( void )
-{
-	Ice	*n_ice = new Ice();
-	return (n_ice);
+	if (_rankNextM >= 4)
+		return ;
+	Amateria	nM(*source);
+	_stock[_rankNextM] = nM;
+	lastMLearnt = new AMateria(nM);
+	++_rankNextM;
 }

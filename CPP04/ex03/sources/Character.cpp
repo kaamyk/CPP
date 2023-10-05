@@ -3,56 +3,96 @@
 /*                                                        :::      ::::::::   */
 /*   Character.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/04 18:26:39 by anvincen         ###   ########.fr       */
+/*   Updated: 2023/10/05 18:27:48 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Character.hpp"
 
-Character::Character( std::string const name ): ICharacter("_name")
+Character::Character( void ): _type("No name")
 {
 	std::cout << "In Character default constructor" << std::endl;
 	for (unsigned int i = 0; i < 4; ++i)
-		_stuff[i] = NULL;
+		_inventory[i] = NULL;
+	return;
+}
+
+Character::Character( Character const& source )
+{
+	if (this != &source)
+		*this = source;
+	return (*this);
+}
+
+Character::Character( std::string const name )
+{
+	std::cout << "In Character parametered constructor" << std::endl;
+	for (unsigned int i = 0; i < 4; ++i)
+		_inventory[i] = NULL;
 	return ;
 }
 
 Character::~Character( void )
 {
+	std::cout << "In Character destructor" << std::endl;
+	for (unsigned int i = 0; i < 4; ++i)
+	{
+		if (_inventory[i])
+			delete _iventory[i];
+	}
 	return ;
 }
 
-std::string const&	getName( void ) const
+Character&			Character::operator=( Character const& source )
+{
+	this->_name = source.name;
+	this->resetInventory(void);
+	for (unsigned int i = 0; i < 4; ++i)
+		*(this->_stuff[i]) = *(source._inventory[i]);
+	return (*this);
+}
+
+std::string const&	Character::getName( void ) const
 {
 	return (this->_name);
 }
 
-void				equip( AMateria* m )
+void				Character::equip( AMateria* m )
 {
-	for (unsigned int i = 0; i < 4 && _stuff[i] != NULL; ++i)
+	for (unsigned int i = 0; i < 4 && _inventory[i] != NULL; ++i)
 		;
 	if (i == 4)
 		return ;
-	_stuff[i] = m;
+	_inventory[i] = m;
 	return ;
 }
 
-void				unequip( int idx )
+void				Character::unequip( int idx )
 {
-	if ((idx < 0 || idx > 4) || _stuff[idx] = NULL)
+	if ((idx < 0 || idx > 4) || _inventory[idx] = NULL)
 		return ;
 	// False => delete inside the function forbidden
-	delete _stuff[idx];
-	_stuff[idx] = NULL;
+	delete _inventory[idx];
+	_inventory[idx] = NULL;
 }
 
-void				use( int idx, ICharacter& target )
+void				Character::use( int idx, ICharacter& target )
 {
-	if ((idx < 0 || idx > 4) || _stuff[idx] = NULL)
+	if ((idx < 0 || idx > 4) || !_inventory[idx])
 		return ;
-	_stuff[idx]->use(target);
+	_inventorytuff[idx]->use(target);
+	return ;
+}
+
+void				Character::resetInventory( void )
+{
+	for (unsigned int i = 0; i < 4; ++i)
+	{
+		delete(_inventory[i]);
+		_inventory[i] = NULL;
+	}
 	return ;
 }

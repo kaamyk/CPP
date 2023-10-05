@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AMateria.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/04 18:04:44 by anvincen         ###   ########.fr       */
+/*   Updated: 2023/10/05 16:30:53 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,19 @@
 #define AMATERIA_HPP
 
 #include <iostream>
+#include <string>
 
-class	AMAteria
+#include "ICharacter.hpp"
+
+class	AMateria
 {
 	protected	:
 		std::string const	_type;
 
 	public		:
-		AMAteria( void );
-		AMateria( const std::string& source );
+		AMateria( void );
+		AMateria( const AMateria& source );
+		AMateria( const std::string& type );
 		~AMateria( void );
 
 		std::string const&	getType( void ) const;

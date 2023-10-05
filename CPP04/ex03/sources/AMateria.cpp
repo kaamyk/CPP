@@ -3,37 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   AMateria.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/04 18:06:05 by anvincen         ###   ########.fr       */
+/*   Updated: 2023/10/05 16:48:13 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/AMateria.hpp"
+#include "../includes/ICharacter.hpp"
 
-AMAteria::AMateria( void )
+AMateria::AMateria( void )
 {
+	std::cout << "In AMateria default constructor" << std::endl;
 	return ;
 }
 
-AMateria::AMateria( const std::string& source )
+AMateria::AMateria( const AMateria& source ): _type(source._type)
 {
-	this->_type = source;
+	std::cout << "In AMateria copy constructor" << std::endl;
+	return ;
+}
+
+AMateria::AMateria( const std::string& type ): _type(type)
+{
+	std::cout << "In AMateria parametered constructor" << std::endl;
 	return ;
 }
 
 AMateria::~AMateria( void )
 {
+	std::cout << "In AMateria destructor" << std::endl;
 	return ;
 }
 
-std::string const&	getType( void ) const
+AMateria&			AMateria::operator=( AMateria const& source )
+{
+	if (this != &source)
+		this->_type = source.type;
+	return (this);
+}
+
+std::string const&	AMateria::getType( void ) const
 {
 	return (this->_type);
 }
 
-void				use( ICharacter& target)
+void				AMateria::use( ICharacter& target )
 {
 	return ;
 }
