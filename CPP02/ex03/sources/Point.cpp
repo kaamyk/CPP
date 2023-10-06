@@ -6,15 +6,22 @@
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/20 12:22:51 by antoine          ###   ########.fr       */
+/*   Updated: 2023/10/06 11:23:23 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include "Point.hpp"
+#include "../includes/Point.hpp"
 
 Point::Point( void ) : _x(0), _y(0)
 {
+	return ;
+}
+
+Point::Point( Point const& source )
+{
+	this->_x = source._x;
+	this->_y = source._y;
 	return ;
 }
 
@@ -26,6 +33,13 @@ Point::Point( Fixed x, Fixed y ) : _x(x), _y(y)
 Point::~Point( void )
 {
 	return ;
+}
+
+Point&	Point::operator=( Point const& source )
+{
+	this->_x = source._x;
+	this->_y = source._y;
+	return (*this);
 }
 
 Fixed&	Point::getAbs( void )

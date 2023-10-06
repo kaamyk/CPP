@@ -6,13 +6,13 @@
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/20 13:14:44 by antoine          ###   ########.fr       */
+/*   Updated: 2023/10/06 11:06:36 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include "Fixed.hpp"
-#include "Point.hpp"
+#include "../includes/Fixed.hpp"
+#include "../includes/Point.hpp"
 
 bool	bsp( Point A, Point B, Point C, Point P );
 

@@ -3,44 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/19 13:36:17 by anvincen         ###   ########.fr       */
+/*   Updated: 2023/10/06 11:04:22 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <cmath>
-#include "Fixed.hpp"
-
-//		CONSTRUCTOR
+#include "../includes/Fixed.hpp"
 
 Fixed::Fixed( void ) : _raw(0)
 {
+	std::cout << "In Fixed default constructor" << std::endl;
 	return ;
 }
 
-Fixed::Fixed(const Fixed &source)
+Fixed::Fixed( const Fixed &source )
 {
+	std::cout << "In Fixed copy constructor" << std::endl;
 	*this = source;
 	return ;
 }
 
 Fixed::Fixed( float const &f ) : _raw(roundf(f * (1 << _fractionalBits)))
 {
+	std::cout << "In Fixed float constructor" << std::endl;
 	return ;
 }
 
 Fixed::Fixed( int const &n ) : _raw(n << _fractionalBits)
 {
+	std::cout << "In Fixed int constructor" << std::endl;
 	return ;
 }
 
-//		DESTRUCTOR
-
 Fixed::~Fixed( void )
 {
+	std::cout << "In Fixed destructor" << std::endl;
 	return ;
 }
 
@@ -74,30 +75,22 @@ bool	Fixed::operator<( Fixed const& a) const
 
 bool	Fixed::operator>=( const Fixed& a)
 {
-	if (this->_raw >= a.getRawBits())
-		return (1);
-	return (0);
+	return (this->_raw >= a.getRawBits())
 }
 
 bool	Fixed::operator<=( const Fixed& a)
 {
-	if (this->_raw <= a.getRawBits())
-		return (1);
-	return (0);
+	return (this->_raw <= a.getRawBits())
 }
 
 bool	Fixed::operator==( const Fixed& a)
 {
-	if (this->_raw == a.getRawBits())
-		return (1);
-	return (0);
+	return (this->_raw == a.getRawBits())
 }
 
 bool	Fixed::operator!=( const Fixed& a )
 {
-	if (this->_raw != a.getRawBits())
-		return (1);
-	return (0);
+	return (this->_raw != a.getRawBits())
 }
 
 Fixed	Fixed::operator+( const Fixed& a)

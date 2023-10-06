@@ -6,46 +6,58 @@
 #    By: antoine <antoine@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/07 17:59:08 by anvincen          #+#    #+#              #
-#    Updated: 2023/09/20 13:14:11 by antoine          ###   ########.fr        #
+#    Updated: 2023/10/06 11:23:39 by antoine          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	fixed
 
-SRCS		=	main.cpp	Fixed.cpp	Point.cpp	bsp.cpp
+SRCDIR		=	sources
 
-OBJS		=	$(SRCS:.cpp=.o)
+SRCS		=	$(wildcard $(SRCDIR)/*.cpp)
+
+OBJDIR		=	.obj
+
+OBJS		=	$(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SRCS))
 
 CCPP		=	c++
 
 CFLAGS		=	-Wall -Wextra -Werror
 
-CPPFLAGS	=	-std=c++98
-
 VGFLAGS		=	-g
 
-all		:	$(OBJS) $(NAME)
+all				:	$(OBJDIR) $(OBJS) $(NAME)
 
-%.o		:	%.c
-	@echo -e '\033[0;34mCompiling $< ...\x1b[37m'
-	@$(CCPP) $(CFLAGS) $(CPPFLAGS) -c $< -o $@ 
+$(OBJDIR)		:
+	mkdir $(OBJDIR)
 
-$(NAME)	:	$(OBJS)
+$(OBJDIR)/%.o	:	$(SRCDIR)/%.cpp
+	@clear
+	@echo "Compiling " $< " ..."
+	@$(CCPP) $(CFLAGS) $(CPPFLAGS) $(SFMLFLAGS) -c $< -o $@ 
+	@clear
+	@echo -e 'Compiling ' $< ' \x1b[32m>>> OK <<<\x1b[37m'
+	@sleep 0.5
+
+$(NAME)			:	$(OBJS)
+	@clear
 	@echo -e '\033[0;34mObjects compilation : \x1b[32m>>> OK <<<\x1b[37m'
 	@echo -e '\033[0;34mCompiling executable ...\x1b[37m'
-	@$(CCPP) $(CFLAGS) $(CPPFLAGS) $(OBJS) -o $(NAME)
-	@echo -e '\033[0;34mExecutable compilation : \x1b[32m>>> OK <<<\x1b[37m'
-	@sleep 1;
 	@clear
+	@$(CCPP) $(VGFLAGS) $(CFLAGS) $(CPPFLAGS) $(OBJS) $(SFMLFLAGS) -o $(NAME)
 
-clean	:
-	@echo -e '\033[0;34mremoving object files ...\x1b[37m'
-	@rm -f $(OBJS)
-	@echo -e '\033[0;34mObject files are removed : \x1b[32m>>> OK <<<\x1b[37m'
+clean			:
+	@echo -e '\033[0;34mRemoving object files ...\x1b[37m'
+	@rm -rf $(OBJDIR)
+	@clear
+	@echo -e '\033[0;34mRemoving object files \x1b[32m>>> OK <<<\x1b[37m'
 
-fclean	:	clean
-	@echo -e '\033[0;34mremoving executable files ...\x1b[37m'
+fclean			:	clean
+	@echo -e '\033[0;34mRemoving executable files ...\x1b[37m'
 	@rm -f $(NAME)
-	@echo -e '\033[0;34mExecutable files are removed : \x1b[32m>>> OK <<<\x1b[37m'
+	clear
+	@echo -e '\033[0;34mRemoving executable files \x1b[32m>>> OK <<<\x1b[37m'
+	@sleep 1
+	@clear
 
 re		: fclean	all

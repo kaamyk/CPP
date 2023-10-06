@@ -1,37 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Point.hpp                                          :+:      :+:    :+:   */
+/*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/20 12:23:14 by antoine          ###   ########.fr       */
+/*   Updated: 2023/10/06 10:24:36 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	POINT_HPP
-# define POINT_HPP
+#ifndef FIXED_HPP
+# define FIXED_HPP
 
-# include "Fixed.hpp"
-
-class	Point
+class	Fixed
 {
 	private :
-		Fixed	_x;
-		Fixed	_y;
+		int					_rawBits;
+		static int const	_nbFractBits = 8;
 
-	public	:
-		Point( void );
-		Point( Fixed x, Fixed y );
-		~Point( void );
+	public :
+		Fixed( void );
+		Fixed( const Fixed &source);
+		~Fixed( void );
+		Fixed	&operator=( const Fixed &a);
 
-		Fixed&	getAbs( void );
-		Fixed&	getOrd( void );
-		// void	setAbscissa( Fixed a );
-		// void	setOrdinate( Fixed o );
-		// void	setCoordinates( Fixed a, Fixed o );
-
+		int		getRawBits( void ) const;
+		void	setRawBits( int const raw );
 };
 
 #endif

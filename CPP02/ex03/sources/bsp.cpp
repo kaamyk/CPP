@@ -6,12 +6,12 @@
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/20 13:13:21 by antoine          ###   ########.fr       */
+/*   Updated: 2023/10/06 11:21:45 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include "Point.hpp"
+#include "../includes/Point.hpp"
 
 void	ft_abs( Fixed &N )
 {
@@ -32,7 +32,7 @@ Fixed	getArea( Point P1, Point P2, Point P3 )
 	return ( tmp );
 }
 
-bool	bsp( Point A, Point B, Point C, Point P )
+bool	bsp( Point const A, Point const B, Point const C, Point const P )
 {
 	Fixed	ABC;
 	Fixed	partArea;
