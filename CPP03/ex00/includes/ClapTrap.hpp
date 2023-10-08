@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Fixed.cpp                                          :+:      :+:    :+:   */
+/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/15 14:31:46 by antoine          ###   ########.fr       */
+/*   Updated: 2023/10/08 11:27:33 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,20 @@ class	ClapTrap
 		size_t		_attackDamage;
 
 	public :
+		ClapTrap( void );
+		ClapTrap( ClapTrap const& source );
 		ClapTrap( std::string name );
 		~ClapTrap( void );
-		void	attack( const std::string& target );
-		void	takeDamage( unsigned int amount);
-		void	beRepaired( unsigned int amount);
+
+		ClapTrap&	operator=( ClapTrap const& source );
+
+		void			printAttributes( void );
+		void			attack( const std::string& target );
+		void			takeDamage( unsigned int amount);
+		void			beRepaired( unsigned int amount);
+
+		unsigned int	getAttackDamage( void );
+		void			setAttackDamage( unsigned int ad );
 };
 
 #endif

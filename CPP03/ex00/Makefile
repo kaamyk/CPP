@@ -6,46 +6,60 @@
 #    By: antoine <antoine@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/07 17:59:08 by anvincen          #+#    #+#              #
-#    Updated: 2023/09/27 10:42:14 by antoine          ###   ########.fr        #
+#    Updated: 2023/10/08 11:34:09 by antoine          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	attack
+NAME		=	fixed
 
-SRCS		=	main.cpp	ClapTrap.cpp
+SRCDIR		=	sources
 
-OBJS		=	$(SRCS:.cpp=.o)
+SRCS		=	$(wildcard $(SRCDIR)/*.cpp)
+
+OBJDIR		=	.obj
+
+OBJS		=	$(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SRCS))
 
 CCPP		=	c++
 
 CFLAGS		=	-Wall -Wextra -Werror
 
-CPPFLAGS	=	-std=c++98
-
 VGFLAGS		=	-g
 
-all		:	$(OBJS) $(NAME)
+all				:	$(OBJDIR) $(OBJS) $(NAME)
 
-%.o		:	%.c
-	@echo -e '\033[0;34mCompiling $< ...\x1b[37m'
-	@$(CCPP) $(CFLAGS) $(CPPFLAGS) -c $< -o $@ 
+$(OBJDIR)		:
+	mkdir $(OBJDIR)
 
-$(NAME)	:	$(OBJS)
-	@echo -e '\033[0;34mObjects compilation : \x1b[32m>>> OK <<<\x1b[37m'
-	@echo -e '\033[0;34mCompiling executable ...'
-	@$(CCPP) $(CFLAGS) $(CPPFLAGS) $(OBJS) -o $(NAME)
-	@echo -e '\033[0;34mExecutable compilation : \x1b[32m>>> OK <<<\x1b[37m'
-	@sleep 1
+$(OBJDIR)/%.o	:	$(SRCDIR)/%.cpp
+	@clear
+	@echo "Compiling " $< " ..."
+	@$(CCPP) $(CFLAGS) $(CPPFLAGS) $(SFMLFLAGS) -c $< -o $@ 
+	@clear
+	@echo -e 'Compiling ' $< ' \x1b[32m>>> OK <<<\x1b[37m'
+	@sleep 0.5
+
+$(NAME)			:	$(OBJS)
+	@clear
+	@echo 'Compiling executable ...'
+	@clear
+	@$(CCPP) $(VGFLAGS) $(CFLAGS) $(CPPFLAGS) $(OBJS) $(SFMLFLAGS) -o $(NAME)
+	@echo -e 'Compiling ' $(NAME) ' \x1b[32m>>> OK <<<\x1b[37m'
+	@sleep 0.5
 	@clear
 
-clean	:
-	@echo -e '\033[0;34mremoving object files ...\x1b[37m'
-	@rm -f $(OBJS)
-	@echo -e '\033[0;34mObject files are removed : \x1b[32m>>> OK <<<\x1b[37m'
+clean			:
+	@echo 'Removing object files ...'
+	@rm -rf $(OBJDIR)
+	@clear
+	@echo -e 'Removing object files \x1b[32m>>> OK <<<\x1b[37m'
 
-fclean	:	clean
-	@echo -e '\033[0;34mremoving executable files ...\x1b[37m'
+fclean			:	clean
+	@echo -e 'Removing executable files ...'
 	@rm -f $(NAME)
-	@echo -e '\033[0;34mExecutable files are removed : \x1b[32m>>> OK <<<\x1b[37m'
+	clear
+	@echo -e 'Removing executable files \x1b[32m>>> OK <<<\x1b[37m'
+	@sleep 1
+	@clear
 
 re		: fclean	all

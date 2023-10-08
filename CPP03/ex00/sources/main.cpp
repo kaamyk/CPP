@@ -1,24 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Fixed.cpp                                          :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/15 14:31:46 by antoine          ###   ########.fr       */
+/*   Updated: 2023/10/08 11:29:43 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
+#include "../includes/ClapTrap.hpp"
 
 int	main( void )
 {
 	ClapTrap	toto("toto");
+	ClapTrap	igor("igor");
+	ClapTrap	huguette("huguette");
 
-	toto.takeDamage( 2 );	
-	toto.attack( "Octor" );	
-	toto.takeDamage( 4 );
-	toto.beRepaired( 5 );
+	toto.setAttackDamage(2);
+	igor.setAttackDamage(1);
+	huguette.setAttackDamage(1);
+
+	toto.attack("huguette");	
+	huguette.takeDamage(toto.getAttackDamage());
+	igor.attack("huguette");
+	huguette.takeDamage(igor.getAttackDamage());
+	huguette.printAttributes();
+	igor.attack("toto");
+	toto.takeDamage(igor.getAttackDamage());
+	huguette.beRepaired(1);
+	huguette.printAttributes();
 	return ( 0 );
 }
