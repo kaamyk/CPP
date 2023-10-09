@@ -6,7 +6,7 @@
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/23 12:30:58 by antoine          ###   ########.fr       */
+/*   Updated: 2023/10/09 10:27:04 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,26 @@
 class	ClapTrap
 {
 	protected :
-		std::string	_name;
-		size_t		_hitPoint;
-		size_t		_energyPoint;
-		size_t		_attackDamage;
+		std::string		_name;
+		unsigned int	_hitPoint;
+		unsigned int	_energyPoint;
+		unsigned int	_attackDamage;
 
 	public :
 		ClapTrap( void );
 		ClapTrap( std::string name );
+		ClapTrap( ClapTrap const& source );
 		~ClapTrap( void );
-		void	attack( const std::string& target );
-		void	takeDamage( unsigned int amount);
-		void	beRepaired( unsigned int amount);
-		std::string&	getName( void );
-		size_t&		getHitPoint( void );
-		size_t&		getEnergyPoint( void );
-		size_t&		getAttackDamage( void );
+
+
+		ClapTrap&		operator=( ClapTrap const& source );
+
+		unsigned int	getAttackDamage( void ) const;
+		void			setAttackDamage( const unsigned int & ad );
+		void			printAttributes( void );
+		void			attack( const std::string& target );
+		void			takeDamage( unsigned int amount);
+		void			beRepaired( unsigned int amount);
 
 
 };

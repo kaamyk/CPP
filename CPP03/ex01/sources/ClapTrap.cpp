@@ -6,14 +6,14 @@
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/09 10:17:56 by antoine          ###   ########.fr       */
+/*   Updated: 2023/10/09 10:26:12 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ClapTrap.hpp"
 
-ClapTrap::ClapTrap( void ): _name("default"), _hitPoint(0),
-							_energyPoint(0), _attackDamage(0)
+ClapTrap::ClapTrap( void ):	_name("default"), _hitPoint(10),
+							_energyPoint(10), _attackDamage(0)
 {
 	std::cout << "In ClapTrap default constructor" << std::endl;
 	return ;
@@ -22,13 +22,12 @@ ClapTrap::ClapTrap( void ): _name("default"), _hitPoint(0),
 ClapTrap::ClapTrap( std::string name ) : _name(name), _hitPoint(10),
 										_energyPoint(10), _attackDamage(0)
 {
-	std::cout << "In ClapTrap parametered constructor" << std::endl;
+	std::cout << "In ClapTrap named constructor" << std::endl;
 	return ;
 }
 
-ClapTrap::ClapTrap( ClapTrap const& source )
+ClapTrap::ClapTrap( ClapTrap const& source)
 {
-	std::cout << "In ClapTrap copy constructor" << std::endl;
 	*this = source;
 	return ;
 }
@@ -39,12 +38,12 @@ ClapTrap::~ClapTrap( void )
 	return ;
 }
 
-ClapTrap&		ClapTrap::operator=( ClapTrap const& source )
+ClapTrap&	ClapTrap::operator=( ClapTrap const& source )
 {
-	this->_name = source._name;
-	this->_hitPoint = source._hitPoint;
-	this->_energyPoint = source._energyPoint;
-	this->_attackDamage = source._attackDamage;
+	_name = source._name;
+	_hitPoint = source._hitPoint;
+	_energyPoint = source._energyPoint;
+	_attackDamage = source._attackDamage;
 	return (*this);
 }
 
@@ -106,12 +105,12 @@ void			ClapTrap::beRepaired( unsigned int amount )
 	return ;
 }
 
-unsigned int	ClapTrap::getAttackDamage( void )
+unsigned int	ClapTrap::getAttackDamage( void ) const
 {
 	return ( _attackDamage );
 }
 
-void			ClapTrap::setAttackDamage( unsigned int ad )
+void			ClapTrap::setAttackDamage( const unsigned int & ad )
 {
 	_attackDamage = ad;
 	return ;

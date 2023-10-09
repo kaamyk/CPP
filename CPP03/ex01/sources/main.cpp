@@ -6,22 +6,31 @@
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/09/23 12:32:28 by antoine          ###   ########.fr       */
+/*   Updated: 2023/10/09 10:33:25 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
-#include "ScavTrap.hpp"
+#include "../includes/ClapTrap.hpp"
+#include "../includes/ScavTrap.hpp"
 
 int	main( void )
 {
-	ClapTrap	toto("toto");
-	ScavTrap	tutu("tutu");
+	ScavTrap	toto("toto");
+	ScavTrap	igor("igor");
+	ScavTrap	huguette("huguette");
 
-	toto.takeDamage( 2 );	
-	tutu.takeDamage( 2 );	
-	toto.attack( "tutu" );	
-	tutu.takeDamage( toto.getAttackDamage() );
-	toto.beRepaired( 5 );
+	toto.setAttackDamage(2);
+	igor.setAttackDamage(1);
+	huguette.setAttackDamage(1);
+
+	toto.attack("huguette");	
+	huguette.takeDamage(toto.getAttackDamage());
+	igor.attack("huguette");
+	huguette.takeDamage(igor.getAttackDamage());
+	huguette.printAttributes();
+	igor.attack("toto");
+	toto.takeDamage(igor.getAttackDamage());
+	huguette.beRepaired(1);
+	huguette.printAttributes();
 	return ( 0 );
 }

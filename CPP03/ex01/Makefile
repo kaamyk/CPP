@@ -6,11 +6,11 @@
 #    By: antoine <antoine@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/07 17:59:08 by anvincen          #+#    #+#              #
-#    Updated: 2023/10/06 11:23:39 by antoine          ###   ########.fr        #
+#    Updated: 2023/10/09 10:16:36 by antoine          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	fixed
+NAME		=	claptrap
 
 SRCDIR		=	sources
 
@@ -41,22 +41,24 @@ $(OBJDIR)/%.o	:	$(SRCDIR)/%.cpp
 
 $(NAME)			:	$(OBJS)
 	@clear
-	@echo -e '\033[0;34mObjects compilation : \x1b[32m>>> OK <<<\x1b[37m'
-	@echo -e '\033[0;34mCompiling executable ...\x1b[37m'
+	@echo 'Compiling executable ...'
 	@clear
 	@$(CCPP) $(VGFLAGS) $(CFLAGS) $(CPPFLAGS) $(OBJS) $(SFMLFLAGS) -o $(NAME)
+	@echo -e 'Compiling ' $(NAME) ' \x1b[32m>>> OK <<<\x1b[37m'
+	@sleep 0.5
+	@clear
 
 clean			:
-	@echo -e '\033[0;34mRemoving object files ...\x1b[37m'
+	@echo 'Removing object files ...'
 	@rm -rf $(OBJDIR)
 	@clear
-	@echo -e '\033[0;34mRemoving object files \x1b[32m>>> OK <<<\x1b[37m'
+	@echo -e 'Removing object files \x1b[32m>>> OK <<<\x1b[37m'
 
 fclean			:	clean
-	@echo -e '\033[0;34mRemoving executable files ...\x1b[37m'
+	@echo -e 'Removing executable files ...'
 	@rm -f $(NAME)
 	clear
-	@echo -e '\033[0;34mRemoving executable files \x1b[32m>>> OK <<<\x1b[37m'
+	@echo -e 'Removing executable files \x1b[32m>>> OK <<<\x1b[37m'
 	@sleep 1
 	@clear
 
