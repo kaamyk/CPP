@@ -22,7 +22,7 @@ ClapTrap::ClapTrap( void ):	_name("default"), _hitPoint(10),
 ClapTrap::ClapTrap( std::string name ) : _name(name), _hitPoint(10),
 										_energyPoint(10), _attackDamage(0)
 {
-	std::cout << "In ClapTrap named constructor" << std::endl;
+	std::cout << "In ClapTrap named" << name << " constructor" << std::endl;
 	return ;
 }
 

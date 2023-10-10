@@ -6,7 +6,7 @@
 /*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/10 12:24:10 by anvincen         ###   ########.fr       */
+/*   Updated: 2023/10/10 13:52:50 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ ScavTrap::ScavTrap( void ): ClapTrap()
 
 ScavTrap::ScavTrap( std::string const name ): ClapTrap( name )
 {
-	std::cout << "In ScavTrap named constructor" << std::endl;
+	std::cout << "In ScavTrap named " << name << "constructor" << std::endl;
 	this->_name = name;
 	this->_hitPoint = SC_HITPOINT;
 	this->_energyPoint = SC_ENERGYPOINT;

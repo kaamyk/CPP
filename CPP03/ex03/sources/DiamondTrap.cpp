@@ -6,7 +6,7 @@
 /*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/10 13:25:21 by anvincen         ###   ########.fr       */
+/*   Updated: 2023/10/10 14:55:31 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ DiamondTrap::DiamondTrap( void ): ScavTrap(), FragTrap()
 	return ;
 }
 
-DiamondTrap::DiamondTrap( std::string const name ): ScavTrap(name), FragTrap(name), _name(name)
+DiamondTrap::DiamondTrap( std::string const name ):	ClapTrap(name + "_clap_name"),
+													_name(name)
 {
-	std::cout << "In DiamondTrap named constructor" << std::endl;
+	std::cout << "In DiamondTrap named " << name << " constructor" << std::endl;
 	ScavTrap	tmp;
 
-	this->_name = name;
 	this->_hitPoint = FragTrap::getHitPoint();
 	this->_energyPoint = tmp.getEnergyPoint();
 	this->_attackDamage = FragTrap::getAttackDamage();

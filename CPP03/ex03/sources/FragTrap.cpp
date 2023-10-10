@@ -6,7 +6,7 @@
 /*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/10 12:24:42 by anvincen         ###   ########.fr       */
+/*   Updated: 2023/10/10 13:53:06 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ FragTrap::FragTrap( void ): ClapTrap()
 
 FragTrap::FragTrap( std::string const name ): ClapTrap( name )
 {
-	std::cout << "In FragTrap named constructor" << std::endl;
+	std::cout << "In FragTrap named " << name << "constructor" << std::endl;
 	this->_name = name;
 	this->_hitPoint = FR_HITPOINT;
 	this->_energyPoint = FR_ENERGYPOINT;
