@@ -3,67 +3,63 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: antoine <antoine@student.42.fr>            +#+  +:+       +#+         #
+#    By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/07 17:59:08 by anvincen          #+#    #+#              #
-#    Updated: 2023/10/03 16:34:51 by antoine          ###   ########.fr        #
+#    Updated: 2023/10/10 13:05:18 by anvincen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	animal
+NAME		=	claptrap
 
-SRCS		=	main.cpp	Animal.cpp	Dog.cpp	Cat.cpp
+SRCDIR		=	sources
 
-OBJS		=	$(SRCS:.cpp=.o)
+SRCS		=	$(wildcard $(SRCDIR)/*.cpp)
 
-CCPP		=	c++
+OBJDIR		=	.obj
 
-CFLAGS		=	-Wall -Wextra -Werror
+OBJS		=	$(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SRCS))
 
-CPPFLAGS	=	-std=c++98
+CCPP		=	g++
+
+CFLAGS		=	-Wall -Wextra -Werror -Wshadow -Wno-shadow
 
 VGFLAGS		=	-g
 
-all		:	$(OBJS) $(NAME)
+all				:	$(OBJDIR) $(OBJS) $(NAME)
 
-%.o		:	%.cpp
+$(OBJDIR)		:
+	mkdir $(OBJDIR)
+
+$(OBJDIR)/%.o	:	$(SRCDIR)/%.cpp
 	@clear
-	@echo -e '\033[0;34mCompiling $< \x1b[37m'
+	@echo "Compiling " $< " ..."
+	@$(CCPP) $(CFLAGS) $(CPPFLAGS) $(SFMLFLAGS) -c $< -o $@ 
+	@clear
+	@echo -e 'Compiling ' $< ' \x1b[32m>>> OK <<<\x1b[37m'
 	@sleep 0.1
-	@clear
-	@echo -e '\033[0;34mCompiling $< .\x1b[37m'
-	@sleep 0.1
-	@clear
-	@echo -e '\033[0;34mCompiling $< ..\x1b[37m'
-	@sleep 0.1
-	@clear
-	@echo -e '\033[0;34mCompiling $< ...\x1b[37m'
-	@$(CCPP) $(CFLAGS) $(CPPFLAGS) -c $< -o $@ 
 
-$(NAME)	:	$(OBJS)
-	@echo -e '\033[0;34mObjects compilation : \x1b[32m>>> OK <<<\x1b[37m'
-	@echo -e '\033[0;34mCompiling executable ...\x1b[37m'
-	@$(CCPP) $(CFLAGS) $(CPPFLAGS) $(OBJS) -o $(NAME)
-	@echo -e '\033[0;34mExecutable compilation : \x1b[32m>>> OK <<<\x1b[37m'
-	@sleep 1
+$(NAME)			:	$(OBJS)
+	@clear
+	@echo 'Compiling executable ...'
+	@clear
+	@$(CCPP) $(VGFLAGS) $(CFLAGS) $(CPPFLAGS) $(OBJS) $(SFMLFLAGS) -o $(NAME)
+	@echo -e 'Compiling ' $(NAME) ' \x1b[32m>>> OK <<<\x1b[37m'
+	@sleep 0.5
 	@clear
 
-vg	:	$(OBJS)
-	@echo -e '\033[0;34mObjects compilation : \x1b[32m>>> OK <<<\x1b[37m'
-	@echo -e '\033[0;34mCompiling executable ...\x1b[37m'
-	@$(CCPP) $(CFLAGS) $(VGFLAGS) $(CPPFLAGS) $(OBJS) -o $(NAME)
-	@echo -e '\033[0;34mExecutable compilation : \x1b[32m>>> OK <<<\x1b[37m'
-	@sleep 1
+clean			:
+	@echo 'Removing object files ...'
+	@rm -rf $(OBJDIR)
 	@clear
+	@echo -e 'Removing object files \x1b[32m>>> OK <<<\x1b[37m'
 
-clean	:
-	@echo -e '\033[0;34mremoving object files ...\x1b[37m'
-	@rm -f $(OBJS)
-	@echo -e '\033[0;34mObject files are removed : \x1b[32m>>> OK <<<\x1b[37m'
-
-fclean	:	clean
-	@echo -e '\033[0;34mremoving executable files ...\x1b[37m'
+fclean			:	clean
+	@echo -e 'Removing executable files ...'
 	@rm -f $(NAME)
-	@echo -e '\033[0;34mExecutable files are removed : \x1b[32m>>> OK <<<\x1b[37m'
+	clear
+	@echo -e 'Removing executable files \x1b[32m>>> OK <<<\x1b[37m'
+	@sleep 1
+	@clear
 
 re		: fclean	all
