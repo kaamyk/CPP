@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/09 18:34:29 by antoine          ###   ########.fr       */
+/*   Updated: 2023/10/10 11:59:54 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,13 @@ ClapTrap::~ClapTrap( void )
 
 ClapTrap&	ClapTrap::operator=( ClapTrap const& source )
 {
-	_name = source._name;
-	_hitPoint = source._hitPoint;
-	_energyPoint = source._energyPoint;
-	_attackDamage = source._attackDamage;
+	if (this != &source)
+	{
+		_name = source._name;
+		_hitPoint = source._hitPoint;
+		_energyPoint = source._energyPoint;
+		_attackDamage = source._attackDamage;
+	}
 	return (*this);
 }
 

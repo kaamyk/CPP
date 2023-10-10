@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/09 18:32:04 by antoine          ###   ########.fr       */
+/*   Updated: 2023/10/10 13:26:09 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,14 @@
 
 # include "../includes/ClapTrap.hpp"
 
+# define FR_HITPOINT 100
+# define FR_ENERGYPOINT 100
+# define FR_ATTACKDAMAGE 30
+
 class	FragTrap : virtual public ClapTrap
 {
 	protected :
-		
+
 	public :
 		FragTrap( void );
 		FragTrap( std::string name );

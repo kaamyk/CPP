@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/09 18:34:09 by antoine          ###   ########.fr       */
+/*   Updated: 2023/10/10 12:28:10 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 
 int	main( void )
 {
+	DiamondTrap	bibi("bibi");
 	FragTrap	toto("toto");
 	ScavTrap	igor("igor");
 	ScavTrap	huguette("huguette");
-	DiamondTrap	bibi("bibi");
 
 	bibi.printAttributes();
 
