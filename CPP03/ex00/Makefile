@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: antoine <antoine@student.42.fr>            +#+  +:+       +#+         #
+#    By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/07 17:59:08 by anvincen          #+#    #+#              #
-#    Updated: 2023/10/08 11:34:09 by antoine          ###   ########.fr        #
+#    Updated: 2023/10/10 13:05:18 by anvincen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,9 +20,9 @@ OBJDIR		=	.obj
 
 OBJS		=	$(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SRCS))
 
-CCPP		=	c++
+CCPP		=	g++
 
-CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror -Wshadow -Wno-shadow
 
 VGFLAGS		=	-g
 
@@ -37,7 +37,7 @@ $(OBJDIR)/%.o	:	$(SRCDIR)/%.cpp
 	@$(CCPP) $(CFLAGS) $(CPPFLAGS) $(SFMLFLAGS) -c $< -o $@ 
 	@clear
 	@echo -e 'Compiling ' $< ' \x1b[32m>>> OK <<<\x1b[37m'
-	@sleep 0.5
+	@sleep 0.1
 
 $(NAME)			:	$(OBJS)
 	@clear

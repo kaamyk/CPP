@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/08 11:29:43 by antoine          ###   ########.fr       */
+/*   Updated: 2023/10/10 17:50:07 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main( void )
 	ClapTrap	igor("igor");
 	ClapTrap	huguette("huguette");
 
-	toto.setAttackDamage(2);
+	toto.setAttackDamage(35);
 	igor.setAttackDamage(1);
 	huguette.setAttackDamage(1);
 
@@ -27,6 +27,7 @@ int	main( void )
 	igor.attack("huguette");
 	huguette.takeDamage(igor.getAttackDamage());
 	huguette.printAttributes();
+	std::cout << std::endl;
 	igor.attack("toto");
 	toto.takeDamage(igor.getAttackDamage());
 	huguette.beRepaired(1);

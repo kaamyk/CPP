@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/09 10:17:56 by antoine          ###   ########.fr       */
+/*   Updated: 2023/10/10 17:49:50 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,12 @@ void			ClapTrap::takeDamage( unsigned int amount )
 	std::cout << this->_name
 	<< " takes damage ! " << amount
 	<< " points of damage ?! Ouch ..." << std::endl;
-	this->_hitPoint -= amount;
+	if (!_hitPoint)
+		return ;
+	else if (_hitPoint <= amount)
+		_hitPoint = 0;
+	else
+		this->_hitPoint -= amount;
 	return ;
 }
 
