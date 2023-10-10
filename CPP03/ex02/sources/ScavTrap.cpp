@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/09 11:15:45 by antoine          ###   ########.fr       */
+/*   Updated: 2023/10/10 18:11:16 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,7 @@ ScavTrap::ScavTrap( std::string const name ): ClapTrap( name )
 ScavTrap::ScavTrap( ScavTrap const& source ): ClapTrap( source )
 {
 	std::cout << "In ScavTrap copy contructor" << std::endl;
-	this->_name = source._name;
-	this->_hitPoint = source._hitPoint;
-	this->_energyPoint = source._energyPoint;
-	this->_attackDamage = source._attackDamage;
+	*this = source;
 	return ;
 }
 
@@ -50,12 +47,20 @@ ScavTrap::~ScavTrap( void )
 
 ScavTrap&	ScavTrap::operator=( ScavTrap const& source )
 {
-	*this = source;
+	this->_name = source._name;
+	this->_hitPoint = source._hitPoint;
+	this->_energyPoint = source._energyPoint;
+	this->_attackDamage = source._attackDamage;
 	return (*this);
 }
 
 void	ScavTrap::guardGate( void )
 {
+	if (!_hitPoint)
+	{
+		std::cout << _name << ": is out of energy ... !" << std::endl;
+		return ;
+	}
 	std::cout << "The ScavTrap is now in Gate keeper mode !" << std::endl;
 	return ;
 }

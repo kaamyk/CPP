@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FragTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/09 11:17:00 by antoine          ###   ########.fr       */
+/*   Updated: 2023/10/10 18:44:53 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,7 @@ FragTrap::FragTrap( std::string const name ): ClapTrap( name )
 FragTrap::FragTrap( FragTrap const& source ): ClapTrap( source )
 {
 	std::cout << "In FragTrap copy contructor" << std::endl;
-	this->_name = source._name;
-	this->_hitPoint = source._hitPoint;
-	this->_energyPoint = source._energyPoint;
-	this->_attackDamage = source._attackDamage;
+	*this = source;
 	return ;
 }
 
@@ -50,12 +47,20 @@ FragTrap::~FragTrap( void )
 
 FragTrap&	FragTrap::operator=( FragTrap const& source )
 {
-	*this = source;
+	this->_name = source._name;
+	this->_hitPoint = source._hitPoint;
+	this->_energyPoint = source._energyPoint;
+	this->_attackDamage = source._attackDamage;
 	return (*this);
 }
 
 void		FragTrap::highFivesGuys( void )
 {
+	if (!_hitPoint)
+	{
+		std::cout << _name << " cannot high five ... sniff... it is out of hit points!" << std::endl;
+		return ;
+	}
 	std::cout << _name << " shouts : HIGH FIVE GUYS !" << std::endl;
 	return ;
 }

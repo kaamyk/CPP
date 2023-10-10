@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/09 10:26:12 by antoine          ###   ########.fr       */
+/*   Updated: 2023/10/10 18:45:23 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ ClapTrap::ClapTrap( std::string name ) : _name(name), _hitPoint(10),
 
 ClapTrap::ClapTrap( ClapTrap const& source)
 {
+	std::cout << "In ClapTrap copy constructor" << std::endl;
 	*this = source;
 	return ;
 }
@@ -83,7 +84,12 @@ void			ClapTrap::takeDamage( unsigned int amount )
 	std::cout << this->_name
 	<< " takes damage ! " << amount
 	<< " points of damage ?! Ouch ..." << std::endl;
-	this->_hitPoint -= amount;
+	if (!_hitPoint)
+		return ;
+	else if (_hitPoint <= amount)
+		_hitPoint = 0;
+	else
+		this->_hitPoint -= amount;
 	return ;
 }
 
