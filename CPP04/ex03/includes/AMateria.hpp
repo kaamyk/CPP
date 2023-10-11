@@ -3,31 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   AMateria.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/05 16:30:53 by antoine          ###   ########.fr       */
+/*   Updated: 2023/10/11 14:03:10 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef AMATERIA_HPP
-#define AMATERIA_HPP
+# define AMATERIA_HPP
 
-#include <iostream>
-#include <string>
+# include <iostream>
+# include <string>
 
-#include "ICharacter.hpp"
+# include "ICharacter.hpp"
+
+class	ICharacter;
 
 class	AMateria
 {
 	protected	:
-		std::string const	_type;
+		std::string	_type;
 
 	public		:
 		AMateria( void );
 		AMateria( const AMateria& source );
 		AMateria( const std::string& type );
-		~AMateria( void );
+		virtual ~AMateria( void );
+
+		AMateria&			operator=( AMateria const& source );
 
 		std::string const&	getType( void ) const;
 		virtual AMateria*	clone( void ) const = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cure.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/05 17:16:00 by antoine          ###   ########.fr       */
+/*   Updated: 2023/10/11 12:22:59 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ Cure::Cure( void ): AMateria("cure")
 	return ;
 }
 
-Cure::Cure ( const Cure& source): AMateria("cure")
+Cure::Cure ( const Cure& source ): AMateria("cure")
 {
 	std::cout << "In Cure copy constructor" << std::endl;
 	if (this != &source)
@@ -26,7 +26,7 @@ Cure::Cure ( const Cure& source): AMateria("cure")
 	return ;
 }
 
-Cure::Cure ( const std::string& source): _type(source._type)
+Cure::Cure ( const std::string& source ): AMateria(source)
 {
 	std::cout << "In Cure parametered constructor" << std::endl;
 	return ;
@@ -44,13 +44,13 @@ Cure&				Cure::operator=( Cure const& source )
 	return (*this);
 }
 
-Cure*				Cure::clone( void )
+AMateria*			Cure::clone( void ) const
 {
 	Cure	*n_cure = new Cure();
 	return (n_cure);
 }
 
-void				Cure::use( const ICharacter& target)
+void				Cure::use( ICharacter& target )
 {
 	std::cout << "* Heals " << target.getName() << " wounds *" << std::endl;
 	return ;

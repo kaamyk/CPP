@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MateriaSource.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/05 19:16:13 by antoine          ###   ########.fr       */
+/*   Updated: 2023/10/11 13:51:05 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,22 @@
 #include <string>
 
 #include "AMateria.hpp"
+#include "IMateriaSource.hpp"
 
-class MateriaSource
+class MateriaSource: public IMateriaSource 
 {
 	private:
-		AMateria		_stock[4];
+		AMateria*		_stock[4];
 		unsigned int	_rankNextM;
-		AMateria		_lastMLearnt;
+		AMateria*		_lastMLearnt;
 
 	public:
 		MateriaSource( void );
-		MateriaSource( AMateria const& source );
-		~IMateriaSource( void );
+		MateriaSource( MateriaSource const& source );
+		~MateriaSource( void );
 		
+		MateriaSource&	operator=( MateriaSource const& source );
+
 		void		learnMateria(AMateria*);
 		AMateria*	createMateria(std::string const & type);
 };

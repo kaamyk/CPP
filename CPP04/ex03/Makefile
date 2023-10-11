@@ -6,7 +6,7 @@
 #    By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/07 17:59:08 by anvincen          #+#    #+#              #
-#    Updated: 2023/10/10 18:58:54 by anvincen         ###   ########.fr        #
+#    Updated: 2023/10/11 13:00:13 by anvincen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ $(NAME)			:	$(OBJS)
 	@clear
 	@$(CCPP) $(VGFLAGS) $(CFLAGS) $(CPPFLAGS) $(OBJS) $(SFMLFLAGS) -o $(NAME)
 	@echo -e 'Compiling ' $(NAME) ' \x1b[32m>>> OK <<<\x1b[37m'
-	@sleep 0.5
+	@sleep 0.3
 	@clear
 
 clean			:
@@ -59,7 +59,7 @@ fclean			:	clean
 	@rm -f $(NAME)
 	clear
 	@echo -e 'Removing executable files \x1b[32m>>> OK <<<\x1b[37m'
-	@sleep 1
+	@sleep 0.3
 	@clear
 
 re		: fclean	all
