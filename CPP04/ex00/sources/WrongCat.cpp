@@ -1,56 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*   WrongCat.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/11 10:06:52 by anvincen         ###   ########.fr       */
+/*   Updated: 2023/10/11 10:16:13 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Animal.hpp"
+#include "../includes/WrongCat.hpp"
 
-Animal::Animal( void ) : _type( "Animal" )
+WrongCat::WrongCat( void ) : WrongAnimal("WrongCat")
 {
-	std::cout << "In Animal default constructor" << std::endl;
+	std::cout << "In WrongCat constructor" << std::endl;
 	return ;
 }
 
-Animal::Animal( Animal const& source )
+WrongCat::WrongCat(WrongCat const & src) : WrongAnimal()
 {
-	std::cout << "In Animal copy constructor" << std::endl;
-	*this = source;
+	std::cout << "WrongCat copy constructor called." << std::endl;
+	*this = src;
 	return ;
 }
 
-Animal::Animal( std::string const type ) : _type( type )
+WrongCat::~WrongCat( void )
 {
-	std::cout << "In Animal typed constructor" << std::endl;
+	std::cout << "In WrongCat destructor" << std::endl;
 	return ;
 }
 
-Animal::~Animal( void )
-{
-	std::cout << "In Animal destructor" << std::endl;
-	return ;
-}
-
-Animal&	Animal::operator=( Animal const& source)
+WrongCat&	WrongCat::operator=( WrongCat const& source )
 {
 	if (this != &source)
 		this->_type = source._type;
 	return (*this);
 }
 
-void	Animal::makeSound( void ) const
+void	WrongCat::makeSound( void ) const
 {
-	std::cout << "GROUGROU I am a bad unknown animal" << std::endl;
+	std::cout << "MeowMeow I am a WrongCat !" << std::endl;
 	return ;
-}
-
-std::string const&	Animal::getType( void ) const
-{
-	return (this->_type);
 }

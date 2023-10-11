@@ -6,28 +6,43 @@
 /*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/10 19:04:11 by anvincen         ###   ########.fr       */
+/*   Updated: 2023/10/11 10:14:17 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Animal.hpp"
 #include "../includes/Dog.hpp"
 #include "../includes/Cat.hpp"
+#include "../includes/WrongAnimal.hpp"
+#include "../includes/WrongCat.hpp"
 
 int main( void )
 {
-	const Animal* meta = new Animal();
-	const Animal* j = new Dog();
-	const Animal* i = new Cat();
+	const Animal* A = new Animal();
+	const Animal* D = new Dog();
+	const Animal* C = new Cat();
 
-	std::cout << j->getType() << " " << std::endl;
-	std::cout << i->getType() << " " << std::endl;
-	i->makeSound();
-	j->makeSound();
-	meta->makeSound();
+	const WrongAnimal* WA = new WrongAnimal();
+	const WrongAnimal* WC = new WrongCat();
 
-	delete meta;
-	delete j;
-	delete i;
+	std::cout << std::endl;
+	std::cout << C->getType() << " " << std::endl;
+	std::cout << D->getType() << " " << std::endl;
+	std::cout << std::endl;
+	C->makeSound();
+	D->makeSound();
+	A->makeSound();
+
+	std::cout << std::endl;
+	WC->makeSound();
+	WA->makeSound();
+
+	std::cout << std::endl;
+	delete A;
+	delete D;
+	delete C;
+	std::cout << std::endl;
+	delete WA;
+	delete WC;
 	return 0;
 }
