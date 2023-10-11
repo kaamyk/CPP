@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/04 10:51:20 by antoine          ###   ########.fr       */
+/*   Updated: 2023/10/11 10:33:22 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 Dog::Dog( void ) : Animal("Dog")
 {
 	std::cout << "In Dog constructor" << std::endl;
-	this->_brain = new Brain;
+	this->_brain = new Brain();
 	return ;
 }
 
@@ -54,6 +54,7 @@ void	Dog::setIdea(unsigned int const r, std::string const newIdea)
 
 void	Dog::printIdea(unsigned int const r) const
 {
+	std::cout << _type << " : ";
 	this->_brain->printIdea(r);
 	return ;
 }

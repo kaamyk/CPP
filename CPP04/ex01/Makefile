@@ -6,11 +6,11 @@
 #    By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/07 17:59:08 by anvincen          #+#    #+#              #
-#    Updated: 2023/10/10 13:05:18 by anvincen         ###   ########.fr        #
+#    Updated: 2023/10/11 10:25:47 by anvincen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	claptrap
+NAME		=	brain
 
 SRCDIR		=	sources
 
