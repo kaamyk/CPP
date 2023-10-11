@@ -6,7 +6,7 @@
 /*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/10 17:50:07 by anvincen         ###   ########.fr       */
+/*   Updated: 2023/10/11 09:36:56 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int	main( void )
 	ClapTrap	igor("igor");
 	ClapTrap	huguette("huguette");
 
-	toto.setAttackDamage(35);
-	igor.setAttackDamage(1);
-	huguette.setAttackDamage(1);
+	// toto.setAttackDamage(35);
+	// igor.setAttackDamage(1);
+	// huguette.setAttackDamage(1);
 
 	toto.attack("huguette");	
 	huguette.takeDamage(toto.getAttackDamage());

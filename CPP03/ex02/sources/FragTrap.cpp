@@ -6,7 +6,7 @@
 /*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/10 18:44:53 by anvincen         ###   ########.fr       */
+/*   Updated: 2023/10/11 09:46:40 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ FragTrap::FragTrap( void ): ClapTrap()
 
 FragTrap::FragTrap( std::string const name ): ClapTrap( name )
 {
-	std::cout << "In FragTrap named constructor" << std::endl;
+	std::cout << "In FragTrap named " << name << " constructor" << std::endl;
 	this->_name = name;
 	this->_hitPoint = 100;
 	this->_energyPoint = 100;
@@ -58,7 +58,7 @@ void		FragTrap::highFivesGuys( void )
 {
 	if (!_hitPoint)
 	{
-		std::cout << _name << " cannot high five ... sniff... it is out of hit points!" << std::endl;
+		std::cout << _name << " cannot high five ... sniff... it is out of hit points !" << std::endl;
 		return ;
 	}
 	std::cout << _name << " shouts : HIGH FIVE GUYS !" << std::endl;

@@ -6,7 +6,7 @@
 /*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/10 17:49:50 by anvincen         ###   ########.fr       */
+/*   Updated: 2023/10/11 09:52:22 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ ClapTrap::ClapTrap( void ): _name("default"), _hitPoint(0),
 ClapTrap::ClapTrap( std::string name ) : _name(name), _hitPoint(10),
 										_energyPoint(10), _attackDamage(0)
 {
-	std::cout << "In ClapTrap parametered constructor" << std::endl;
+	std::cout << "In ClapTrap named " << name << " constructor" << std::endl;
 	return ;
 }
 
@@ -50,7 +50,7 @@ ClapTrap&		ClapTrap::operator=( ClapTrap const& source )
 
 void			ClapTrap::printAttributes( void )
 {
-	std::cout << _name <<  "attributes:" << std::endl
+	std::cout << _name <<  "attributes: " << std::endl
 	<< "\tHit Point: " << _hitPoint << std::endl
 	<< "\tEnergy Point: " << _energyPoint << std::endl
 	<< "\tAttack Damage: " << _attackDamage << std::endl;
