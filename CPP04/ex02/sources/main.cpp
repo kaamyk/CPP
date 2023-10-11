@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/04 11:30:01 by antoine          ###   ########.fr       */
+/*   Updated: 2023/10/11 10:38:14 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,22 @@ AAnimal**	initializeArray( void )
 
 void	deletionTests( void )
 {
-	// const AAnimal* meta = new AAnimal();
-	const AAnimal* j = new Dog();
-	const AAnimal* i = new Cat();
+	std::cout << "\t----  Deletion tests  ----" << std::endl;
+	// const AAnimal* A = new AAnimal();
+	const AAnimal* D = new Dog();
+	const AAnimal* C = new Cat();
+	std::cout << std::endl;
 	AAnimal**		arr = initializeArray();
 
-	std::cout << "\t----  Deletion tests  ----" << std::endl;
-	// delete meta;
-	delete j;
-	delete i;
+	std::cout << std::endl;
+	// delete A;
+	delete C;
+	delete D;
+	std::cout << std::endl;
 	std::cout << std::endl << "Deleting array :" << std::endl;
 	for (unsigned int i = 0; i < 10; ++i)
 		delete arr[i];
+	std::cout << std::endl;
 	delete [] arr;
 	return ;
 }
@@ -48,6 +52,7 @@ void	testIdeasCopy( void )
 	Dog*	Scooby = new Dog();
 	Cat*	Garfield = new Cat();
 
+	std::cout << std::endl;
 	std::cout << "\t----  Ideas tests  ----" << std::endl;
 	std::cout << "Scooby gets a first idea !" << std::endl;
 	Scooby->setIdea(0, "Mmmh ... Scooby snacks !");
@@ -66,6 +71,7 @@ void	testIdeasCopy( void )
 	Scooby->printIdea(1);
 	Garfield->printIdea(0);
 	Garfield->printIdea(1);
+	std::cout << std::endl;
 
 	std::cout << "\t----  Copy tests  ----" << std::endl;
 	std::cout << "Let's clone Scooby and his ideas" << std::endl;
@@ -73,12 +79,14 @@ void	testIdeasCopy( void )
 	std::cout << "And same with Garfield" << std::endl;
 	const Cat*	cloneGarfield(Garfield);
 
+	std::cout << std::endl;
 	std::cout << "Let's check the clones ideas" << std::endl;
 	cloneScooby->printIdea(0);
 	cloneScooby->printIdea(1);
 	cloneGarfield->printIdea(0);
 	cloneGarfield->printIdea(1);
 
+	std::cout << std::endl;
 	delete Scooby;
 	delete Garfield;
 	// delete cloneScooby;
@@ -88,7 +96,7 @@ void	testIdeasCopy( void )
 
 int main( void )
 {
-	deletionTests();
+	// deletionTests();
 	testIdeasCopy();
 	return (0);
 }
