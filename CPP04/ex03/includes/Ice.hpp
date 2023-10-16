@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Ice.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/11 12:27:21 by anvincen         ###   ########.fr       */
+/*   Updated: 2023/10/16 11:35:05 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ class	Ice : public AMateria
 	public	:
 		Ice( void );
 		Ice( const Ice& source );
-		Ice( const std::string& source );
 		~Ice( void );
 
 		Ice&		operator=( Ice const& source );

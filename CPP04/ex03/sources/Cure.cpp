@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cure.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/11 12:22:59 by anvincen         ###   ########.fr       */
+/*   Updated: 2023/10/16 11:38:01 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,6 @@ Cure::Cure ( const Cure& source ): AMateria("cure")
 	return ;
 }
 
-Cure::Cure ( const std::string& source ): AMateria(source)
-{
-	std::cout << "In Cure parametered constructor" << std::endl;
-	return ;
-}
-
 Cure::~Cure ( void )
 {
 	std::cout << "In Cure destructor" << std::endl;
@@ -40,7 +34,8 @@ Cure::~Cure ( void )
 
 Cure&				Cure::operator=( Cure const& source )
 {
-	this->_type = source._type;
+	(void) source;
+	this->_type = "cure";
 	return (*this);
 }
 

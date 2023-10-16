@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   Character.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/11 14:51:41 by anvincen         ###   ########.fr       */
+/*   Updated: 2023/10/16 11:58:33 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Character.hpp"
 
-Character::Character( void ): _name("No name")
+Character::Character( void ): _name("Anonymous")
 {
 	std::cout << "In Character default constructor" << std::endl;
 	for (unsigned int i = 0; i < 4; ++i)
@@ -95,9 +95,10 @@ void				Character::unequip( int idx )
 
 void				Character::use( int idx, ICharacter& target )
 {
-	if ((idx < 0 || idx > 4) || !_inventory[idx])
+	if ((idx < 0 || idx > 3) || !_inventory[idx])
 		return ;
-	_inventory[idx]->use(target);
+	if (_inventory[idx])
+		_inventory[idx]->use(target);
 	return ;
 }
 

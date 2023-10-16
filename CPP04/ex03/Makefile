@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+         #
+#    By: antoine <antoine@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/07 17:59:08 by anvincen          #+#    #+#              #
-#    Updated: 2023/10/11 13:00:13 by anvincen         ###   ########.fr        #
+#    Updated: 2023/10/16 11:53:05 by antoine          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	claptrap
+NAME		=	materia
 
 SRCDIR		=	sources
 
@@ -22,9 +22,9 @@ OBJS		=	$(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SRCS))
 
 CCPP		=	g++
 
-CFLAGS		=	-Wall -Wextra -Werror -Wshadow -Wno-shadow
+CFLAGS		=	-Wall -Wextra -Werror -Wshadow -Wno-shadow -std=c++98
 
-VGFLAGS		=	-g
+VGFLAGS		=	-g3
 
 all				:	$(OBJDIR) $(OBJS) $(NAME)
 
@@ -34,7 +34,7 @@ $(OBJDIR)		:
 $(OBJDIR)/%.o	:	$(SRCDIR)/%.cpp
 	@clear
 	@echo "Compiling " $< " ..."
-	@$(CCPP) $(CFLAGS) $(CPPFLAGS) $(SFMLFLAGS) -c $< -o $@ 
+	@$(CCPP) $(VGFLAGS) $(CFLAGS) $(CPPFLAGS) $(SFMLFLAGS) -c $< -o $@ 
 	@clear
 	@echo -e 'Compiling ' $< ' \x1b[32m>>> OK <<<\x1b[37m'
 	@sleep 0.1

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AMateria.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/11 11:29:51 by anvincen         ###   ########.fr       */
+/*   Updated: 2023/10/16 11:34:03 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@ AMateria::AMateria( void )
 	return ;
 }
 
-AMateria::AMateria( const AMateria& source ): _type(source._type)
-{
-	std::cout << "In AMateria copy constructor" << std::endl;
-	return ;
-}
-
 AMateria::AMateria( const std::string& type ): _type(type)
 {
 	std::cout << "In AMateria parametered constructor" << std::endl;
+	return ;
+}
+
+AMateria::AMateria( const AMateria& source ): _type(source._type)
+{
+	std::cout << "In AMateria copy constructor" << std::endl;
 	return ;
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AMateria.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/11 14:03:10 by anvincen         ###   ########.fr       */
+/*   Updated: 2023/10/16 11:31:01 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ class	ICharacter;
 
 class	AMateria
 {
-	protected	:
+	protected:
 		std::string	_type;
 
-	public		:
+	public:
 		AMateria( void );
-		AMateria( const AMateria& source );
 		AMateria( const std::string& type );
+		AMateria( const AMateria& source );
 		virtual ~AMateria( void );
 
 		AMateria&			operator=( AMateria const& source );

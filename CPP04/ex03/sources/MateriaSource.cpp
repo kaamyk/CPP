@@ -3,23 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   MateriaSource.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/11 14:06:02 by anvincen         ###   ########.fr       */
+/*   Updated: 2023/10/16 12:01:04 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/MateriaSource.hpp"
 
-MateriaSource::MateriaSource( void )
+MateriaSource::MateriaSource( void ): _rankNextM(0)
 {
 	std::cout << "In MateriaSource default constructor" << std::endl;
 	for (unsigned int i = 0; i < 4; ++i)
-	{
-		delete _stock[i];
 		_stock[i] = NULL;
-	}
 	return ;
 }
 
@@ -34,6 +31,11 @@ MateriaSource::MateriaSource( MateriaSource const& source )
 MateriaSource::~MateriaSource( void )
 {
 	std::cout << "In MateriaSource destructor" << std::endl;
+	for(unsigned int i = 0; i < 4; ++i)
+	{
+		if (_stock[i])
+			delete(_stock[i]);
+	}
 	return ;
 }
 
@@ -60,6 +62,7 @@ void		MateriaSource::learnMateria( AMateria* source )
 AMateria* 	MateriaSource::createMateria( std::string const& type )
 {
 	unsigned int	i = 0;
+	
 	if (type.compare("cure") && type.compare("ice"))
 		return (NULL);
 	for (i = 0; i < 4; ++i)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Ice.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/11 12:27:35 by anvincen         ###   ########.fr       */
+/*   Updated: 2023/10/16 11:59:07 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ Ice::Ice ( const Ice& source): AMateria("ice")
 
 Ice&	Ice::operator=( Ice const& source )
 {
-	_type = source._type;
+	(void) source;
+	_type = "ice";
 	return (*this);
 }
 
@@ -38,7 +39,7 @@ Ice::~Ice ( void )
 	return ;
 }
 
-void	Ice::use( ICharacter& target)
+void	Ice::use( ICharacter& target )
 {
 	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
 	return ;
