@@ -6,7 +6,7 @@
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/16 12:01:04 by antoine          ###   ########.fr       */
+/*   Updated: 2023/10/17 10:06:35 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,17 @@ MateriaSource&	MateriaSource::operator=( MateriaSource const& source )
 	return (*this);
 }
 
+void		MateriaSource::displayAttributes( void )
+{
+	std::cout << "\t----- MateriaSource attributes -----" << std::endl;
+	std::cout << "Stock :" << std::endl;
+	for(unsigned int i = 0; i < 4; ++i)
+		std::cout << "Stock [" << i << "] == " << _stock[i]->getType() << std::endl;
+	std::cout << "_rankNextM == " << _rankNextM << std::endl;
+	std::cout << "Last Materia learned == " << _lastMLearnt->getType() << std::endl;
+	return ;
+}
+
 void		MateriaSource::learnMateria( AMateria* source )
 {
 	if (_rankNextM >= 4)
@@ -70,5 +81,7 @@ AMateria* 	MateriaSource::createMateria( std::string const& type )
 		if (_stock[i]->getType().compare(type) == 0)
 			break ;
 	}
+	if (i == 4 || _stock[i] == 0)
+		return (NULL);
 	return (_stock[i]->clone());
 }

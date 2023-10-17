@@ -6,7 +6,7 @@
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/16 11:58:33 by antoine          ###   ########.fr       */
+/*   Updated: 2023/10/17 10:54:03 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,13 @@ void				Character::equip( AMateria* m )
 	for (i = 0; i < 4 && _inventory[i] != NULL; ++i)
 		;
 	if (i == 4)
+	{
+		delete m;
+		std::cout <<  _name << " 's inventory is already full" << std::endl;
 		return ;
+	}
 	_inventory[i] = m;
+	std::cout << "New Materia equiped in " << _name << " inventory at rank " << i << std::endl;
 	return ;
 }
 
