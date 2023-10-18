@@ -6,7 +6,7 @@
 /*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/17 18:12:27 by anvincen         ###   ########.fr       */
+/*   Updated: 2023/10/18 17:24:15 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,20 @@
 
 Bureaucrat::Bureaucrat( void ): _name("default"), _grade(1)
 {
+	std::cout << "In the Bureaucrat's default constructor" << std::endl;
+	return ;
+}
+
+Bureaucrat::Bureaucrat( Bureaucrat const& source )
+{
+	if (this != &source)
+		_grade = source._grade;
 	return ;
 }
 
 Bureaucrat::Bureaucrat( std::string const& name, unsigned int grade ): _name(name), _grade(150)
 {
+	std::cout << "In the Bureaucrat's parametered constructor" << std::endl;
 	try{
 		if (grade >= 1 && grade <= 150){
 			_grade = grade;
@@ -43,11 +52,11 @@ Bureaucrat::~Bureaucrat( void )
 
 std::ostream&	operator<<( std::ostream & os, const Bureaucrat& B )
 {
-	os << B.getName() << ", bureaucrat grade " << B.getGrade() << std::endl;
+	os << B.getName() << ", bureaucrat grade " << B.getGrade();
 	return (os);
 }
 
-void		Bureaucrat::setGrade( unsigned int& grade )
+void		Bureaucrat::setGrade( unsigned int grade )
 {
 	try{
 		if (grade >= 1 && grade <= 150){
@@ -78,34 +87,29 @@ std::string const	Bureaucrat::getName( void ) const
 
 void			Bureaucrat::incrementGrade( void )
 {
-	--_grade;
-	try{
-		if (_grade >= 1){
-			return ;
-		}
-		else if (_grade < 1){
-			throw Bureaucrat::GradeTooHighException();
-		}
+	if(_grade == 1){
+		return (throw Bureaucrat::GradeTooHighException());
 	}
-	catch (std::exception& e){
-		std::cout << e.what() << std::endl;
-	}
+	else
+		--_grade;
 	return ;
 }
 
 void			Bureaucrat::decrementGrade( void )
 {
-	--_grade;
-	try{
-		if (_grade <= 150){
-			return ;
-		}
-		else if (_grade > 150){
-			throw Bureaucrat::GradeTooLowException();
-		}
-	}
-	catch (std::exception& e){
-		std::cout << e.what() << std::endl;
-	}
+	if (_grade + 1 > 150)
+		return (throw Bureaucrat::GradeTooLowException());
+	else
+		++_grade;
 	return ;
+}
+
+const char*	Bureaucrat::GradeTooLowException::what( void ) const throw()
+{
+	return ("Error: The grade is TOO LOW");
+}
+
+const char*	Bureaucrat::GradeTooHighException::what( void ) const throw()
+{
+	return ("Error: The grade is TOO HIGH");
 }
