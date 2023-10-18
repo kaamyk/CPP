@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 12:16:46 by mcombeau          #+#    #+#             */
-/*   Updated: 2023/10/17 10:54:13 by antoine          ###   ########.fr       */
+/*   Updated: 2023/10/18 16:13:58 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int main()
 
 		Character	tobby("tobby");
 		Character	anne("anne");
+		Character*	copyTobby = new Character(tobby);
 		IMateriaSource* src = new MateriaSource();
 		src->learnMateria(new Ice());
 		src->learnMateria(new Cure());
@@ -67,10 +68,18 @@ int main()
 		tmp = src->createMateria("ice");
 		tobby.equip(tmp);
 		tobby.printInventory();
+		copyTobby->printInventory();
+		delete copyTobby;
+		std::cout << "----------------" << std::endl;
+		Character*	copyTobby1 = new Character(tobby);
 
+		std::cout << "tobby use" << std::endl;
 		tobby.use(2, anne);
+		std::cout << "copyTobby use" << std::endl;
+		copyTobby1->use(2, anne);
 
 		delete src;
+		delete copyTobby1;
 	}
 	return (0);
 }

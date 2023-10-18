@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Character.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/17 10:54:03 by antoine          ###   ########.fr       */
+/*   Updated: 2023/10/18 16:13:20 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ Character::Character( void ): _name("Anonymous")
 
 Character::Character( Character const& source )
 {
-	std::cout << "In Character copy destructor" << std::endl;
+	std::cout << "In Character copy constructor" << std::endl;
+	initializeInventory();
 	*this = source;
 	return ;
 }
@@ -30,8 +31,7 @@ Character::Character( Character const& source )
 Character::Character( std::string const name ): _name(name)
 {
 	std::cout << "In Character named " << name << " constructor" << std::endl;
-	for (unsigned int i = 0; i < 4; ++i)
-		_inventory[i] = NULL;
+	initializeInventory();
 	return ;
 }
 
@@ -52,9 +52,12 @@ Character&			Character::operator=( Character const& source )
 	if (this != &source)
 	{
 		this->_name = source._name;
-		resetInventory();
+		initializeInventory();
 		for (unsigned int i = 0; i < 4; ++i)
-			*(this->_inventory[i]) = *(source._inventory[i]);
+		{
+			if (source._inventory[i])
+				this->_inventory[i] = source._inventory[i]->clone();
+		}
 	}
 	return (*this);
 }
@@ -64,7 +67,7 @@ void				Character::printInventory( void )
 	std::cout << _name << " :" << std::endl;
 	for (unsigned int i = 0; i < 4; ++i)
 	{
-		if (_inventory[i])
+		if (_inventory && _inventory[i])
 			std::cout << "\tInventory[" << i << "] == " << _inventory[i]->getType() << std::endl;
 	}
 	return ;
@@ -107,12 +110,22 @@ void				Character::use( int idx, ICharacter& target )
 	return ;
 }
 
+void				Character::initializeInventory( void )
+{
+	for (unsigned int i = 0; i < 4; ++i)
+		_inventory[i] = NULL;
+	return ;
+}
+
 void				Character::resetInventory( void )
 {
 	for (unsigned int i = 0; i < 4; ++i)
 	{
-		delete(_inventory[i]);
-		_inventory[i] = NULL;
+		if (_inventory && _inventory[i])
+		{
+			delete(_inventory[i]);
+			_inventory[i] = NULL;
+		}
 	}
 	return ;
 }

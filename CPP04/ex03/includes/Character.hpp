@@ -22,6 +22,7 @@ class Character : public virtual ICharacter
 	private:
 		std::string	_name;
 		AMateria*	_inventory[4];
+		void		initializeInventory( void );
 		void		resetInventory( void );
 
 	public:
