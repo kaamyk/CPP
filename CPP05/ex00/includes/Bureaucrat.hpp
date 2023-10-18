@@ -6,7 +6,7 @@
 /*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/17 18:23:01 by anvincen         ###   ########.fr       */
+/*   Updated: 2023/10/18 13:18:18 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ class	Bureaucrat
 		Bureaucrat( std::string const& name, unsigned int grade );
 		~Bureaucrat( void );
 
-		class	GradeTooHighException: public std::exception
+		class	GradeTooHighException: public logic_error
 		{
 			virtual const char* what() const throw()
 			{
 				return ("Error: The grade is TOO HIGH");
 			}
 		};
-		class	GradeTooLowException: public std::exception
+		class	GradeTooLowException: public logic_error
 		{
 			virtual const char* what() const throw()
 			{
