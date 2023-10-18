@@ -76,11 +76,12 @@ void	testIdeasCopy( void )
 	std::cout << "\t----  Copy tests  ----" << std::endl;
 	std::cout << "Let's clone Scooby and his ideas" << std::endl;
 	Dog*	cloneScooby = new Dog(*Scooby);
+	std::cout << "And same with Garfield" << std::endl;
+	Cat*	cloneGarfield = new Cat(*Garfield);
 	{
 		Dog	clS = *cloneScooby;
+		Cat	clG = *cloneGarfield;
 	}
-	std::cout << "And same with Garfield" << std::endl;
-	const Cat*	cloneGarfield(Garfield);
 
 	std::cout << std::endl;
 	std::cout << "Let's check the clones ideas" << std::endl;
@@ -88,10 +89,13 @@ void	testIdeasCopy( void )
 	cloneScooby->setIdea(0, "Where is Shaggy ?!");
 	cloneScooby->printIdea(0);
 	std::cout << "---" << std::endl;
-	std::cout << "Scooby :";
+	std::cout << "Scooby => ";
 	Scooby->printIdea(0);
 	cloneScooby->printIdea(1);
+	cloneGarfield->setIdea(0, "I forgot");
 	cloneGarfield->printIdea(0);
+	std::cout << "Garfield => ";
+	Garfield->printIdea(0);
 	cloneGarfield->printIdea(1);
 
 
