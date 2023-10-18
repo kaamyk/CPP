@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Brain.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/04 09:52:20 by antoine          ###   ########.fr       */
+/*   Updated: 2023/10/18 14:23:42 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ Brain::Brain( std::string ideas[100] )
 Brain::Brain( Brain const& source )
 {
 	std::cout << "In Brain copy constructor" << std::endl;
-	*this = source;
+	if (this != &source)
+		*this = source;
 	return ;
 }
 

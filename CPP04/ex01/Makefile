@@ -22,7 +22,7 @@ OBJS		=	$(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SRCS))
 
 CCPP		=	g++
 
-CFLAGS		=	-Wall -Wextra -Werror -Wshadow -Wno-shadow
+CFLAGS		=	-Wall -Wextra -Werror -Wshadow -Wno-shadow -std=c++98
 
 VGFLAGS		=	-g
 

@@ -6,20 +6,20 @@
 /*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/11 10:33:22 by anvincen         ###   ########.fr       */
+/*   Updated: 2023/10/18 14:53:04 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Dog.hpp"
 
-Dog::Dog( void ) : Animal("Dog")
+Dog::Dog( void ) : Animal("Dog"), _brain(new Brain)
 {
 	std::cout << "In Dog constructor" << std::endl;
 	this->_brain = new Brain();
 	return ;
 }
 
-Dog::Dog(Dog const & src) : Animal() 
+Dog::Dog(Dog const & src) : Animal(), _brain(NULL)
 {
 	std::cout << "In Dog copy constructor" << std::endl;
 	*this = src;
@@ -36,7 +36,12 @@ Dog::~Dog( void )
 Dog&	Dog::operator=( Dog const& source )
 {
 	if (this != &source)
+	{
 		this->_type = source._type;
+		if (_brain)
+			delete _brain;
+		_brain = new Brain(*source._brain);
+	}
 	return (*this);
 }
 

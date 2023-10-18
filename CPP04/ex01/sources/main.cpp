@@ -6,7 +6,7 @@
 /*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/11 10:32:08 by anvincen         ###   ########.fr       */
+/*   Updated: 2023/10/18 15:08:35 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	testIdeasCopy( void )
 	std::cout << std::endl;
 	std::cout << "\t----  Ideas tests  ----" << std::endl;
 	std::cout << "Scooby gets a first idea !" << std::endl;
-	Scooby->setIdea(0, "Mmmh ... Scooby snacks !");
+	// Scooby->setIdea(0, "Mmmh ... Scooby snacks !");
 	std::cout << "Scooby gets a second idea !" << std::endl;
 	Scooby->setIdea(1, "Where is Shaggy ?!");
 	std::cout << std::endl;
@@ -75,16 +75,25 @@ void	testIdeasCopy( void )
 
 	std::cout << "\t----  Copy tests  ----" << std::endl;
 	std::cout << "Let's clone Scooby and his ideas" << std::endl;
-	const Dog*	cloneScooby(Scooby);
+	Dog*	cloneScooby = new Dog(*Scooby);
+	{
+		Dog	clS = *cloneScooby;
+	}
 	std::cout << "And same with Garfield" << std::endl;
 	const Cat*	cloneGarfield(Garfield);
 
 	std::cout << std::endl;
 	std::cout << "Let's check the clones ideas" << std::endl;
 	cloneScooby->printIdea(0);
+	cloneScooby->setIdea(0, "Where is Shaggy ?!");
+	cloneScooby->printIdea(0);
+	std::cout << "---" << std::endl;
+	std::cout << "Scooby :";
+	Scooby->printIdea(0);
 	cloneScooby->printIdea(1);
 	cloneGarfield->printIdea(0);
 	cloneGarfield->printIdea(1);
+
 
 	std::cout << std::endl;
 	delete Scooby;

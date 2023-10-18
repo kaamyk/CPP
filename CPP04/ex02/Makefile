@@ -6,7 +6,7 @@
 #    By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/07 17:59:08 by anvincen          #+#    #+#              #
-#    Updated: 2023/10/11 10:35:42 by anvincen         ###   ########.fr        #
+#    Updated: 2023/10/18 14:18:05 by anvincen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ OBJS		=	$(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SRCS))
 
 CCPP		=	g++
 
-CFLAGS		=	-Wall -Wextra -Werror -Wshadow -Wno-shadow
+CFLAGS		=	-Wall -Wextra -Werror -Wshadow -Wno-shadow -std=c++98
 
 VGFLAGS		=	-g
 
