@@ -3,17 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   Form.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/19 16:39:43 by antoine          ###   ########.fr       */
+/*   Updated: 2023/10/20 13:22:42 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FORM_HPP
 # define FORM_HPP
 
-#include <iostream>
+# include <iostream>
+
+# include "Bureaucrat.hpp"
+
+class	Bureaucrat;
 
 class	Form
 {
@@ -25,7 +29,7 @@ class	Form
 
 	public:
 		Form( void );
-		Form( const std::string name, const unsigned int gradeToExecute, const unsigned int gradeToSign, bool isSigned);
+		Form( const std::string name, const unsigned int gradeToExecute, const unsigned int gradeToSign);
 		Form( Form const& source );
 		~Form( void );
 
@@ -35,6 +39,7 @@ class	Form
 		unsigned int		getGradeToExecute( void ) const;
 		unsigned int		getGradeToSign( void ) const;
 		bool				getIfSigned( void ) const;
+		bool				beSigned( Bureaucrat const& B );
 
 		class	GradeTooHighException: public std::exception
 		{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/19 17:07:51 by antoine          ###   ########.fr       */
+/*   Updated: 2023/10/20 13:11:51 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
  
@@ -18,9 +18,9 @@ Form::Form( void ):	_name("Anonymous"), _gradeToExecute(150),
 	return ;
 }
 
-Form::Form( const std::string name, const unsigned int gradeToExecute, const unsigned int gradeToSign, bool isSigned):
+Form::Form( const std::string name, const unsigned int gradeToExecute, const unsigned int gradeToSign):
 																		_name(name), _gradeToExecute(gradeToExecute),
-																		_gradeToSign(gradeToSign), _isSigned(isSigned) 
+																		_gradeToSign(gradeToSign), _isSigned(0) 
 {
 	try{
 		if (gradeToExecute < 1 || gradeToSign < 1)
@@ -72,6 +72,16 @@ unsigned int	Form::getGradeToSign( void ) const
 bool			Form::getIfSigned( void ) const
 {
 	return (_isSigned);
+}
+
+bool			Form::beSigned( Bureaucrat const& B )
+{
+	if (B.getGrade() <= _gradeToSign){
+		_isSigned = 1;
+		return (1);
+	}
+	else
+		return (0);
 }
 
 const char*		Form::GradeTooHighException::what( void ) const throw()
