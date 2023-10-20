@@ -102,8 +102,8 @@ void	testIdeasCopy( void )
 	std::cout << std::endl;
 	delete Scooby;
 	delete Garfield;
-	// delete cloneScooby;
-	// delete cloneGarfield;
+	delete cloneScooby;
+	delete cloneGarfield;
 	return ;
 }
 

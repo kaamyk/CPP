@@ -6,7 +6,7 @@
 /*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/18 15:23:40 by anvincen         ###   ########.fr       */
+/*   Updated: 2023/10/20 11:16:00 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,10 @@
 Dog::Dog( void ) : Animal("Dog"), _brain(new Brain)
 {
 	std::cout << "In Dog constructor" << std::endl;
-	this->_brain = new Brain();
 	return ;
 }
 
-Dog::Dog(Dog const & src) : Animal(), _brain(NULL)
+Dog::Dog( Dog const & src ) : Animal(), _brain(NULL)
 {
 	std::cout << "In Dog copy constructor" << std::endl;
 	*this = src;

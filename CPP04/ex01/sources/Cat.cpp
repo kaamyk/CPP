@@ -6,7 +6,7 @@
 /*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/18 15:23:15 by anvincen         ###   ########.fr       */
+/*   Updated: 2023/10/20 11:15:59 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 
 Cat::Cat( void ) : Animal("Cat"), _brain(new Brain)
 {
-	std::cout << "In Cat constructor" << std::endl;
-	this->_brain = new Brain();
+	std::cout << "In Cat default constructor" << std::endl;
 	return ;
 }
 
-Cat::Cat(Cat const & src) : Animal(), _brain(NULL)
+Cat::Cat( Cat const & src ) : Animal(), _brain(NULL)
 {
 	std::cout << "Cat copy constructor called." << std::endl;
 	*this = src;
