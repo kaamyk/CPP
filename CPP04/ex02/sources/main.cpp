@@ -55,7 +55,7 @@ void	testIdeasCopy( void )
 	std::cout << std::endl;
 	std::cout << "\t----  Ideas tests  ----" << std::endl;
 	std::cout << "Scooby gets a first idea !" << std::endl;
-	Scooby->setIdea(0, "Mmmh ... Scooby snacks !");
+	// Scooby->setIdea(0, "Mmmh ... Scooby snacks !");
 	std::cout << "Scooby gets a second idea !" << std::endl;
 	Scooby->setIdea(1, "Where is Shaggy ?!");
 	std::cout << std::endl;
@@ -75,22 +75,35 @@ void	testIdeasCopy( void )
 
 	std::cout << "\t----  Copy tests  ----" << std::endl;
 	std::cout << "Let's clone Scooby and his ideas" << std::endl;
-	const Dog*	cloneScooby(Scooby);
+	Dog*	cloneScooby = new Dog(*Scooby);
 	std::cout << "And same with Garfield" << std::endl;
-	const Cat*	cloneGarfield(Garfield);
+	Cat*	cloneGarfield = new Cat(*Garfield);
+	{
+		Dog	clS = *cloneScooby;
+		Cat	clG = *cloneGarfield;
+	}
 
 	std::cout << std::endl;
 	std::cout << "Let's check the clones ideas" << std::endl;
 	cloneScooby->printIdea(0);
+	cloneScooby->setIdea(0, "Where is Shaggy ?!");
+	cloneScooby->printIdea(0);
+	std::cout << "---" << std::endl;
+	std::cout << "Scooby => ";
+	Scooby->printIdea(0);
 	cloneScooby->printIdea(1);
+	cloneGarfield->setIdea(0, "I forgot");
 	cloneGarfield->printIdea(0);
+	std::cout << "Garfield => ";
+	Garfield->printIdea(0);
 	cloneGarfield->printIdea(1);
+
 
 	std::cout << std::endl;
 	delete Scooby;
 	delete Garfield;
-	// delete cloneScooby;
-	// delete cloneGarfield;
+	delete cloneScooby;
+	delete cloneGarfield;
 	return ;
 }
 
