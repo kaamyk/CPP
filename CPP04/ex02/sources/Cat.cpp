@@ -6,7 +6,7 @@
 /*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/18 15:23:19 by anvincen         ###   ########.fr       */
+/*   Updated: 2023/10/20 11:47:31 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 Cat::Cat( void ) : AAnimal("Cat"), _brain(new Brain)
 {
 	std::cout << "In Cat constructor" << std::endl;
-	this->_brain = new Brain();
 	return ;
 }
 

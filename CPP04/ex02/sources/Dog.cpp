@@ -15,7 +15,6 @@
 Dog::Dog( void ) : AAnimal("Dog"), _brain(new Brain)
 {
 	std::cout << "In Dog constructor" << std::endl;
-	this->_brain = new Brain();
 	return ;
 }
 
