@@ -6,7 +6,7 @@
 /*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/11 10:07:19 by anvincen         ###   ########.fr       */
+/*   Updated: 2023/10/20 11:21:12 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 Cat::Cat( void ) : Animal("Cat")
 {
-	std::cout << "In Cat constructor" << std::endl;
+	std::cout << "In Cat default constructor" << std::endl;
 	return ;
 }
 

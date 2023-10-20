@@ -6,7 +6,7 @@
 /*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/11 10:16:13 by anvincen         ###   ########.fr       */
+/*   Updated: 2023/10/20 11:21:39 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 WrongCat::WrongCat( void ) : WrongAnimal("WrongCat")
 {
-	std::cout << "In WrongCat constructor" << std::endl;
+	std::cout << "In WrongCat deafult constructor" << std::endl;
 	return ;
 }
 

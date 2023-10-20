@@ -6,7 +6,7 @@
 #    By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/07 17:59:08 by anvincen          #+#    #+#              #
-#    Updated: 2023/10/18 14:17:58 by anvincen         ###   ########.fr        #
+#    Updated: 2023/10/20 11:19:59 by anvincen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ CCPP		=	g++
 
 CFLAGS		=	-Wall -Wextra -Werror -Wshadow -Wno-shadow -std=c++98
 
-VGFLAGS		=	-g
+VGFLAGS		=	-g3
 
 all				:	$(OBJDIR) $(OBJS) $(NAME)
 
@@ -34,7 +34,7 @@ $(OBJDIR)		:
 $(OBJDIR)/%.o	:	$(SRCDIR)/%.cpp
 	@clear
 	@echo "Compiling " $< " ..."
-	@$(CCPP) $(CFLAGS) $(CPPFLAGS) $(SFMLFLAGS) -c $< -o $@ 
+	@$(CCPP) $(VGFLAGS) $(CFLAGS) $(CPPFLAGS) $(SFMLFLAGS) -c $< -o $@ 
 	@clear
 	@echo -e 'Compiling ' $< ' \x1b[32m>>> OK <<<\x1b[37m'
 	@sleep 0.1

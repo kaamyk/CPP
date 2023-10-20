@@ -6,7 +6,7 @@
 /*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/10 19:00:51 by anvincen         ###   ########.fr       */
+/*   Updated: 2023/10/20 11:21:12 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 Dog::Dog( void ) : Animal("Dog")
 {
-	std::cout << "In Dog constructor" << std::endl;
+	std::cout << "In Dog default constructor" << std::endl;
 	return ;
 }
 
 Dog::Dog(Dog const & src) : Animal() 
 {
-	std::cout << "In DOg copy constructor" << std::endl;
+	std::cout << "In Dog copy constructor" << std::endl;
 	*this = src;
 	return ;
 }
