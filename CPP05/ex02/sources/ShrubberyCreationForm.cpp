@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ShrubberyCreationForm.cpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/23 17:52:39 by antoine          ###   ########.fr       */
+/*   Updated: 2023/10/24 17:24:22 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,22 @@ ShrubberryCreationForm::~ShrubberryCreationForm( void )
 	return ;
 }
 
-void	ShrubberryCreationForm::beExecuted( Bureaucrat const& B )
+void	ShrubberryCreationForm::beExecuted( Bureaucrat const& executor )
 {
-	std::string		fileName;
-	fileName = B.getName();
-	fileName.append("_shrubberry");
-	std::ofstream	file(&fileName[0]);
+	if (!this->getIfSigned())
+		return (throw ShrubberryCreationForm::IsNotSignedException());
+	else if (executor.getGrade() > this->getGradeToExecute())
+		return (throw ShrubberryCreationForm::GradeTooLowException());
+	else{
+		std::string		fileName;
+		fileName = executor.getName();
+		fileName.append("_shrubberry");
+		std::ofstream	file(&fileName[0]);
 
-	(void) B;
-	file << "\t\tB      C" << std::endl;
-	file << "\t\t \\   /" << std::endl;
-	file << "\t\t  \\ /" << std::endl;
-	file << "\t\t   A" << std::endl;
+		file << "\t\tB      C" << std::endl;
+		file << "\t\t \\   /" << std::endl;
+		file << "\t\t  \\ /" << std::endl;
+		file << "\t\t   A" << std::endl;
+	}
 	return ;
 }

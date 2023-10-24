@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/23 16:45:52 by antoine          ###   ########.fr       */
+/*   Updated: 2023/10/24 18:05:30 by anvincen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,17 +104,29 @@ void			Bureaucrat::decrementGrade( void )
 	return ;
 }
 
-void			Bureaucrat::signForm( AForm* F )
+void			Bureaucrat::signForm( AForm const& F )
 {
 	try{
-		if(F->beSigned(*this))
-			std::cout << _name << " signed " <<  F->getName() << std::endl;
+		if(F.beSigned(*this))
+			std::cout << _name << " signed " <<  F.getName() << std::endl;
 		else
 			throw Bureaucrat::GradeTooLowException();
 
 	}
 	catch( std::exception& e ){
-		std::cout << _name << " couldn't sign " << F->getName()
+		std::cout << _name << " couldn't sign " << F.getName()
+		<< " because " << e.what() << std::endl;
+	}
+}
+
+void			Bureaucrat::executeForm( AForm const& F )
+{
+	try{
+		F.beExecuted(*this);
+		std::cout << _name << " executed " << F.getName() << std::endl;
+	}
+	catch(std::exception& e){
+		std::cout << _name << " couldn't execute " << F.getName()
 		<< " because " << e.what() << std::endl;
 	}
 }
