@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/24 16:21:35 by anvincen         ###   ########.fr       */
+/*   Updated: 2023/10/25 10:01:26 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ class	PresidentialPardonForm: public AForm
 		PresidentialPardonForm( std::string const& name );
 		~PresidentialPardonForm( void );
 
-		void	beExecuted( Bureaucrat const& executor );	
+		void	beExecuted( Bureaucrat const& executor ) const;	
 };
 
 #endif

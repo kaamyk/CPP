@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/24 17:56:58 by anvincen         ###   ########.fr       */
+/*   Updated: 2023/10/25 10:36:10 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,10 @@ int	main( void )
 	Bureaucrat*	billy = new Bureaucrat(name, 20);
 	name = "Tobby";
 	Bureaucrat*	tobby = new Bureaucrat(name, 150);
+	name = "Bibi";
+	Bureaucrat* bibi = new Bureaucrat(name, 560);
 
-	(void) tobby;
+	(void) bibi;
 	AForm*	A1 = new ShrubberryCreationForm();
 	AForm*	A2 = new ShrubberryCreationForm("A2");
 	AForm*	A3 = new RobotmyRequestForm();
@@ -38,24 +40,22 @@ int	main( void )
 	std::cout << *A2 << std::endl;
 	std::cout << *A3 << std::endl;
 	std::cout << *A4 << std::endl;
+	std::cout << *A5 << std::endl;
+	std::cout << *A6 << std::endl;
 
-	billy->signForm(A1);
-	billy->signForm(A2);
-	billy->signForm(A3);
-	billy->signForm(A4);
-	billy->signForm(A5);
-	billy->signForm(A6);
-	try{
-		A1->beExecuted(*billy);
-		A2->beExecuted(*tobby);
-		A3->beExecuted(*billy);
-		A4->beExecuted(*tobby);
-		A5->beExecuted(*tobby);
-		A6->beExecuted(*billy);
-	}
-	catch (std::exception& e){
-		std::cout << e.what() << std::endl;
-	}
+	billy->signForm(*A1);
+	billy->signForm(*A2);
+	billy->signForm(*A3);
+	billy->signForm(*A4);
+	billy->signForm(*A5);
+	billy->signForm(*A6);
+	std::cout << std::endl;
+	billy->executeForm(*A1);
+	tobby->executeForm(*A2);
+	billy->executeForm(*A3);
+	tobby->executeForm(*A4);
+	tobby->executeForm(*A5);
+	billy->executeForm(*A6);
 
 	delete billy;
 	delete tobby;

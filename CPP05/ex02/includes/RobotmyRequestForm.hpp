@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RobotmyRequestForm.hpp                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/24 16:49:37 by anvincen         ###   ########.fr       */
+/*   Updated: 2023/10/25 10:01:49 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ class	RobotmyRequestForm: public AForm
 		RobotmyRequestForm( std::string const& name );
 		~RobotmyRequestForm( void );
 
-		void	beExecuted( Bureaucrat const& executor );	
+		void	beExecuted( Bureaucrat const& executor ) const;	
 };
 
 #endif

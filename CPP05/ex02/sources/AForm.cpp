@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/24 17:55:52 by anvincen         ###   ########.fr       */
+/*   Updated: 2023/10/25 10:35:24 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ const char*		AForm::IsNotSignedException::what( void ) const throw()
 
 std::ostream&	operator<<( std::ostream& os, AForm const& source )
 {
-	os << "AForm " << source.getName() << ":" << std::endl
+	os << "Form " << source.getName() << ":" << std::endl
 	<< "\tGrade required to execute: " << source.getGradeToExecute() << std::endl
 	<< "\tGrade to sign: " << source.getGradeToSign() << std::endl
 	<< "\tIs signed: " << source.getIfSigned() << std::endl;

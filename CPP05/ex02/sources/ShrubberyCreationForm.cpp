@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ShrubberyCreationForm.cpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/24 17:24:22 by anvincen         ###   ########.fr       */
+/*   Updated: 2023/10/25 10:02:08 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ ShrubberryCreationForm::~ShrubberryCreationForm( void )
 	return ;
 }
 
-void	ShrubberryCreationForm::beExecuted( Bureaucrat const& executor )
+void	ShrubberryCreationForm::beExecuted( Bureaucrat const& executor ) const
 {
 	if (!this->getIfSigned())
 		return (throw ShrubberryCreationForm::IsNotSignedException());

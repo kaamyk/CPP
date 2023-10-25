@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RobotmyRequestForm.cpp                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/24 17:57:37 by anvincen         ###   ########.fr       */
+/*   Updated: 2023/10/25 10:02:13 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ RobotmyRequestForm::~RobotmyRequestForm( void )
 	return ;
 }
 
-void	RobotmyRequestForm::beExecuted( Bureaucrat const& executor )
+void	RobotmyRequestForm::beExecuted( Bureaucrat const& executor ) const
 {
 	if (!this->getIfSigned())
 		return (throw RobotmyRequestForm::IsNotSignedException());
