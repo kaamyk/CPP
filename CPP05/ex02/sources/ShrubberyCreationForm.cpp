@@ -6,7 +6,7 @@
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/25 10:02:08 by antoine          ###   ########.fr       */
+/*   Updated: 2023/10/25 11:23:58 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,16 @@
 #include <string>
 #include <iostream>
 
-ShrubberryCreationForm::ShrubberryCreationForm( void ): AForm( "Unknown", 145, 137 )
+ShrubberryCreationForm::ShrubberryCreationForm( void ):
+						AForm( "Shruberry_Form", 145, 137 ),
+						_target( "Unknown_target" )
 {
 	return ;
 }
 
-ShrubberryCreationForm::ShrubberryCreationForm( std::string const& name ): AForm(name, 145, 137)
+ShrubberryCreationForm::ShrubberryCreationForm( std::string const& target ):
+										AForm("Shrubberry_Form", 145, 137),
+										_target( target )
 {
 	return ;
 }
@@ -37,7 +41,7 @@ void	ShrubberryCreationForm::beExecuted( Bureaucrat const& executor ) const
 		return (throw ShrubberryCreationForm::GradeTooLowException());
 	else{
 		std::string		fileName;
-		fileName = executor.getName();
+		fileName = _target;
 		fileName.append("_shrubberry");
 		std::ofstream	file(&fileName[0]);
 

@@ -6,18 +6,21 @@
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/25 10:02:13 by antoine          ###   ########.fr       */
+/*   Updated: 2023/10/25 11:23:43 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/RobotmyRequestForm.hpp"
 
-RobotmyRequestForm::RobotmyRequestForm( void ): AForm( "Unknown", 72, 45 )
+RobotmyRequestForm::RobotmyRequestForm( void ): AForm( "Robot_Form", 72, 45 ),
+												_target( "Unknown_target" )
 {
 	return ;
 }
 
-RobotmyRequestForm::RobotmyRequestForm( std::string const& name ): AForm(name, 72, 45)
+RobotmyRequestForm::RobotmyRequestForm( std::string const& target ):
+										AForm("Robot_Form", 72, 45),
+										_target( target )
 {
 	return ;
 }
@@ -36,9 +39,9 @@ void	RobotmyRequestForm::beExecuted( Bureaucrat const& executor ) const
 	else{
 		std::cout << "BZZZ BIIP BOOP !" << std::endl;
 		if (rand() % 2)
-			std::cout << executor.getName() << " has been robotomized." << std::endl;
+			std::cout << _target << " has been robotomized." << std::endl;
 		else
-			std::cout << executor.getName() << " Robotomy failed ..." << std::endl;
+			std::cout << _target << " Robotomy failed ..." << std::endl;
 	}
 	return ;
 }

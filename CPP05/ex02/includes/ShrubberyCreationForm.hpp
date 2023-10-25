@@ -6,7 +6,7 @@
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/25 10:20:55 by antoine          ###   ########.fr       */
+/*   Updated: 2023/10/25 11:07:33 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,11 @@
 class	ShrubberryCreationForm: public AForm
 {
 	private:
+		const std::string	_target;
 
 	public:
 		ShrubberryCreationForm( void );
-		ShrubberryCreationForm( std::string const& name );
+		ShrubberryCreationForm( std::string const& target );
 		~ShrubberryCreationForm( void );
 
 		void	beExecuted( Bureaucrat const& executor ) const;
