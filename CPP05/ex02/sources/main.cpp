@@ -6,7 +6,7 @@
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/25 11:37:44 by antoine          ###   ########.fr       */
+/*   Updated: 2023/10/26 12:17:11 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main( void )
 	name = "Billy";
 	Bureaucrat*	billy = new Bureaucrat(name, 20);
 	name = "Tobby";
-	Bureaucrat*	tobby = new Bureaucrat(name, 150);
+	Bureaucrat*	tobby = new Bureaucrat(name, 56);
 	name = "Bibi";
 	Bureaucrat* bibi = new Bureaucrat(name, 560);
 
@@ -43,12 +43,12 @@ int	main( void )
 	std::cout << A5 << std::endl;
 	std::cout << A6 << std::endl;
 
-	billy->signForm(A1);
-	billy->signForm(A2);
-	billy->signForm(A3);
-	billy->signForm(A4);
-	billy->signForm(A5);
-	billy->signForm(A6);
+	tobby->signForm(A1);
+	tobby->signForm(A2);
+	tobby->signForm(A3);
+	tobby->signForm(A4);
+	tobby->signForm(A5);
+	tobby->signForm(A6);
 	std::cout << std::endl;
 	billy->executeForm(A1);
 	tobby->executeForm(A2);

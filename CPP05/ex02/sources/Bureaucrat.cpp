@@ -6,7 +6,7 @@
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/25 10:19:58 by antoine          ###   ########.fr       */
+/*   Updated: 2023/10/26 12:14:05 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ void			Bureaucrat::signForm( AForm& F ) const
 void			Bureaucrat::executeForm( AForm const& F ) const
 {
 	try{
-		F.beExecuted(*this);
+		F.execute(*this);
 		std::cout << _name << " executed " << F.getName() << std::endl;
 	}
 	catch(std::exception& e){

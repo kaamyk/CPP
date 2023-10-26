@@ -6,7 +6,7 @@
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/25 11:23:58 by antoine          ###   ########.fr       */
+/*   Updated: 2023/10/26 12:04:25 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 #include <iostream>
 
 ShrubberryCreationForm::ShrubberryCreationForm( void ):
-						AForm( "Shruberry_Form", 145, 137 ),
+						AForm( "Shruberry_Form", 137, 145 ),
 						_target( "Unknown_target" )
 {
 	return ;
 }
 
 ShrubberryCreationForm::ShrubberryCreationForm( std::string const& target ):
-										AForm("Shrubberry_Form", 145, 137),
+										AForm( "Shrubberry_Form", 145, 137 ),
 										_target( target )
 {
 	return ;
@@ -33,7 +33,7 @@ ShrubberryCreationForm::~ShrubberryCreationForm( void )
 	return ;
 }
 
-void	ShrubberryCreationForm::beExecuted( Bureaucrat const& executor ) const
+void	ShrubberryCreationForm::execute( Bureaucrat const& executor ) const
 {
 	if (!this->getIfSigned())
 		return (throw ShrubberryCreationForm::IsNotSignedException());
