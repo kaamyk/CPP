@@ -6,7 +6,7 @@
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/25 12:19:20 by antoine          ###   ########.fr       */
+/*   Updated: 2023/10/26 10:36:09 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,14 @@ AForm*		Intern::makeForm( const std::string formName, const std::string target )
 			std::cout << "Intern creates Shrubberry Form" << std::endl;
 			return (new ShrubberryCreationForm(target));
 		default:
-			std::cout << "Invalid form name : could not create a new form" << std::endl;
+			// std::cout << "Invalid form name : could not create a new form " << formName << std::endl;
+			throw Intern::InvalidFormException();
 			return (NULL);
 	}
 }
 
 const char*	Intern::InvalidFormException::what( void ) const throw()
 {
-	return("Invalid form name : couldn't crete a new Form");
+	return("Invalid form name : couldn't create a new Form");
 }
 

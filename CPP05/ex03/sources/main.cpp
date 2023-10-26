@@ -6,7 +6,7 @@
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/25 12:21:25 by antoine          ###   ########.fr       */
+/*   Updated: 2023/10/26 11:06:11 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,27 +29,45 @@ int	main( void )
 	name = "Bibi";
 	Bureaucrat* bibi = new Bureaucrat(name, 560);
 
-	Intern	toto;
+	Intern	toto = Intern();
 
 	(void) bibi;
-	ShrubberryCreationForm*	A1 = toto.makeForm("Shrubberry Form", "Forest");
-	RobotmyRequestForm*		A4("Robot Form", "Wall-E");
-	PresidentialPardonForm*	A6("Presidential form", "Biden");
+	AForm*	A1 = NULL;
+	AForm*	A4 = NULL;
+	AForm*	A6 = NULL;
 	
+	try{
+		A1 = toto.makeForm("Shrubberry Form", "Forest");
+		A4 = toto.makeForm("Robot Form", "Wall-E");
+		A6 = toto.makeForm("Presidential Form", "Biden");
+		// A6 = toto.makeForm("Presidential Frm", "Biden");
+	}
+	catch(std::exception& e){
+		std::cout << e.what() << std::endl;
+	}
+
 	std::cout << *A1 << std::endl;
 	std::cout << *A4 << std::endl;
-	std::cout << *A6 << std::endl;
+	if (A6)
+		std::cout << *A6 << std::endl;
 
 	billy->signForm(*A1);
 	billy->signForm(*A4);
-	billy->signForm(*A6);
+	if (A6)
+		billy->signForm(*A6);
 	std::cout << std::endl;
 	billy->executeForm(*A1);
 	tobby->executeForm(*A4);
-	billy->executeForm(*A6);
+	if (A6)
+		billy->executeForm(*A6);
 
 	delete billy;
 	delete tobby;
 	delete bibi;
+
+	delete A1;
+	delete A4;
+	if (A6)
+		delete A6;
 	return (0);
 }

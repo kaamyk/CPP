@@ -6,7 +6,7 @@
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/25 10:21:04 by antoine          ###   ########.fr       */
+/*   Updated: 2023/10/26 10:56:44 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ class	AForm
 		AForm( void );
 		AForm( const std::string name, const unsigned int gradeToExecute, const unsigned int gradeToSign);
 		AForm( AForm const& source );
-		~AForm( void );
+		virtual ~AForm( void );
 
 		AForm&	operator=( AForm const& source );
 
