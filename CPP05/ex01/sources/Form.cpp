@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/20 13:11:51 by anvincen         ###   ########.fr       */
+/*   Updated: 2023/10/26 11:46:11 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
  
@@ -74,14 +74,14 @@ bool			Form::getIfSigned( void ) const
 	return (_isSigned);
 }
 
-bool			Form::beSigned( Bureaucrat const& B )
+void			Form::beSigned( Bureaucrat const& B )
 {
 	if (B.getGrade() <= _gradeToSign){
 		_isSigned = 1;
-		return (1);
+		return ;
 	}
 	else
-		return (0);
+		return (throw Form::GradeTooLowException());
 }
 
 const char*		Form::GradeTooHighException::what( void ) const throw()

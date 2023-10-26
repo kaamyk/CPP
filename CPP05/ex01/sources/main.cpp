@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/20 13:25:25 by anvincen         ###   ########.fr       */
+/*   Updated: 2023/10/26 11:46:18 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	main(void)
 		delete A39;
 		delete A40;
 		delete A41;
-		std::cout << "\t\t - End of Constructor Tests - " << std::endl;
+		std::cout << "\t- End of Constructor Tests - " << std::endl;
 	}
 	{
 		std::cout << "\t---- Exception Tests ----" << std::endl;
@@ -73,34 +73,34 @@ int	main(void)
 			tommy->signForm(*A1);
 			bobby->signForm(*A1);
 			tobby->signForm(*A1);
+			// std::cout << "A1 signed = " << A1->getIfSigned() << std::endl;
 		}
 		catch(std::exception& e){
 			std::cout << e.what() << std::endl;
 		}
-		std::cout << "A1 signed = " << A1->getIfSigned() << std::endl;
 		std::cout << std::endl;
 		try{
 			std::cout << "Should work for the two first" << std::endl;
 			tommy->signForm(*A2);
 			bobby->signForm(*A2);
 			tobby->signForm(*A2);
+			// std::cout << "A2 signed = " << A2->getIfSigned() << std::endl;
 		}
 			catch(std::exception& e){
 				std::cout << e.what() << std::endl;
 			}
-		std::cout << "A2 signed = " << A2->getIfSigned() << std::endl;
 		std::cout << std::endl;
 		try{
 			std::cout << "Should work for none" << std::endl;
 			tommy->signForm(*A3);
 			bobby->signForm(*A3);
 			tobby->signForm(*A3);
+			std::cout << "A3 signed = " << A3->getIfSigned() << std::endl;
 			std::cout << "\t\t - End of Exception Tests - " << std::endl;
 		}
 		catch(std::exception& e){
 			std::cout << e.what() << std::endl;
 		}
-		std::cout << "A3 signed = " << A3->getIfSigned() << std::endl;
 		std::cout << std::endl;
 
 		delete tobby;
