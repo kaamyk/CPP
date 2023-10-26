@@ -6,7 +6,7 @@
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/19 17:06:15 by antoine          ###   ########.fr       */
+/*   Updated: 2023/10/26 11:27:54 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	main(void)
 	}
 
 	std::cout << *tom << std::endl;
+
+	delete tom;
 
 	std::cout << std::endl;
 	std::cout << "Hers comes Elon. Elon has big ambitions ... Maybe too big" << std::endl;
