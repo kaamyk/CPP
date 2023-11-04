@@ -6,7 +6,7 @@
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/26 10:36:09 by antoine          ###   ########.fr       */
+/*   Updated: 2023/11/04 14:36:25 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 Intern::Intern( void )
 {
+	_makerTab[0] = &Intern::makePresidentialForm;
+	_makerTab[1] = &Intern::makeRobotForm;
+	_makerTab[2] = &Intern::makeShrubberryForm;
 	return;
 }
 
@@ -34,6 +37,21 @@ Intern&		Intern::operator=( Intern const& source )
 	return (*this);
 }
 
+AForm*	Intern::makePresidentialForm( std::string target )
+{
+	return (new PresidentialPardonForm(target));
+}
+
+AForm*	Intern::makeRobotForm( std::string target )
+{
+	return (new RobotmyRequestForm(target));
+}
+
+AForm*	Intern::makeShrubberryForm(std::string target)
+{
+	return (new ShrubberryCreationForm(target));
+}
+
 AForm*		Intern::makeForm( const std::string formName, const std::string target )
 {
 	std::string		possibleFormName[3] = {"Presidential Form", "Robot Form", "Shrubberry Form"};
@@ -41,24 +59,11 @@ AForm*		Intern::makeForm( const std::string formName, const std::string target )
 
 	for (i = 0; i < 3; ++i)
 	{
+		std::cout << i << std::endl;
 		if (!formName.compare(possibleFormName[i]))
-			break ;
+			return (this->*_makerTab[i])(target);	
 	}
-	switch (i){
-		case (0):
-			std::cout << "Intern creates Presidential Form" << std::endl;
-			return (new PresidentialPardonForm(target));
-		case (1):
-			std::cout << "Intern creates Robot Form" << std::endl;
-			return (new RobotmyRequestForm(target));
-		case (2):
-			std::cout << "Intern creates Shrubberry Form" << std::endl;
-			return (new ShrubberryCreationForm(target));
-		default:
-			// std::cout << "Invalid form name : could not create a new form " << formName << std::endl;
-			throw Intern::InvalidFormException();
-			return (NULL);
-	}
+	return (NULL);
 }
 
 const char*	Intern::InvalidFormException::what( void ) const throw()

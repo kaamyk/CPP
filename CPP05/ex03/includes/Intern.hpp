@@ -6,7 +6,7 @@
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/25 12:13:18 by antoine          ###   ########.fr       */
+/*   Updated: 2023/11/04 14:07:44 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,13 @@
 
 class	Intern
 {
+	private:
+		AForm*	(Intern::*_makerTab[3])( std::string target );
+
+		AForm*	makePresidentialForm( std::string target );
+		AForm*	makeRobotForm( std::string target );
+		AForm*	makeShrubberryForm( std::string target );
+
 	public:
 		Intern( void );
 		Intern( Intern const& source );
