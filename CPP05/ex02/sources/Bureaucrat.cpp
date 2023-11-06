@@ -6,13 +6,13 @@
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/26 12:14:05 by antoine          ###   ########.fr       */
+/*   Updated: 2023/11/06 10:11:37 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat( void ): _name("default"), _grade(1)
+Bureaucrat::Bureaucrat( void ): _name("default"), _grade(150)
 {
 	std::cout << "In the Bureaucrat's default constructor" << std::endl;
 	return ;
@@ -107,10 +107,8 @@ void			Bureaucrat::decrementGrade( void )
 void			Bureaucrat::signForm( AForm& F ) const
 {
 	try{
-		if(F.beSigned(*this))
-			std::cout << _name << " signed " <<  F.getName() << std::endl;
-		else
-			throw Bureaucrat::GradeTooLowException();
+		F.beSigned(*this);
+		std::cout << _name << " signed " <<  F.getName() << std::endl;
 	}
 	catch( std::exception& e ){
 		std::cout << _name << " couldn't sign " << F.getName()

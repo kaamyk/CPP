@@ -6,7 +6,7 @@
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/25 10:35:24 by antoine          ###   ########.fr       */
+/*   Updated: 2023/11/06 10:03:43 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,14 +75,13 @@ bool			AForm::getIfSigned( void ) const
 	return (_isSigned);
 }
 
-bool			AForm::beSigned( Bureaucrat const& B )
+void			AForm::beSigned( Bureaucrat const& B )
 {
 	if (B.getGrade() <= _gradeToSign){
 		_isSigned = 1;
-		return (1);
+		return ;
 	}
-	else
-		return (0);
+	return (throw AForm::GradeTooLowException());
 }
 
 const char*		AForm::GradeTooHighException::what( void ) const throw()

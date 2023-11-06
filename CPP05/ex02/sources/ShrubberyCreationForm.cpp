@@ -6,7 +6,7 @@
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/26 12:04:25 by antoine          ###   ########.fr       */
+/*   Updated: 2023/11/06 10:05:45 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ ShrubberryCreationForm::ShrubberryCreationForm( void ):
 }
 
 ShrubberryCreationForm::ShrubberryCreationForm( std::string const& target ):
-										AForm( "Shrubberry_Form", 145, 137 ),
+										AForm( "Shrubberry_Form", 137, 145 ),
 										_target( target )
 {
 	return ;
