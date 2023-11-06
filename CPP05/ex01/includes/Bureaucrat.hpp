@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/20 13:22:41 by anvincen         ###   ########.fr       */
+/*   Updated: 2023/11/06 10:29:41 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ class	Bureaucrat
 		Bureaucrat( Bureaucrat const& source );
 		Bureaucrat( std::string const& name, unsigned int grade );
 		~Bureaucrat( void );
+
+		Bureaucrat&	operator=( Bureaucrat const& source );
 
 		void				setGrade( unsigned int grade );
 		unsigned int		getGrade( void ) const;
