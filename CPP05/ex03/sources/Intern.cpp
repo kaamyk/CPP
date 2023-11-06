@@ -6,7 +6,7 @@
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/11/04 14:36:25 by antoine          ###   ########.fr       */
+/*   Updated: 2023/11/06 10:52:36 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,10 @@ AForm*		Intern::makeForm( const std::string formName, const std::string target )
 
 	for (i = 0; i < 3; ++i)
 	{
-		std::cout << i << std::endl;
 		if (!formName.compare(possibleFormName[i]))
 			return (this->*_makerTab[i])(target);	
 	}
+	throw(Intern::InvalidFormException());
 	return (NULL);
 }
 
