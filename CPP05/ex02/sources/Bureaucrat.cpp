@@ -6,7 +6,7 @@
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/11/06 10:11:37 by antoine          ###   ########.fr       */
+/*   Updated: 2023/11/06 10:33:11 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,12 @@ Bureaucrat::Bureaucrat( std::string& name, unsigned int grade ): _name(name), _g
 		std::cout << e.what() << std::endl;
 	}
 	return ;
+}
+
+Bureaucrat&		Bureaucrat::operator=( Bureaucrat const& source )
+{
+	_grade = source._grade;
+	return (*this);
 }
 
 Bureaucrat::~Bureaucrat( void )
