@@ -6,7 +6,7 @@
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/26 11:46:49 by antoine          ###   ########.fr       */
+/*   Updated: 2023/11/06 09:37:32 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,20 +87,28 @@ std::string const	Bureaucrat::getName( void ) const
 
 void			Bureaucrat::incrementGrade( void )
 {
-	if(_grade == 1){
-		return (throw Bureaucrat::GradeTooHighException());
-	}
-	else
+	try{
+		if(_grade == 1){
+			throw Bureaucrat::GradeTooHighException();
+		}
 		--_grade;
+	}
+	catch(std::exception& e){
+		std::cout << "Couldn't increment grade: " << e.what() << std::endl;
+	}
 	return ;
 }
 
 void			Bureaucrat::decrementGrade( void )
 {
-	if (_grade + 1 > 150)
-		return (throw Bureaucrat::GradeTooLowException());
-	else
+	try{
+		if (_grade + 1 > 150)
+			throw Bureaucrat::GradeTooLowException();
 		++_grade;
+	}
+	catch(std::exception& e){
+		std::cout << "Couldn't decrement grade: " << e.what() << std::endl;
+	}
 	return ;
 }
 
