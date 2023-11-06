@@ -6,7 +6,7 @@
 #    By: antoine <antoine@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/07 17:59:08 by anvincen          #+#    #+#              #
-#    Updated: 2023/10/19 16:14:21 by antoine          ###   ########.fr        #
+#    Updated: 2023/11/06 11:09:52 by antoine          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME		=	bureaucrat
 
 SRCDIR		=	sources
 
-SRCS		=	$(wildcard $(SRCDIR)/*.cpp)
+# SRCS		=	$(wildcard $(SRCDIR)/*.cpp)
+SRCS		=	$(SRCDIR)/Bureaucrat.cpp	$(SRCDIR)/main.cpp
 
 OBJDIR		=	.obj
 

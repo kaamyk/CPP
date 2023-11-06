@@ -6,7 +6,7 @@
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/11/06 10:51:57 by antoine          ###   ########.fr       */
+/*   Updated: 2023/11/06 11:17:02 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ int	main( void )
 	try{
 		A1 = toto.makeForm("Shrubberry Form", "Forest");
 		A4 = toto.makeForm("Robot Form", "Wall-E");
-		// A6 = toto.makeForm("Presidential Form", "Biden");
-		A6 = toto.makeForm("Presidential Frm", "Biden");
+		A6 = toto.makeForm("Presidential Form", "Biden");
+		// A6 = toto.makeForm("Presidential Frm", "Biden");
 	}
 	catch(std::exception& e){
 		std::cout << e.what() << std::endl;

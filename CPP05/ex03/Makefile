@@ -6,7 +6,7 @@
 #    By: antoine <antoine@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/07 17:59:08 by anvincen          #+#    #+#              #
-#    Updated: 2023/10/23 17:48:18 by antoine          ###   ########.fr        #
+#    Updated: 2023/11/06 11:15:04 by antoine          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,10 @@ NAME		=	form
 
 SRCDIR		=	sources
 
-SRCS		=	$(wildcard $(SRCDIR)/*.cpp)
+# SRCS		=	$(wildcard $(SRCDIR)/*.cpp)
+SRCS		=	$(SRCDIR)/AForm.cpp	$(SRCDIR)/Bureaucrat.cpp	$(SRCDIR)/main.cpp\
+				$(SRCDIR)/PresidentialPardonForm.cpp	$(SRCDIR)/RobotmyRequestForm.cpp\
+				$(SRCDIR)/ShrubberyCreationForm.cpp		$(SRCDIR)/Intern.cpp
 
 OBJDIR		=	.obj
 
