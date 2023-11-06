@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anvincen <anvincen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/18 17:24:15 by anvincen         ###   ########.fr       */
+/*   Updated: 2023/11/06 10:22:39 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,12 @@ Bureaucrat::Bureaucrat( std::string const& name, unsigned int grade ): _name(nam
 Bureaucrat::~Bureaucrat( void )
 {
 	return ;
+}
+
+Bureaucrat&		Bureaucrat::operator=( Bureaucrat const& source )
+{
+	_grade = source._grade;
+	return (*this);
 }
 
 std::ostream&	operator<<( std::ostream & os, const Bureaucrat& B )
