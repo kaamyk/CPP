@@ -6,7 +6,7 @@
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 12:39:16 by anvincen          #+#    #+#             */
-/*   Updated: 2023/10/26 11:46:11 by antoine          ###   ########.fr       */
+/*   Updated: 2023/11/06 09:55:44 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
  
@@ -76,16 +76,11 @@ bool			Form::getIfSigned( void ) const
 
 void			Form::beSigned( Bureaucrat const& B )
 {
-	try{
-		if (B.getGrade() <= _gradeToSign){
-			_isSigned = 1;
-			return ;
-		}
-		throw Form::GradeTooLowException();
+	if (B.getGrade() <= _gradeToSign){
+		_isSigned = 1;
+		return ;
 	}
-	catch(std::exception& e){
-		std::cout << e.what() << std::endl;
-	}
+	return (throw Form::GradeTooLowException());
 }
 
 const char*		Form::GradeTooHighException::what( void ) const throw()
