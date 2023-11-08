@@ -3,7 +3,7 @@
 int	main( void )
 {
 	ScalarConverter	sc("45678256743280562347805467");
-	ScalarConverter	sc1("45");
+	ScalarConverter	sc1("45.7");
 
 	std::cout << "Before conversion: " << sc << std::endl;
 	std::cout << "Before conversion: " << sc1 << std::endl;
