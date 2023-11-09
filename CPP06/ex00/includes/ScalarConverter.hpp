@@ -12,6 +12,7 @@ class ScalarConverter
 {
 private:
 	std::string	_source;
+	int		_type;
 	char	_char;
 	int		_int;
 	float	_float;
@@ -25,6 +26,14 @@ public:
 
 	ScalarConverter&	operator=( ScalarConverter const& source );
 
+	enum {
+		CHAR,
+		INT,
+		FLOAT,
+		DOUBLE,
+		INVALID
+	};
+
 	class	paramOutOfRange: public std::exception
 	{
 	public:
@@ -37,14 +46,17 @@ public:
 	};
 
 	std::string	getSource( void )const;
+	char		getChar( void ) const;
 	int			getInt( void ) const;
 	float		getFloat( void ) const;
 	double		getDouble( void ) const;
 
 
-	void	convertInt( void );
-	void	convertFloat( void );
-	void	convertDouble( void );
+	void	detectType( void );
+	void	convertToChar( void );
+	void	convertToInt( void );
+	void	convertToFloat( void );
+	void	convertToDouble( void );
 	void	convert( void );
 
 };
