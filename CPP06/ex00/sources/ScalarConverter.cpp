@@ -68,6 +68,11 @@ double		ScalarConverter::getDouble( void ) const
 	return (_double);
 }
 
+int			ScalarConverter::getType( void ) const
+{
+	return (_type);
+}
+
 void	ScalarConverter::detectType( void )
 {
 	int	r;
@@ -80,7 +85,7 @@ void	ScalarConverter::detectType( void )
 			r = _source.find_first_of("f");
 			r1 = _source.find_last_of("f");
 			if (_source.find_first_of("f") != std::string::npos && r == r1)
-				_type = CHAR;
+				_type = FLOAT;
 			else if (r == r1)
 				_type = DOUBLE;
 			else
@@ -99,7 +104,6 @@ void	ScalarConverter::detectType( void )
 	}
 	else
 		_type = INVALID;
-	std::cout << "_type == " << _type << std::endl;
 }
 
 void	ScalarConverter::convertToInt( void )
@@ -111,8 +115,10 @@ void	ScalarConverter::convertToInt( void )
 
 	if (*endptr != 0)
 		return (throw ScalarConverter::conversionException());
-	else if (tmp < INT_MIN || tmp > INT_MAX)
+	else if (tmp < INT_MIN || tmp > INT_MAX){
+		_type = INVALID;
 		return (throw ScalarConverter::paramOutOfRange());
+	}
 
 	_int = atoi(_source.c_str());
 	std::cout << "convInt => _int == " << _int << std::endl;
@@ -126,12 +132,16 @@ void	ScalarConverter::convertToFloat( void )
 
 	std::cout << "convFloat => tmp == " << tmp << std::endl;
 
-	if (*endptr != 0)
+	std::cout << "source.end() == " << *_source.end() << std::endl;
+	if (*_source.end() != 0)
 		return (throw ScalarConverter::conversionException());
-	else if (tmp < FLT_MIN || tmp > FLT_MAX)
+	else if (tmp < FLT_MIN || tmp > FLT_MAX){
+		_type = INVALID;
 		return (throw ScalarConverter::paramOutOfRange());
+	}
 
-	_float = std::strtof(&_source[0], &endptr);
+	// _float = std::strtof(&_source[0], &endptr);
+	_float = static_cast<float>(tmp);
 	std::cout << "convFloat => _float == " << _float << std::endl;
 	return ;
 }
@@ -141,15 +151,13 @@ void	ScalarConverter::convertToDouble( void )
 	char*	endptr;
 	long double	tmp = std::strtold(&_source[0], &endptr);
 
-	std::cout << "convDouble => tmp == " << tmp << std::endl;
-
 	if (*endptr != 0)
 		return (throw ScalarConverter::conversionException());
-	else if (tmp < DBL_MIN || tmp > DBL_MAX)
+	else if (tmp < DBL_MIN || tmp > DBL_MAX){
+		_type = INVALID;
 		return (throw ScalarConverter::paramOutOfRange());
-
-	_double = std::strtod(&_source[0], &endptr);
-	std::cout << "convDouble => _float == " << _float << std::endl;
+	}
+	_double = static_cast<double>(tmp);
 	return ;
 }
 
@@ -159,37 +167,111 @@ void	ScalarConverter::convertToChar( void )
 	return ;
 }
 
-void	ScalarConverter::convert( void )
+void	ScalarConverter::convertFromChar( void )
 {
-	std::cout << "convert => _source == " << _source << std::endl;
-	detectType();
-	if (_type == INVALID){
-		std::cout << "Error: Input invalid." << std::endl;
-		return ;
-	}
+	_int = static_cast<int>(_char);
+	_float = static_cast<float>(_char);
+	_double = static_cast<double>(_char);
+}
+
+void	ScalarConverter::convertFromInt( void )
+{
+	_char = static_cast<char>(_int);
+	_float = static_cast<float>(_int);
+	_double = static_cast<double>(_int);
+}
+
+void	ScalarConverter::convertFromFloat( void )
+{
+	_char = static_cast<char>(round(_float));
+	_int = static_cast<int>(round(_float));
+	_double = static_cast<double>(_float);
+}
+
+void	ScalarConverter::convertFromDouble( void )
+{
+	_char = static_cast<char>(round(_double));
+	_int = static_cast<int>(round(_double));
+	_float = static_cast<float>(_double);
+}
+
+void	ScalarConverter::convertToActualType( void )
+{
 	try{
-		convertToChar();
-		convertToInt();
-		convertToFloat();
-		convertToDouble();
+		switch(_type){
+		case CHAR:
+			convertToChar();
+			break ;
+		case INT:
+			convertToInt();
+			break ;
+		case FLOAT:
+			convertToFloat();
+			break ;
+		case DOUBLE:
+			convertToDouble();
+			break ;
+		case INVALID:
+			std::cout << "Error: Input invalid." << std::endl;
+			break ;
+		}
 	}
 	catch( std::exception& e ){
 		std::cout << e.what() << std::endl;
 	}
+	return ;
+}
 
+void	ScalarConverter::convert( void )
+{
+	detectType();
+	convertToActualType();
+	switch(_type){
+	case CHAR:
+		convertFromChar();
+		break ;
+	case INT:
+		convertFromInt();
+		break ;
+	case FLOAT:
+		convertFromFloat();
+		break ;
+	case DOUBLE:
+		convertFromDouble();
+		break ;
+	case INVALID:
+		std::cout << "Error: Input invalid." << std::endl;
+		break ;
+	}
 	return ;
 }
 
 std::ostream&	operator<<( std::ostream& os, ScalarConverter const& source )
 {
 	os << "ScalarConverter: source == " << source.getSource() << std::endl;
-	if (source.getChar() < 32 || source.getChar() != 127)
-		os << "\tSource to char == " << source.getChar() << std::endl;
-	else
-		os << "\tSource to char == Non printable" << std::endl;
-	os << "\tSource to int == " << source.getInt() << std::endl
-	<< "\tSource to float == " << source.getFloat() << std::endl
-	<< "\tSource to double == " << source.getDouble() << std::endl;
+	if(source.getType() == INVALID){
+	os << "\tSource to char == Invalid" << std::endl
+	<< "\tSource to int == Invalid" << std::endl
+	<< "\tSource to float == Invalid" << std::endl
+	<< "\tSource to double == Invalid" << std::endl;
+	}
+	else{
+		if (source.getChar() >= 32 && source.getChar() != 127)
+			os << "\tSource to char == " << source.getChar() << std::endl;
+		else
+			os << "\tSource to char == Non printable" << std::endl;
+		os << "\tSource to int == " << source.getInt() << std::endl;
+
+		if(source.getFloat() == static_cast<int>(source.getFloat()))
+			os << "\tSource to float == " << std::fixed << std::setprecision(1) << source.getFloat() << "f" << std::endl;
+		else
+			os << "\tSource to float == " << source.getFloat() << "f" << std::endl;
+
+		if (source.getDouble() == static_cast<int>(source.getDouble()))
+			os << "\tSource to double == " << std::fixed << std::setprecision(1) << source.getDouble() << std::endl;
+		else
+			os << "\tSource to double == " << source.getDouble() << std::endl;
+	}
 
 	return (os);
 }

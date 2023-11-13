@@ -2,11 +2,21 @@
 #define SCALARCONV_HPP
 
 #include <iostream>
+#include <iomanip>
+#include <exception>
 #include <string>
 #include <cstdlib>
 #include <climits>
 #include <cfloat>
-#include <exception>
+#include <cmath>
+
+enum {
+	CHAR,
+	INT,
+	FLOAT,
+	DOUBLE,
+	INVALID
+};
 
 class ScalarConverter
 {
@@ -26,14 +36,6 @@ public:
 
 	ScalarConverter&	operator=( ScalarConverter const& source );
 
-	enum {
-		CHAR,
-		INT,
-		FLOAT,
-		DOUBLE,
-		INVALID
-	};
-
 	class	paramOutOfRange: public std::exception
 	{
 	public:
@@ -50,13 +52,18 @@ public:
 	int			getInt( void ) const;
 	float		getFloat( void ) const;
 	double		getDouble( void ) const;
+	int			getType( void ) const;
 
-
-	void	detectType( void );
 	void	convertToChar( void );
 	void	convertToInt( void );
 	void	convertToFloat( void );
 	void	convertToDouble( void );
+	void	convertToActualType( void );
+	void	convertFromChar( void );
+	void	convertFromInt( void );
+	void	convertFromFloat( void );
+	void	convertFromDouble( void );
+	void	detectType( void );
 	void	convert( void );
 
 };
