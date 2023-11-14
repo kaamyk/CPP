@@ -7,6 +7,7 @@
 #include <string>
 #include <cstdlib>
 #include <climits>
+#include <limits>
 #include <cfloat>
 #include <cmath>
 
@@ -15,6 +16,7 @@ enum {
 	INT,
 	FLOAT,
 	DOUBLE,
+	NON_NUM,
 	INVALID
 };
 
@@ -63,6 +65,7 @@ public:
 	void	convertFromInt( void );
 	void	convertFromFloat( void );
 	void	convertFromDouble( void );
+	bool	detectNonNum( void );
 	void	detectType( void );
 	void	convert( void );
 

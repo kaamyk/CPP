@@ -73,8 +73,39 @@ int			ScalarConverter::getType( void ) const
 	return (_type);
 }
 
+bool	ScalarConverter::detectNonNum( void )
+{
+	if (_source == "inf" || _source == "+inf" || _source == "inff" || _source == "+inff"){
+		_type = NON_NUM;
+		_int = std::numeric_limits<int>::infinity();
+		_float = std::numeric_limits<float>::infinity();
+		_double = std::numeric_limits<double>::infinity();
+		return (1);
+	}
+	else if (_source == "-inf" || _source == "-inff"){
+		_type = NON_NUM;
+		_int = -1 * std::numeric_limits<int>::infinity();
+		_float = -1 * std::numeric_limits<float>::infinity();
+		_double = -1 * std::numeric_limits<double>::infinity();
+		return (1);
+	}
+	else if (_source == "nan" || _source == "nanf"){
+		_type = NON_NUM;
+		_int = std::numeric_limits<int>::quiet_NaN();
+		_float = std::numeric_limits<float>::quiet_NaN();
+		_double = std::numeric_limits<double>::quiet_NaN();
+		return (1);
+	}
+	return (0);
+}
+
 void	ScalarConverter::detectType( void )
 {
+	if (detectNonNum()){
+		std::cout << "return" << std::endl;
+		return ;
+	}
+
 	int	r;
 	int	r1;
 	if (_source.size() > 1){
@@ -84,17 +115,17 @@ void	ScalarConverter::detectType( void )
 		{
 			r = _source.find_first_of("f");
 			r1 = _source.find_last_of("f");
-			if (_source.find_first_of("f") != std::string::npos && r == r1)
+			if (_source[_source.size()] == 'f' && _source.find_first_of("f") != std::string::npos && r == r1)
 				_type = FLOAT;
 			else if (r == r1)
 				_type = DOUBLE;
 			else
 				_type = INVALID;
 		}
-		else if (_source.find_first_not_of("0123456789") != std::string::npos)
-			_type = INVALID;
-		else
+		else if (_source.find_first_not_of("0123456789") == std::string::npos)
 			_type = INT;
+		else
+			_type = INVALID;
 	}
 	else if (_source.size() == 1){
 		if (_source.find_first_not_of("0123456789") != std::string::npos)
@@ -104,6 +135,7 @@ void	ScalarConverter::detectType( void )
 	}
 	else
 		_type = INVALID;
+	std::cout << "end type == " << _type << std::endl;
 }
 
 void	ScalarConverter::convertToInt( void )
@@ -258,9 +290,14 @@ std::ostream&	operator<<( std::ostream& os, ScalarConverter const& source )
 	else{
 		if (source.getChar() >= 32 && source.getChar() != 127)
 			os << "\tSource to char == " << source.getChar() << std::endl;
+		else if (source.getType() == NON_NUM)
+			os << "\tSource to char == Impossible" << std::endl;
 		else
 			os << "\tSource to char == Non printable" << std::endl;
-		os << "\tSource to int == " << source.getInt() << std::endl;
+		if (source.getType() == NON_NUM)
+			os << "\tSource to int == Impossible" << std::endl;
+		else
+			os << "\tSource to int == " << source.getInt() << std::endl;
 
 		if(source.getFloat() == static_cast<int>(source.getFloat()))
 			os << "\tSource to float == " << std::fixed << std::setprecision(1) << source.getFloat() << "f" << std::endl;
