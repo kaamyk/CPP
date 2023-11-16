@@ -1,9 +1,10 @@
 #ifndef SERIALIZER_HPP
-#define SERIALIZER_HPP
+# define SERIALIZER_HPP
 
-#include <iostream>
+# include <iostream>
+# include <stdint.h>
 
-struct{
+typedef struct Data{
 	int	i;
 	std::string	s;
 } Data;
@@ -11,7 +12,7 @@ struct{
 class	Serializer
 {
 private:
-
+	
 public:
 	Serializer( void );
 	Serializer( Serializer const& source );
@@ -19,8 +20,8 @@ public:
 
 	Serializer&	operator=( Serializer const& source );
 
-	uintptr_t	serializer(Data* ptr);
-	Data*		deserializer(unintptr_t raw);
-}
+	uintptr_t	serialize(Data* ptr);
+	Data*		deserialize(uintptr_t raw);
+};
 
 #endif
