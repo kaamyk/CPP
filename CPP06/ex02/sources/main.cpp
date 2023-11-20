@@ -69,7 +69,9 @@ int main( void )
 	    std::srand(std::time(NULL));
         Base*   T = generate();
 
+        std::cout << "Identify pointer:" << std::endl;
         identify(T);
+        std::cout << "Identify dereferenced pointer:" << std::endl;
         identify(*T);
         delete T;
     }
