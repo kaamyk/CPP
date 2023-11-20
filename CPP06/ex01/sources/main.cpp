@@ -16,6 +16,8 @@ int main( void )
 
     std::cout << "Printing infos from the pointer and compare to original:" << std::endl;
     Dptr = S.deserialize(uiptr);
+    std::cout << "Dptr == " << Dptr << std::endl;
+    std::cout << "&D == " << &D << std::endl;
     std::cout << "Dptr->int == " << Dptr->i << std::endl;
     std::cout << "D->int == " << D.i << std::endl;
 

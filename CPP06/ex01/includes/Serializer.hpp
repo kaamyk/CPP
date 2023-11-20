@@ -11,8 +11,6 @@ typedef struct Data{
 
 class	Serializer
 {
-private:
-	
 public:
 	Serializer( void );
 	Serializer( Serializer const& source );

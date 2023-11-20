@@ -14,7 +14,8 @@ NAME		=	convert
 
 SRCDIR		=	sources
 
-SRCS		=	$(wildcard $(SRCDIR)/*.cpp)
+# SRCS		=	$(wildcard $(SRCDIR)/*.cpp)
+SRCS		=	$(SRCDIR)/main.cpp	$(SRCDIR)/Serializer.cpp
 
 OBJDIR		=	.obj
 
