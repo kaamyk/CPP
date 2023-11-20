@@ -96,13 +96,13 @@ bool	ScalarConverter::detectNonNum( void )
 		_double = std::numeric_limits<double>::quiet_NaN();
 		return (1);
 	}
+	_type = INVALID;
 	return (0);
 }
 
 void	ScalarConverter::detectType( void )
 {
 	if (detectNonNum()){
-		std::cout << "return" << std::endl;
 		return ;
 	}
 
@@ -111,18 +111,18 @@ void	ScalarConverter::detectType( void )
 	if (_source.size() > 1){
 		r = _source.find_first_of(".");
 		r1 = _source.find_last_of(".");
-		if (_source.find_first_of(".") != std::string::npos && r == r1)
-		{
-			r = _source.find_first_of("f");
-			r1 = _source.find_last_of("f");
-			if (_source[_source.size()] == 'f' && _source.find_first_of("f") != std::string::npos && r == r1)
+		if (r != -1 && r == r1){
+			r = _source.find_first_not_of("0123456789.");
+			r1 = _source.find_last_not_of("0123456789.");
+			std::cout << "r && r1 == " << r << " && " << r1 << std::endl;
+			if (r != -1 && r == r1 && (size_t)r == _source.size() && _source[r] == 'f')
 				_type = FLOAT;
-			else if (r == r1)
+			else if (r == -1 && r == r1)
 				_type = DOUBLE;
 			else
 				_type = INVALID;
 		}
-		else if (_source.find_first_not_of("0123456789") == std::string::npos)
+		else if (r == -1 && _source.find_first_not_of("0123456789") == std::string::npos)
 			_type = INT;
 		else
 			_type = INVALID;
@@ -280,7 +280,29 @@ void	ScalarConverter::convert( void )
 
 std::ostream&	operator<<( std::ostream& os, ScalarConverter const& source )
 {
-	os << "ScalarConverter: source == " << source.getSource() << std::endl;
+	os << "ScalarConverter: source == " << source.getSource() << std::endl
+	<< "\tActual type == ";
+	switch(source.getType()){
+	case CHAR:
+		os << "Char";
+		break ;
+	case INT:
+		os << "Int";
+		break ;
+	case FLOAT:
+		os << "Float";
+		break ;
+	case DOUBLE:
+		os << "Double";
+		break ;
+	case NON_NUM:
+		os << "Non num";
+		break ;
+	case INVALID:
+		os << "Invalid";
+		break ;
+	}
+	os << std::endl;
 	if(source.getType() == INVALID){
 	os << "\tSource to char == Invalid" << std::endl
 	<< "\tSource to int == Invalid" << std::endl
