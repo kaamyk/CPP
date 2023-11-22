@@ -8,8 +8,7 @@ int	main( int argc, char **argv )
 	}
 	else if (argc > 2)
 		std::cout << "Too much argument: only the first will be considered" << std::endl;
-	ScalarConverter	converter(argv[1]);
-	converter.convert();
-	std::cout << "After conversion: " << converter << std::endl;
+	ScalarConverter::convert(argv[1]);
+	// std::cout << "After conversion: " << converter << std::endl;
 	return (0);
 }

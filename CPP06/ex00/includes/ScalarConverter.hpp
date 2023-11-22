@@ -6,6 +6,7 @@
 #include <exception>
 #include <string>
 #include <cstdlib>
+#include <ctype.h>
 #include <climits>
 #include <limits>
 #include <cfloat>
@@ -30,6 +31,18 @@ private:
 	float	_float;
 	double	_double;
 
+	// void	convertToChar( void );
+	// void	convertToInt( void );
+	// void	convertToFloat( void );
+	// void	convertToDouble( void );
+	// void	convertToActualType( void );
+	// void	convertFromChar( void );
+	// void	convertFromInt( void );
+	// void	convertFromFloat( void );
+	// void	convertFromDouble( void );
+	// bool	detectNonNum( void );
+	// void	detectType( void );
+
 public:
 	ScalarConverter( void );
 	ScalarConverter( std::string const& source );
@@ -38,39 +51,21 @@ public:
 
 	ScalarConverter&	operator=( ScalarConverter const& source );
 
-	class	paramOutOfRange: public std::exception
-	{
-	public:
-		virtual const char* what() const throw();
-	};
-	class	conversionException: public std::exception
-	{
-	public:
-		virtual const char* what() const throw();
-	};
-
-	std::string	getSource( void )const;
-	char		getChar( void ) const;
-	int			getInt( void ) const;
-	float		getFloat( void ) const;
-	double		getDouble( void ) const;
-	int			getType( void ) const;
-
-	void	convertToChar( void );
-	void	convertToInt( void );
-	void	convertToFloat( void );
-	void	convertToDouble( void );
-	void	convertToActualType( void );
-	void	convertFromChar( void );
-	void	convertFromInt( void );
-	void	convertFromFloat( void );
-	void	convertFromDouble( void );
-	bool	detectNonNum( void );
-	void	detectType( void );
-	void	convert( void );
+	static void	convert( std::string source );
 
 };
 
-std::ostream&	operator<<( std::ostream& os, ScalarConverter const& source );
+class	paramOutOfRange: public std::exception
+{
+public:
+	virtual const char* what() const throw();
+};
+class	conversionException: public std::exception
+{
+public:
+	virtual const char* what() const throw();
+};
+
+// std::ostream&	operator<<( std::ostream& os, ScalarConverter const& source );
 
 #endif

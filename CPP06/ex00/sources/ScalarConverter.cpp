@@ -25,312 +25,266 @@ ScalarConverter::~ScalarConverter( void )
 
 ScalarConverter&	ScalarConverter::operator=( ScalarConverter const& source )
 {
-	_source = source._source;
-	_char = source._char;
-	_int = source._int;
-	_float = source._float;
-	_double = source._double;
+	( void ) source;
 	return (*this);
 }
 
-const char*	ScalarConverter::paramOutOfRange::what() const throw()
+const char*	paramOutOfRange::what() const throw()
 {
 	return ("Error: Parameter out of range.");
 }
 
-const char*	ScalarConverter::conversionException::what() const throw()
+const char*	conversionException::what() const throw()
 {
 	return ("Error: string conversion failed.");
 }
 
-std::string	ScalarConverter::getSource( void ) const
+static int	detectNonNum( std::string source )
 {
-	return (_source);
-}
-
-char		ScalarConverter::getChar( void ) const
-{
-	return (_char);
-}
-
-int			ScalarConverter::getInt( void ) const
-{
-	return (_int);
-}
-
-float		ScalarConverter::getFloat( void ) const
-{
-	return (_float);
-}
-
-double		ScalarConverter::getDouble( void ) const
-{
-	return (_double);
-}
-
-int			ScalarConverter::getType( void ) const
-{
-	return (_type);
-}
-
-bool	ScalarConverter::detectNonNum( void )
-{
-	if (_source == "inf" || _source == "+inf" || _source == "inff" || _source == "+inff"){
-		_type = NON_NUM;
-		_int = std::numeric_limits<int>::infinity();
-		_float = std::numeric_limits<float>::infinity();
-		_double = std::numeric_limits<double>::infinity();
-		return (1);
+	if (source == "inf" || source == "+inf" || source == "inff" || source == "+inff"
+		|| source == "-inf" || source == "-inff" || source == "nan" || source == "nanf"){
+		// _type = NON_NUM;
+		// _int = std::numeric_limits<int>::quiet_NaN();
+		// _float = std::numeric_limits<float>::quiet_NaN();
+		// _double = std::numeric_limits<double>::quiet_NaN();
+		return (NON_NUM);
 	}
-	else if (_source == "-inf" || _source == "-inff"){
-		_type = NON_NUM;
-		_int = -1 * std::numeric_limits<int>::infinity();
-		_float = -1 * std::numeric_limits<float>::infinity();
-		_double = -1 * std::numeric_limits<double>::infinity();
-		return (1);
-	}
-	else if (_source == "nan" || _source == "nanf"){
-		_type = NON_NUM;
-		_int = std::numeric_limits<int>::quiet_NaN();
-		_float = std::numeric_limits<float>::quiet_NaN();
-		_double = std::numeric_limits<double>::quiet_NaN();
-		return (1);
-	}
-	_type = INVALID;
-	return (0);
+	// _type = INVALID;
+	return (INVALID);
 }
 
-void	ScalarConverter::detectType( void )
+static int detectType( std::string source )
 {
-	if (detectNonNum()){
+    if (detectNonNum(source) == NON_NUM)
+        return (NON_NUM);
+    if (source.size() == 1){
+        if (isalpha(source[0]))
+            return (CHAR);
+        else if (isdigit(source[0]))
+            return (INT);
+        else
+            return (INVALID);
+    }
+
+    if (source.find_first_of(".") != source.find_last_of(".")
+		|| source.find_first_of("-") != source.find_last_of("-"))
+        	return (INVALID);
+    size_t rank = source.find_first_of(".");
+	if (rank != std::string::npos)
+	{
+		if (rank == 0 || rank == source.size() - 1)
+			return (INVALID);
+		else if (rank != source.size() - 1 && source.find_first_not_of("1234567890.-") == source.find_last_not_of("1234567890.-")){
+			rank = source.find_last_not_of("1234567890.-");
+			if (rank != std::string::npos && rank == source.size() - 1 && source[rank] == 'f')
+				return (FLOAT);
+			else
+				return (DOUBLE);
+		}
+    }
+	rank = source.find_first_of("-");
+	if (rank != std::string::npos)
+		return (rank != 0 ? INVALID : INT);
+	else if (source.find_first_not_of("1234567890") == std::string::npos)
+		return (INT);
+	std::cout << ">5<" << std::endl;
+    return (INVALID);
+}
+
+static void	convertFromChar( std::string source )
+{
+	// _int = static_cast<int>(_char);
+	// _float = static_cast<float>(_char);
+	// _double = static_cast<double>(_char);
+	char	toChar = source[0];
+
+	std::cout << "Actual Type: CHAR" << std::endl;
+	std::cout << "to Char == ";
+	std::cout << (std::isprint(source[0]) ? &toChar : "Non printable") << std::endl;
+
+    std::cout << "to Int = " << static_cast<int>(toChar) << std::endl;
+
+	std::cout << "to Float = ";
+	if(static_cast<float>(toChar) == static_cast<int>(toChar))
+		std::cout << std::fixed << std::setprecision(1);
+	std::cout << static_cast<float>(toChar) << "f" << std::endl;
+
+	std::cout << "to Double = ";
+	if (static_cast<int>(toChar) == static_cast<int>(static_cast<int>(toChar)))
+		std::cout  << std::fixed << std::setprecision(1);
+	std::cout << static_cast<double>(toChar) << std::endl;
+}
+
+static void	convertToInt( std::string source, int& toInt )
+{
+	char*	endptr;
+	long	tmp = std::strtol(&source[0], &endptr, 10);
+
+	if (*endptr != 0)
+		return (throw conversionException());
+	else if (tmp < INT_MIN || tmp > INT_MAX)
+		return (throw paramOutOfRange());
+
+	toInt = atoi(source.c_str());
+	return ;
+}
+
+static void	convertFromInt( std::string source )
+{
+	// _char = static_cast<char>(_int);
+	// _float = static_cast<float>(_int);
+	// _double = static_cast<double>(_int);
+    int toInt = 0;
+    try{
+        convertToInt(source, toInt);
+    }
+    catch(std::exception& e){
+        std::cout << "Conversion error: " << e.what() << std::endl;
+        return ;
+    }
+	std::cout << "Actual Type: INT" << std::endl;
+	std::cout << "to Char = ";
+	if (std::isprint(static_cast<char>(toInt)))
+    	std::cout << static_cast<char>(toInt) << std::endl;
+	else
+		std::cout << "Non Displayable" << std::endl;
+
+	std::cout << "to Int == " << toInt << std::endl;
+
+	std::cout << "to Float = ";
+	if(static_cast<float>(toInt) == static_cast<int>(toInt))
+		std::cout << std::fixed << std::setprecision(1);
+	std::cout << static_cast<float>(toInt) << "f" << std::endl;
+
+	std::cout << "to Double = ";
+	if (static_cast<int>(toInt) == static_cast<int>(static_cast<int>(toInt)))
+		std::cout  << std::fixed << std::setprecision(1);
+	std::cout << static_cast<double>(toInt) << std::endl;
+}
+
+static void	convertToFloat( std::string source, float& toFloat )
+{
+	char*	endptr;
+	double	tmp = std::strtod(source.c_str(), &endptr);
+
+	if (*endptr != 'f')
+		return (throw conversionException());
+	if (tmp < -std::numeric_limits<float>::max() || tmp > std::numeric_limits<float>::max())
+		return (throw paramOutOfRange());
+	toFloat = static_cast<float>(tmp);
+	return ;
+}
+
+static void	convertFromFloat( std::string source )
+{
+	// _char = static_cast<char>(round(_float));
+	// _int = static_cast<int>(round(_float));
+	// _double = static_cast<double>(_float);
+	float	toFloat = 0.0f;
+
+	try{
+		convertToFloat(source, toFloat);
+	}
+	catch(std::exception& e){
+		std::cout << "Convertion error: " << e.what() << std::endl;
 		return ;
 	}
-
-	int	r;
-	int	r1;
-	if (_source.size() > 1){
-		r = _source.find_first_of(".");
-		r1 = _source.find_last_of(".");
-		if (r != -1 && r == r1){
-			r = _source.find_first_not_of("0123456789.");
-			r1 = _source.find_last_not_of("0123456789.");
-			std::cout << "r && r1 == " << r << " && " << r1 << std::endl;
-			if (r != -1 && r == r1 && (size_t)r == _source.size() && _source[r] == 'f')
-				_type = FLOAT;
-			else if (r == -1 && r == r1)
-				_type = DOUBLE;
-			else
-				_type = INVALID;
-		}
-		else if (r == -1 && _source.find_first_not_of("0123456789") == std::string::npos)
-			_type = INT;
-		else
-			_type = INVALID;
-	}
-	else if (_source.size() == 1){
-		if (_source.find_first_not_of("0123456789") != std::string::npos)
-			_type = CHAR;
-		else
-			_type = INT;
-	}
+	std::cout << "Actual Type: FLOAT" << std::endl;
+	std::cout << "to Char = ";
+	if (std::isprint(static_cast<char>(toFloat)))
+    	std::cout << static_cast<char>(toFloat) << std::endl;
 	else
-		_type = INVALID;
-	std::cout << "end type == " << _type << std::endl;
+		std::cout << "Non Displayable" << std::endl;
+
+	std::cout << "to Int = ";
+	if(static_cast<int>(round(toFloat)) == static_cast<long>(round(toFloat)))
+		std::cout << static_cast<int>(round(toFloat)) << std::endl;
+	else
+		std::cout << "Over/Underflow" << std::endl;
+
+	std::cout << "to Float = ";
+	if(static_cast<float>(toFloat) == static_cast<int>(toFloat))
+		std::cout << std::fixed << std::setprecision(1);
+	std::cout << static_cast<float>(toFloat) << "f" << std::endl;
+
+	std::cout << "to Double = ";
+	if (static_cast<int>(toFloat) == static_cast<int>(static_cast<int>(toFloat)))
+		std::cout  << std::fixed << std::setprecision(1);
+	std::cout << static_cast<double>(toFloat) << std::endl;
 }
 
-void	ScalarConverter::convertToInt( void )
+static void	convertToDouble( std::string source, double& toDouble )
 {
-	char*	endptr;
-	long	tmp = std::strtol(&_source[0], &endptr, 10);
-
-	std::cout << "convInt => tmp == " << tmp << std::endl;
+	char*		endptr;
+	long double	tmp = std::strtold(source.c_str(), &endptr);
 
 	if (*endptr != 0)
-		return (throw ScalarConverter::conversionException());
-	else if (tmp < INT_MIN || tmp > INT_MAX){
-		_type = INVALID;
-		return (throw ScalarConverter::paramOutOfRange());
-	}
-
-	_int = atoi(_source.c_str());
-	std::cout << "convInt => _int == " << _int << std::endl;
+		return (throw conversionException());
+	if (tmp < -std::numeric_limits<double>::max() || tmp > std::numeric_limits<double>::max())
+		return (throw paramOutOfRange());
+	toDouble = static_cast<double>(tmp);
 	return ;
 }
 
-void	ScalarConverter::convertToFloat( void )
+static void	convertFromDouble( std::string source )
 {
-	char*	endptr;
-	double	tmp = std::strtod(&_source[0], &endptr);
+	// _char = static_cast<char>(round(_double));
+	// _int = static_cast<int>(round(_double));
+	// _float = static_cast<float>(_double);
+	double	toDouble = 0.0;
 
-	std::cout << "convFloat => tmp == " << tmp << std::endl;
-
-	std::cout << "source.end() == " << *_source.end() << std::endl;
-	if (*_source.end() != 0)
-		return (throw ScalarConverter::conversionException());
-	else if (tmp < FLT_MIN || tmp > FLT_MAX){
-		_type = INVALID;
-		return (throw ScalarConverter::paramOutOfRange());
-	}
-
-	// _float = std::strtof(&_source[0], &endptr);
-	_float = static_cast<float>(tmp);
-	std::cout << "convFloat => _float == " << _float << std::endl;
-	return ;
-}
-
-void	ScalarConverter::convertToDouble( void )
-{
-	char*	endptr;
-	long double	tmp = std::strtold(&_source[0], &endptr);
-
-	if (*endptr != 0)
-		return (throw ScalarConverter::conversionException());
-	else if (tmp < DBL_MIN || tmp > DBL_MAX){
-		_type = INVALID;
-		return (throw ScalarConverter::paramOutOfRange());
-	}
-	_double = static_cast<double>(tmp);
-	return ;
-}
-
-void	ScalarConverter::convertToChar( void )
-{
-	_char = _source[0];
-	return ;
-}
-
-void	ScalarConverter::convertFromChar( void )
-{
-	_int = static_cast<int>(_char);
-	_float = static_cast<float>(_char);
-	_double = static_cast<double>(_char);
-}
-
-void	ScalarConverter::convertFromInt( void )
-{
-	_char = static_cast<char>(_int);
-	_float = static_cast<float>(_int);
-	_double = static_cast<double>(_int);
-}
-
-void	ScalarConverter::convertFromFloat( void )
-{
-	_char = static_cast<char>(round(_float));
-	_int = static_cast<int>(round(_float));
-	_double = static_cast<double>(_float);
-}
-
-void	ScalarConverter::convertFromDouble( void )
-{
-	_char = static_cast<char>(round(_double));
-	_int = static_cast<int>(round(_double));
-	_float = static_cast<float>(_double);
-}
-
-void	ScalarConverter::convertToActualType( void )
-{
 	try{
-		switch(_type){
-		case CHAR:
-			convertToChar();
-			break ;
-		case INT:
-			convertToInt();
-			break ;
-		case FLOAT:
-			convertToFloat();
-			break ;
-		case DOUBLE:
-			convertToDouble();
-			break ;
-		case INVALID:
-			std::cout << "Error: Input invalid." << std::endl;
-			break ;
-		}
+		convertToDouble(source, toDouble);
 	}
-	catch( std::exception& e ){
-		std::cout << e.what() << std::endl;
+	catch(std::exception& e){
+		std::cout << "Convertion error: " << e.what() << std::endl;
+		return ;
 	}
-	return ;
+	std::cout << "Actual Type: DOUBLE" << std::endl;
+	std::cout << "to Char = ";
+	if (std::isprint(static_cast<char>(toDouble)))
+    	std::cout << static_cast<char>(toDouble) << std::endl;
+	else
+		std::cout << "Non Displayable" << std::endl;
+
+	std::cout << "to Int = ";
+	if(static_cast<int>(round(toDouble)) == static_cast<long>(round(toDouble)))
+		std::cout << static_cast<int>(round(toDouble)) << std::endl;
+	else
+		std::cout << "Over/Underflow" << std::endl;
+		
+	std::cout << "to Float = ";
+	if(static_cast<float>(toDouble) == static_cast<int>(toDouble))
+		std::cout << std::fixed << std::setprecision(1);
+	std::cout << static_cast<float>(toDouble) << "f" << std::endl;
+
+	std::cout << "to Double == " << toDouble << std::endl;
 }
 
-void	ScalarConverter::convert( void )
+void	ScalarConverter::convert( std::string source )
 {
-	detectType();
-	convertToActualType();
-	switch(_type){
+	// detectType(source);
+	// convertToActualType(source);
+	std::cout << "DetecType() ==" << detectType(source) << std::endl;
+	std::cout << "Source == '" << source << "'" << std::endl;
+	switch(detectType(source)){
 	case CHAR:
-		convertFromChar();
+		convertFromChar(source);
 		break ;
 	case INT:
-		convertFromInt();
+		convertFromInt(source);
 		break ;
 	case FLOAT:
-		convertFromFloat();
+		convertFromFloat(source);
 		break ;
 	case DOUBLE:
-		convertFromDouble();
+		convertFromDouble(source);
+		break ;
+	case NON_NUM:
 		break ;
 	case INVALID:
 		std::cout << "Error: Input invalid." << std::endl;
 		break ;
 	}
 	return ;
-}
-
-std::ostream&	operator<<( std::ostream& os, ScalarConverter const& source )
-{
-	os << "ScalarConverter: source == " << source.getSource() << std::endl
-	<< "\tActual type == ";
-	switch(source.getType()){
-	case CHAR:
-		os << "Char";
-		break ;
-	case INT:
-		os << "Int";
-		break ;
-	case FLOAT:
-		os << "Float";
-		break ;
-	case DOUBLE:
-		os << "Double";
-		break ;
-	case NON_NUM:
-		os << "Non num";
-		break ;
-	case INVALID:
-		os << "Invalid";
-		break ;
-	}
-	os << std::endl;
-	if(source.getType() == INVALID){
-	os << "\tSource to char == Invalid" << std::endl
-	<< "\tSource to int == Invalid" << std::endl
-	<< "\tSource to float == Invalid" << std::endl
-	<< "\tSource to double == Invalid" << std::endl;
-	}
-	else{
-		if (source.getChar() >= 32 && source.getChar() != 127)
-			os << "\tSource to char == " << source.getChar() << std::endl;
-		else if (source.getType() == NON_NUM)
-			os << "\tSource to char == Impossible" << std::endl;
-		else
-			os << "\tSource to char == Non printable" << std::endl;
-		if (source.getType() == NON_NUM)
-			os << "\tSource to int == Impossible" << std::endl;
-		else
-			os << "\tSource to int == " << source.getInt() << std::endl;
-
-		if(source.getFloat() == static_cast<int>(source.getFloat()))
-			os << "\tSource to float == " << std::fixed << std::setprecision(1) << source.getFloat() << "f" << std::endl;
-		else
-			os << "\tSource to float == " << source.getFloat() << "f" << std::endl;
-
-		if (source.getDouble() == static_cast<int>(source.getDouble()))
-			os << "\tSource to double == " << std::fixed << std::setprecision(1) << source.getDouble() << std::endl;
-		else
-			os << "\tSource to double == " << source.getDouble() << std::endl;
-	}
-
-	return (os);
 }
