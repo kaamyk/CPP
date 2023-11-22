@@ -277,7 +277,7 @@ void	ScalarConverter::convert( std::string source )
 	// detectType(source);
 	// convertToActualType(source);
 	// std::cout << "DetecType() ==" << detectType(source) << std::endl;
-	// std::cout << "Source == '" << source << "'" << std::endl;
+	std::cout << "Source == '" << source << "'" << std::endl;
 	switch(detectType(source)){
 	case CHAR:
 		convertFromChar(source);
