@@ -42,14 +42,26 @@ const char*	conversionException::what() const throw()
 static int	detectNonNum( std::string source )
 {
 	if (source == "inf" || source == "+inf" || source == "inff" || source == "+inff"
-		|| source == "-inf" || source == "-inff" || source == "nan" || source == "nanf"){
-		// _type = NON_NUM;
-		// _int = std::numeric_limits<int>::quiet_NaN();
-		// _float = std::numeric_limits<float>::quiet_NaN();
-		// _double = std::numeric_limits<double>::quiet_NaN();
+	|| source == "-inf" || source == "-inff" || source == "nan" || source == "nanf"){
+		std::cout << "Actual Type == Pseudo Literal" << std::endl
+		<< "to Char == impossible" << std::endl;
+		if (source == "inf" || source == "+inf" || source == "inff" || source == "+inff"){
+			std::cout << "to Int == " << std::numeric_limits<int>::infinity() << std::endl
+			<< "to Float == " << std::numeric_limits<float>::infinity() << "f" << std::endl
+			<< "to Double == " << std::numeric_limits<double>::infinity() << std::endl;
+		}
+		else if (source == "-inf" || source == "-inff"){
+			std::cout << "to Int == -" << std::numeric_limits<int>::infinity() << std::endl
+			<< "to Float == -" << std::numeric_limits<float>::infinity() << "f" << std::endl
+			<< "to Double == -" << std::numeric_limits<double>::infinity() << std::endl;
+		}
+		else if (source == "nan" || source == "nanf"){
+			std::cout << "to Int == impossible" << std::endl
+			<< "to Float == " << std::numeric_limits<float>::quiet_NaN() << "f" << std::endl
+			<< "to Double == " << std::numeric_limits<double>::quiet_NaN() << std::endl;
+		}
 		return (NON_NUM);
 	}
-	// _type = INVALID;
 	return (INVALID);
 }
 
@@ -87,7 +99,6 @@ static int detectType( std::string source )
 		return (rank != 0 ? INVALID : INT);
 	else if (source.find_first_not_of("1234567890") == std::string::npos)
 		return (INT);
-	std::cout << ">5<" << std::endl;
     return (INVALID);
 }
 
@@ -265,8 +276,8 @@ void	ScalarConverter::convert( std::string source )
 {
 	// detectType(source);
 	// convertToActualType(source);
-	std::cout << "DetecType() ==" << detectType(source) << std::endl;
-	std::cout << "Source == '" << source << "'" << std::endl;
+	// std::cout << "DetecType() ==" << detectType(source) << std::endl;
+	// std::cout << "Source == '" << source << "'" << std::endl;
 	switch(detectType(source)){
 	case CHAR:
 		convertFromChar(source);
