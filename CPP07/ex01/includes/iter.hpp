@@ -2,11 +2,21 @@
 #define ITER_HPP
 
 #include <iostream>
+#include <ctime>
+#include <cstdlib>
 
-template <typename T>void iter(T* p, size_t l, void (*f)(T& arg))
+template <typename A, typename F>
+void iter(A* p, size_t l, F func)
 {
     for (unsigned int i = 0; i < l; ++i)
-        f(p[i]);
+        func(p[i]);
+    return ;
+}
+
+template <typename T>
+void    addOne(T& n)
+{
+    ++n;
     return ;
 }
 
