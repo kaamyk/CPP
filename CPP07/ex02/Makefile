@@ -14,8 +14,9 @@ NAME		=	Temp
 
 SRCDIR		=	sources
 
-SRCS		=	$(wildcard $(SRCDIR)/*.cpp)
-# SRCS		=	$(SRCDIR)/main.cpp	$(SRCDIR)/ScalarConverter.cpp
+# SRCS		=	$(wildcard $(SRCDIR)/*.cpp)
+SRCS		=	$(SRCDIR)/main.cpp	
+# SRCS		=	$(SRCDIR)/m.cpp	
 
 OBJDIR		=	.obj
 
@@ -35,7 +36,7 @@ $(OBJDIR)		:
 $(OBJDIR)/%.o	:	$(SRCDIR)/%.cpp
 	@clear
 	@echo "Compiling " $< " ..."
-	@$(CCPP) $(VGFLAGS) $(CFLAGS) $(CPPFLAGS) $(SFMLFLAGS) -c $< -o $@ 
+	@$(CCPP) -I includes $(VGFLAGS) $(CFLAGS) $(CPPFLAGS) $(SFMLFLAGS) -c $< -o $@ 
 	@clear
 	@echo -e 'Compiling ' $< ' \x1b[32m>>> OK <<<\x1b[37m'
 	@sleep 0.1
@@ -44,7 +45,7 @@ $(NAME)			:	$(OBJS)
 	@clear
 	@echo 'Compiling executable ...'
 	@clear
-	@$(CCPP) $(VGFLAGS) $(CFLAGS) $(CPPFLAGS) $(OBJS) $(SFMLFLAGS) -o $(NAME)
+	@$(CCPP) -I includes $(VGFLAGS) $(CFLAGS) $(CPPFLAGS) $(OBJS) $(SFMLFLAGS) -o $(NAME)
 	@echo -e 'Compiling ' $(NAME) ' \x1b[32m>>> OK <<<\x1b[37m'
 	@sleep 0.3
 	@clear
