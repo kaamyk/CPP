@@ -104,9 +104,6 @@ static int detectType( std::string source )
 
 static void	convertFromChar( std::string source )
 {
-	// _int = static_cast<int>(_char);
-	// _float = static_cast<float>(_char);
-	// _double = static_cast<double>(_char);
 	char	toChar = source[0];
 
 	std::cout << "Actual Type: CHAR" << std::endl;
@@ -142,9 +139,6 @@ static void	convertToInt( std::string source, int& toInt )
 
 static void	convertFromInt( std::string source )
 {
-	// _char = static_cast<char>(_int);
-	// _float = static_cast<float>(_int);
-	// _double = static_cast<double>(_int);
     int toInt = 0;
     try{
         convertToInt(source, toInt);
@@ -188,9 +182,6 @@ static void	convertToFloat( std::string source, float& toFloat )
 
 static void	convertFromFloat( std::string source )
 {
-	// _char = static_cast<char>(round(_float));
-	// _int = static_cast<int>(round(_float));
-	// _double = static_cast<double>(_float);
 	float	toFloat = 0.0f;
 
 	try{
@@ -239,9 +230,6 @@ static void	convertToDouble( std::string source, double& toDouble )
 
 static void	convertFromDouble( std::string source )
 {
-	// _char = static_cast<char>(round(_double));
-	// _int = static_cast<int>(round(_double));
-	// _float = static_cast<float>(_double);
 	double	toDouble = 0.0;
 
 	try{
@@ -274,9 +262,6 @@ static void	convertFromDouble( std::string source )
 
 void	ScalarConverter::convert( std::string source )
 {
-	// detectType(source);
-	// convertToActualType(source);
-	// std::cout << "DetecType() ==" << detectType(source) << std::endl;
 	std::cout << "Source == '" << source << "'" << std::endl;
 	switch(detectType(source)){
 	case CHAR:

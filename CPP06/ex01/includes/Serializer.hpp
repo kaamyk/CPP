@@ -11,15 +11,17 @@ typedef struct Data{
 
 class	Serializer
 {
-public:
+private:
 	Serializer( void );
 	Serializer( Serializer const& source );
+
+public:
 	~Serializer( void );
 
 	Serializer&	operator=( Serializer const& source );
 
-	uintptr_t	serialize(Data* ptr);
-	Data*		deserialize(uintptr_t raw);
+	static uintptr_t	serialize(Data* ptr);
+	static Data*		deserialize(uintptr_t raw);
 };
 
 #endif
