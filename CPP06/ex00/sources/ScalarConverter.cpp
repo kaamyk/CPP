@@ -1,14 +1,13 @@
 #include "../includes/ScalarConverter.hpp"
 
-ScalarConverter::ScalarConverter( void ): 	_source(""), _char(0), _int(0),
-											_float(0), _double(0)
+ScalarConverter::ScalarConverter( void )
 {
 	return ;
 }
 
-ScalarConverter::ScalarConverter( std::string const& source):	_source(source), _char(0), _int(0),
-																_float(0), _double(0)
+ScalarConverter::ScalarConverter( std::string const& source )
 {
+	(void) source;
 	return;
 }
 
@@ -42,7 +41,8 @@ const char*	conversionException::what() const throw()
 static int	detectNonNum( std::string source )
 {
 	if (source == "inf" || source == "+inf" || source == "inff" || source == "+inff"
-	|| source == "-inf" || source == "-inff" || source == "nan" || source == "nanf"){
+	|| source == "-inf" || source == "-inff" || source == "nan" || source == "nanf")
+	{
 		std::cout << "Actual Type == Pseudo Literal" << std::endl
 		<< "to Char == impossible" << std::endl;
 		if (source == "inf" || source == "+inf" || source == "inff" || source == "+inff"){
@@ -51,7 +51,7 @@ static int	detectNonNum( std::string source )
 			<< "to Double == " << std::numeric_limits<double>::infinity() << std::endl;
 		}
 		else if (source == "-inf" || source == "-inff"){
-			std::cout << "to Int == -" << std::numeric_limits<int>::infinity() << std::endl
+			std::cout << "to Int == " << std::numeric_limits<int>::infinity() << std::endl
 			<< "to Float == -" << std::numeric_limits<float>::infinity() << "f" << std::endl
 			<< "to Double == -" << std::numeric_limits<double>::infinity() << std::endl;
 		}

@@ -24,29 +24,11 @@ enum {
 class ScalarConverter
 {
 private:
-	std::string	_source;
-	int		_type;
-	char	_char;
-	int		_int;
-	float	_float;
-	double	_double;
-
-	// void	convertToChar( void );
-	// void	convertToInt( void );
-	// void	convertToFloat( void );
-	// void	convertToDouble( void );
-	// void	convertToActualType( void );
-	// void	convertFromChar( void );
-	// void	convertFromInt( void );
-	// void	convertFromFloat( void );
-	// void	convertFromDouble( void );
-	// bool	detectNonNum( void );
-	// void	detectType( void );
-
-public:
 	ScalarConverter( void );
 	ScalarConverter( std::string const& source );
 	ScalarConverter( ScalarConverter const& source );
+
+public:
 	~ScalarConverter( void );
 
 	ScalarConverter&	operator=( ScalarConverter const& source );
