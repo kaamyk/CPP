@@ -35,10 +35,6 @@ public:
     }
 
     Array&  operator=( Array const& source ){
-        if(_array){
-            delete _array;
-            _array = NULL;
-        }
         _l = source._l;
         _array = new T[_l];
         for(unsigned int i = 0; i < _l; ++i)
