@@ -14,8 +14,8 @@ NAME		=	Temp
 
 SRCDIR		=	sources
 
-SRCS		=	$(wildcard $(SRCDIR)/*.cpp)
-# SRCS		=	$(SRCDIR)/main.cpp	$(SRCDIR)/ScalarConverter.cpp
+# SRCS		=	$(wildcard $(SRCDIR)/*.cpp)
+SRCS		=	$(SRCDIR)/main.cpp
 
 OBJDIR		=	.obj
 

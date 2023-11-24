@@ -18,12 +18,11 @@ int main( void )
         char a = 'O';
         char b = 'K';
 
-        std::cout << "a == 'O' && b == 'K'" << std::endl;
+        std::cout << "a == " << a << " && b == " << b << std::endl;
         std::cout << max<char>(a, b) << std::endl;
         std::cout << min<char>(a, b) << std::endl;
         swap<char>(a, b);
-        std::cout << "a == " << a << std::endl;
-        std::cout << "b == " << b << std::endl;
+        std::cout << "a == " << a << " && b == " << b << std::endl;
         std::cout << std::endl;
     }
     {
