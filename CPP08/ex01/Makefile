@@ -10,12 +10,12 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	Temp
+NAME		=	containers
 
 SRCDIR		=	sources
 
 # SRCS		=	$(wildcard $(SRCDIR)/*.cpp)
-SRCS		=	$(SRCDIR)/main.cpp
+SRCS		=	$(SRCDIR)/main.cpp	$(SRCDIR)/Span.cpp
 
 OBJDIR		=	.obj
 
