@@ -4,12 +4,13 @@
 # include <iostream>
 # include <vector>
 # include <algorithm>
+# include <iterator>
 
 class Span
 {
 private:
-    std::vector<int>    _container;
     size_t              _maxSize;
+    std::vector<int>    _container;
 
 public:
     Span( void );
@@ -31,10 +32,13 @@ public:
         virtual const char* what( void ) const throw();
     };
 
+    std::vector<int>::iterator    getContainerBegin( void );
+    std::vector<int>::iterator    getContainerEnd( void );
 
     void    addNumber( int n );
     int     longestSpan( void );
     int     shortestSpan( void );
+    void    addLotNumbers( std::vector<int>::iterator begin, std::vector<int>::iterator end );
 };
 
 #endif

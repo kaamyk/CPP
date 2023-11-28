@@ -2,7 +2,6 @@
 
 Span::Span( void ): _maxSize(10)
 {
-    _container = std::vector(int, )
     return ;
 }
 
@@ -24,7 +23,8 @@ Span::~Span()
 
 Span&   Span::operator=( Span const& source )
 {
-    ( void ) source;
+    _container = source._container;
+    _maxSize = source._maxSize;
     return (*this);
 }
 
@@ -36,6 +36,27 @@ const char* Span::MaxSize::what( void ) const throw()
 const char* Span::NotEnoughElements::what( void ) const throw()
 {
     return ("Error: the container does not have enough elements.");
+}
+
+std::vector<int>::iterator    Span::getContainerBegin( void )
+{
+    return (_container.begin());
+}
+
+std::vector<int>::iterator    Span::getContainerEnd( void )
+{
+    return (_container.end());
+}
+
+void    Span::addLotNumbers( std::vector<int>::iterator begin, std::vector<int>::iterator end )
+{
+    size_t  d = std::distance(begin, end);
+    if (d == 0)
+        return ;
+    else if (d > _maxSize - _container.size())
+        throw MaxSize();
+    _container.insert(_container.end(), begin, end);
+    return ;
 }
 
 void    Span::addNumber( int n )
