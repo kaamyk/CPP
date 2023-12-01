@@ -3,49 +3,33 @@
 
 # include <iostream>
 # include <exception>
-# include <vector>
+# include <iterator>
+# include <deque>
+# include <stack>
 
-template<typename T>
-class MutantStack
+template< typename T, typename container = std::deque<T> >
+class MutantStack: public std::stack<T, container>
 {
-private:
-    size_t          _size;
-    std::vector<T>  _container;
-
 public:
-    MutantStack( void ): _size(0) {return ;}
+    MutantStack( void ): std::stack<T, container>() {}
+    MutantStack( MutantStack const& source ): std::stack<T, container>(){*this = source;}
+    ~MutantStack( void ){}
 
-    MutantStack( MutantStack const& source ){*this = source;}
-
-    ~MutantStack( void ){return ;};
-
-    MutantStack&    operator=( Mutant stack const& source ){
-        _size = source._size;
-        _container = source._container;
+    MutantStack&    operator=( MutantStack const& source ){
+        std::stack<T, container>::operator=(source);
         return (*this);
     }
 
-    class   StackEmpty: public std::exception
-    {
-    public:
-        virtual const char* what( void ) const throw(){
-            return ("Error: Stack not stacked or allocated.");
-        }
-    }
-
-    
-
-    bool    empty( void ){ return (_size ? 0 : 1); }
-    size_t  size( void ){return (_size)}
-    T       top( void ){return (_size ? _container[0] : throw StackEmpty());}
-    void    push( T& el ){_container.insert(0, el);}
-    void    emplace( T el ){
-        T   nEl(el);
-        this->push(nEl);
-        return ;
-    }
-    void    pop( void ){_size ? _container.erase(0) : throw StackEmpty()}
-    void    swap( std::vector<T>& x ){_container.swap(x);}
+    // class   StackEmpty: public std::exception
+    // {
+    // public:
+    //     virtual const char* what( void ) const throw(){
+    //         return ("Error: Stack not stacked or allocated.");
+    //     }
+    // }
+    typedef typename container::iterator    iterator;
+    iterator    begin( void ){return this->c.begin();}
+    iterator    end( void ){return this->c.end();}
 };
 
 #endif
