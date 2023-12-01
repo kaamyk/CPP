@@ -13,7 +13,7 @@ int main( void )
             std::cout << "tab[" << i << "] == " << tab[i] << std::endl; 
         }
         std::cout << std::endl;
-        ::iter(tab, l, &addOne<int>);
+        ::_iter(tab, l, &_addOne<int>);
         for (unsigned int i = 0; i < l; ++i)
             std::cout << "tab[" << i << "] == " << tab[i] << std::endl;
         delete [] tab;
@@ -27,10 +27,10 @@ int main( void )
         tab = new char[l];
         for (unsigned int i = 0; i < l; ++i){
             tab[i] = (rand() % 30) + 33;
-            std::cout << "tab[" << i << "] == " << tab[i] << std::endl; 
+            std::cout << "tab[" << i << "] == " << tab[i] << std::endl;
         }
         std::cout << std::endl;
-        ::iter(tab, l, &addOne<char>);
+        ::_iter(tab, l, &_addOne<char>);
         for (unsigned int i = 0; i < l; ++i)
             std::cout << "tab[" << i << "] == " << tab[i] << std::endl;
         delete [] tab;

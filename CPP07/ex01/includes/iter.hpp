@@ -6,7 +6,7 @@
 #include <cstdlib>
 
 template <typename A, typename F>
-void iter(A* p, size_t l, F func)
+void _iter(A* p, size_t l, F func)
 {
     for (unsigned int i = 0; i < l; ++i)
         func(p[i]);
@@ -14,7 +14,7 @@ void iter(A* p, size_t l, F func)
 }
 
 template <typename T>
-void    addOne(T& n)
+void    _addOne(T& n)
 {
     ++n;
     return ;
