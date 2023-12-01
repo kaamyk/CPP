@@ -17,11 +17,14 @@ public:
     
     Array( unsigned int n ): _l(n), _array(new T[n]){}
     
-    Array( Array const& source ){*this = source;}
+    Array( Array const& source ):_l(source._l), _array(new T[_l]){}
 
     Array&  operator=( Array const& source ){
-        _l = source._l;
-        _array = new T[_l];
+        if (_l != source._l){
+            delete [] _array;
+            _l = source._l;
+            _array = new T[_l];
+        }
         for(unsigned int i = 0; i < _l; ++i)
             _array[i] = source._array[i];
         return (*this);
