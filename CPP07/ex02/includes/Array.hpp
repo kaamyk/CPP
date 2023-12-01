@@ -9,30 +9,15 @@ template <typename T>
 class   Array
 {
 private:
-    T*      _array; 
     size_t  _l;
+    T*      _array; 
 
 public:
-    Array( void ){
-        _l = 10;
-        _array = new T[_l];
-        for (unsigned int i = 0; i < _l; ++i)
-            _array[i] = 0;
-        return ;
-    }
+    Array( void ): _l(0), _array(NULL) {}
     
-    Array( unsigned int n ){
-        _l = n;
-        _array = new T[_l];
-        for (unsigned int i = 0; i < _l; ++i)
-            _array[i] = 0;
-        return ;
-    }
+    Array( unsigned int n ): _l(n), _array(new T[n]){}
     
-    Array( Array const& source ){
-        *this = source;
-        return ;
-    }
+    Array( Array const& source ){*this = source;}
 
     Array&  operator=( Array const& source ){
         _l = source._l;
@@ -48,13 +33,9 @@ public:
         return (_array[r]);
     }
     
-    ~Array( void ){
-        delete [] _array;
-    }
+    ~Array( void ){delete [] _array;}
 
-    size_t  size( void ){
-        return (_l);
-    }
+    size_t  size( void ){return (_l);}
 
     class   OutOfBounds: public std::exception
     {
