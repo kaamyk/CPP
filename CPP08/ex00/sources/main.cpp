@@ -13,12 +13,14 @@ int main( void )
         int n = 56;
         int n2 = v[2];
         try{
+            std::cout << "Value to find: " << n << std::endl;
             std::cout << "easyFind => " << *easyfind(v, n) << std::endl;
         }
         catch(std::exception& e){
             std::cout << e.what() << std::endl;
         }
         try{
+            std::cout << "Value to find: " << n2 << std::endl;
             std::cout << "easyFind => " << *easyfind(v, n2) << std::endl;
         }
         catch(std::exception& e){
@@ -39,12 +41,14 @@ int main( void )
         std::advance(it, 2);
         int n2 = *it;
         try{
+            std::cout << "Value to find: " << n << std::endl;
             std::cout << "easyFind => " << *easyfind(l, n) << std::endl;
         }
         catch(std::exception& e){
             std::cout << e.what() << std::endl;
         }
         try{
+            std::cout << "Value to find: " << n2 << std::endl;
             std::cout << "easyFind => " << *easyfind(l, n2) << std::endl;
         }
         catch(std::exception& e){
@@ -65,12 +69,14 @@ int main( void )
         std::advance(it, 2);
         int n2 = *it;
         try{
+            std::cout << "Value to find: " << n << std::endl;
             std::cout << "easyFind => " << *easyfind(s, n) << std::endl;
         }
         catch(std::exception& e){
             std::cout << e.what() << std::endl;
         }
         try{
+            std::cout << "Value to find: " << n2 << std::endl;
             std::cout << "easyFind => " << *easyfind(s, n2) << std::endl;
         }
         catch(std::exception& e){
