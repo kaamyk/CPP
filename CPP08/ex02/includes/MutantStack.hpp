@@ -20,13 +20,6 @@ public:
         return (*this);
     }
 
-    // class   StackEmpty: public std::exception
-    // {
-    // public:
-    //     virtual const char* what( void ) const throw(){
-    //         return ("Error: Stack not stacked or allocated.");
-    //     }
-    // }
     typedef typename container::iterator    iterator;
     iterator    begin( void ){return this->c.begin();}
     iterator    end( void ){return this->c.end();}

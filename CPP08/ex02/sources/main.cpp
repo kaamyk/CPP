@@ -19,6 +19,7 @@ int main( void )
         std::cout << "size: " << mstack.size() << std::endl;
         std::cout << "top: " << mstack.top() << std::endl;
 
+        std::cout << "Adding four elements ..." << std::endl;
         mstack.push(3);
         mstack.push(5);
         mstack.push(737);
@@ -50,6 +51,7 @@ int main( void )
         std::cout << "size: " << mstack.size() << std::endl;
         std::cout << "top: " << mstack.front() << std::endl;
 
+        std::cout << "Adding four elements ..." << std::endl;
         mstack.push_back(3);
         mstack.push_back(5);
         mstack.push_back(737);
