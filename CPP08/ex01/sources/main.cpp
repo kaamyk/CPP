@@ -19,6 +19,7 @@ int main( void )
             std::cout << e.what() << std::endl;
         }
     }
+    std::cout << std::endl;
     {
         std::cout << "\t--- Testing shortes/longest span ---" << std::endl;
         Span sp = Span(5);
@@ -35,10 +36,11 @@ int main( void )
         std::cout << sp.shortestSpan() << std::endl;
         std::cout << sp.longestSpan() << std::endl;
     }
+    std::cout << std::endl;
     {
         std::cout << "\t--- Testing with big number of elements ---" << std::endl;
         std::vector<int>    v;
-        for (unsigned int i = 0; i < 100; ++i)
+        for (unsigned int i = 0; i < 10000; ++i)
             v.push_back(rand());
         Span    s(10000);
         Span    s1(10);

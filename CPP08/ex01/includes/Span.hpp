@@ -9,7 +9,7 @@
 class Span
 {
 private:
-    size_t              _maxSize;
+    unsigned int        _maxSize;
     std::vector<int>    _container;
 
 public:
