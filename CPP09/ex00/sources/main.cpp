@@ -11,7 +11,7 @@ int main( int argc, char** argv ){
         std::cerr << "Argument hint: Too much argument. Only the first one will be considered." << std::endl;
     }
     try{
-        BitcoinExchanger.readInputFile(argv[1]);
+        BitcoinExchanger.run(argv[1]);
     }
     catch( std::exception& e){
         std::cerr << e.what() << std::endl;
