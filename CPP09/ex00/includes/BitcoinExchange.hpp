@@ -33,6 +33,7 @@ public:
     };
 
     bool    parseDate( std::string date ) const; 
+    bool    parseValue( std::string value ) const; 
     void    splitLine( std::string const& line, std::map<std::string, std::string>& splitLine ) const;
     void    readInputFile( const char* fileName );
 };
