@@ -9,7 +9,9 @@ BitcoinExchange::BitcoinExchange( BitcoinExchange const& source){
 BitcoinExchange::~BitcoinExchange( void ){}
 
 BitcoinExchange const& BitcoinExchange::operator=( BitcoinExchange const& source ){
-    _inputData = source._inputData;
+    // _inputData = source._inputData;
+    _inputKey = source._inputKey;
+    _inputValue = source._inputValue;
     _csvData = source._csvData;
     return (*this);
 }
@@ -39,7 +41,7 @@ bool    BitcoinExchange::parseDate( std::string date ) const {
     if (date[i] != '-')
         return (1);
     ++i;
-    if (date.size() - i != 2 || date.substr(i, i + 2).compare("31") > 0){
+    if ( date.size() - i != 2 || date.substr(i, i + 2).compare("31") > 0 ){
         std::cout << "Invalid Day" << std::endl;
         return (1);
     }
@@ -65,22 +67,6 @@ bool    BitcoinExchange::parseValue( std::string value ) const {
     return (0);
 }
 
-void    BitcoinExchange::splitLine( std::string const& line ){
-    size_t  i = 0;
-    while ( i < line.size() && line[i] != ' ' )
-        ++i;
-    if ( i < 9 || parseDate(line.substr(0, i)) ){
-        return (throw InvalidDate());
-    }
-    std::string key = line.substr(0, i);
-    if ( i + 3 >= line.size() || parseValue(line.substr(i + 3, line.size())) )
-        return (throw InvalidValue());
-    i += 3;
-    _inputData[key] = line.substr(i, line.size());
-    std::cout << "_inputData-> " << key;
-    std::cout << "_inputData[key]: [" << _inputData[key] << "]" <<  std::endl;
-}
-
 void    BitcoinExchange::mapCsvFile( void ){
     std::ifstream csvFile("data.csv");
 
@@ -101,6 +87,7 @@ void    BitcoinExchange::mapCsvFile( void ){
 }
 
 void    BitcoinExchange::printResult( std::string date, std::string amount, std::string value ){
+    (void) date;
     std::stringstream    ss;
 
     ss << amount;
@@ -111,51 +98,68 @@ void    BitcoinExchange::printResult( std::string date, std::string amount, std:
     unsigned int    n_value;
     ss >> n_value;
 
-    std::cout << date << " => " << amount << " = " << (n_amount * n_value) << std::endl;
+    // std::cout << date << " => " << amount << " = " << (n_amount * n_value) << std::endl;
 }
 
-void    BitcoinExchange::calculateAmoutValue( std::map<std::string, std::string>::iterator& itIn ){
-    if ( _csvData.find(itIn->second) != _csvData.end() ){
+void    BitcoinExchange::calculateAmoutValue( void ){
+    if ( _csvData.find(_inputValue) != _csvData.end() ){
         // Exact Value found
+        printResult( _inputKey, _inputValue, _csvData[_inputKey] );
     }
     else{
         std::map<std::string, std::string>::iterator it = _csvData.begin();
-        while (it != _csvData.end() && it->first.compare(itIn->second) < 0){
+        while (it != _csvData.end() && it->first.compare(_inputValue) < 0){
             ++it;
         }
         if (it == _csvData.end()){
             // Wanted data =>_csvData.end()
-            printResult( itIn->first,
-            itIn->second,
-            _csvData.end()->second );
+            printResult( _inputKey, _inputValue, _csvData.end()->second );
         }
         else if (it != _csvData.begin()){
             // Wanted value => _csvData.begin()
-            printResult( itIn->first, itIn->second, _csvData.begin()->second );
+            printResult( _inputKey, _inputValue, _csvData.begin()->second );
         }
         else {
-            // Wanted value => it->first.compare(input_inputData["key"]) || (--it)->first.compare(input_inputData["key"])
+            // Wanted value => it->first.compare(_inputValue) || (--it)->first.compare(_inputValue)
             std::map<std::string, std::string>::iterator itPrev = it;
-            --itPrev;
-            it->first.compare(_inputData["key"]) < (-1) * itPrev->first.compare(_inputData["key"]) ? printResult( itIn->first, itIn->second, it->second ) : printResult( itIn->first, itIn->second, itPrev->second );
+            if (itPrev != _csvData.begin())
+                --itPrev;
+            it->first.compare(_inputKey) < (-1) * itPrev->first.compare(_inputKey) ? 
+            printResult( _inputKey, _inputValue, it->second ) :
+             printResult( _inputKey, _inputValue, itPrev->second );
         }
     }
 }
 
-void    BitcoinExchange::readInputFile( std::ifstream& inputFile ){
-
-    std::string line;
-    while (std::getline(inputFile, line)){
-        std::cout << "line: " << line << std::endl;
-        try{
-            splitLine(line);
-        }
-        catch( std::exception const& e){
-            std::cerr << e.what() << std::endl;
-        }
-        std::cout << std::endl;
+void    BitcoinExchange::splitLine( std::string const& line ){
+    size_t  i = 0;
+    while ( i < line.size() && line[i] != ' ' )
+        ++i;
+    if ( i < 9 || parseDate(line.substr(0, i)) ){
+        return (throw InvalidDate());
     }
+    _inputKey = line.substr(0, i);
+    if ( i + 3 >= line.size() || parseValue(line.substr(i + 3, line.size())) )
+        return (throw InvalidValue());
+    i += 3;
+    _inputValue = line.substr(i, line.size());
+    std::cout << "_inputKey -> " << _inputKey << std::endl;
+    std::cout << "_inputValue -> [" << _inputValue << "]" <<  std::endl;
 }
+
+// std::string    BitcoinExchange::readInputFile( std::ifstream& inputFile ){
+//     std::string line;
+//     std::getline(inputFile, line);
+//     std::cout << "line: " << line << std::endl;
+//     try{
+//         splitLine(line);
+//     }
+//     catch( std::exception const& e){
+//         std::cerr << e.what() << std::endl;
+//     }
+//     std::cout << std::endl;
+//     return (line);
+// }
 
 void    BitcoinExchange::run( const char* fileName ){
     std::ifstream   inputFile(fileName);
@@ -164,11 +168,21 @@ void    BitcoinExchange::run( const char* fileName ){
         throw FileNotOpen();
     }
 
-    readInputFile( inputFile );
     mapCsvFile();
-    for (std::map<std::string, std::string>::iterator it = _inputData.begin(); it != _inputData.end(); it++){
-        std::cout << "_inputData =>" << it->first << ": " << it->second << std::endl;
-        // calculateAmoutValue(it);
+    std::string line;
+    while (std::getline(inputFile, line)){
+        std::cout << "line: " << line << std::endl;
+        // _inputData.clear();
+        _inputValue.clear();
+        try{
+            splitLine(line);
+            std::cout << std::endl;
+            calculateAmoutValue();
+        }
+        catch( std::exception const& e){
+            std::cerr << e.what() << std::endl;
+        }
+        // line = readInputFile(inputFile);
     }
     
     inputFile.close();

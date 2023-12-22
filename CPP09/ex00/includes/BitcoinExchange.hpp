@@ -11,15 +11,17 @@
 class BitcoinExchange
 {
 private:
-    std::map<std::string, std::string>  _inputData;
+    // std::map<std::string, std::string>  _inputData;
+    std::string _inputKey;
+    std::string _inputValue;
     std::map<std::string, std::string>  _csvData;
 
     bool    parseDate( std::string date ) const; 
     bool    parseValue( std::string value ) const; 
     void    splitLine( std::string const& line );
     void    mapCsvFile( void );
-    void    readInputFile( std::ifstream& inputFile );
-    void    calculateAmoutValue( std::map<std::string, std::string>::iterator& itIn );
+    std::string    readInputFile( std::ifstream& inputFile );
+    void    calculateAmoutValue( void );
     void    printResult( std::string date, std::string amount, std::string value );
     
 public:
