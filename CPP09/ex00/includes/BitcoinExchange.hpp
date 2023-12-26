@@ -2,6 +2,7 @@
 #define BITCOINEXCH
 
 #include <iostream>
+#include <iomanip>
 #include <map>
 #include <fstream>
 #include <sstream>
