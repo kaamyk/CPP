@@ -13,6 +13,10 @@ ReversePolishNotation::~ReversePolishNotation ( void ){
 }
 
 ReversePolishNotation&  ReversePolishNotation::operator=( ReversePolishNotation const& source ){
-    (void)source;
+    op = source.op;
     return (*this);
+}
+
+void    ReversePolishNotation::calculate( std::string& arg ){
+    
 }
