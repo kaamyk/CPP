@@ -2,20 +2,15 @@
 #define REVERSEPOLISHNOTATION
 
 #include <iostream>
+#include <iomanip>
 #include <stack>
+#include <exception>
+#include <sstream>
 
-class ReversePolishNotation
+class   WrongFormat: public std::exception
 {
-private:
-    std::stack<std::string> op; 
-public:
-    ReversePolishNotation( void );
-    ReversePolishNotation( ReversePolishNotation const& source );
-    ~ReversePolishNotation( void );
-
-    ReversePolishNotation&    operator=( ReversePolishNotation const& source );
-
-    void    calculate( std::string& arg );
+    public:
+        virtual const char* what( void ) const throw();
 };
 
 #endif

@@ -1,16 +1,104 @@
 #include "../includes/RPN.hpp"
 
-#include <iostream>
+bool    is_operator( char c ){
+    return (c == '+' || c == '-' || c == '*' || c == '/');
+}
 
-void    joinArgs( char** argv, std::string& res ){
-    for(size_t i = 0; argv[i]; ++i){
-            res.append(argv[i]);
+bool    is_digit( char c ){
+    return (c >= '0' && c <= '9');
+}
+
+int     stoi( std::string& s ){
+    std::stringstream   ss;
+    int res;
+
+    ss << s;
+    ss >> res;
+    return (res);
+}
+
+std::string    itos( int n ){
+    std::ostringstream  os;
+    std::string res;
+
+    os << n;
+    res = os.str();
+    return (res);
+}
+
+bool    calculate( std::stack<std::string>& members, char op){
+    if (members.size() < 2){
+        // std::cerr << ">> Too much operator" << std::endl;
+        return (1);
     }
+    int n1 = stoi(members.top());
+    members.pop();
+    int n2 = stoi(members.top());
+    members.pop();
+    int res = 0;
+
+    switch(op){
+        case '+':
+            res = n2 + n1;
+            break ;
+        case '-':
+            res = n2 - n1;
+            break ;
+        case '*':
+            res = n2 * n1;
+            break ;
+        case '/':
+            res = n2 / n1;
+            break ;
+        default:
+            // std::cerr << ">> Operator unvalid." << std::endl;
+            return (1);
+    }
+    std::string ntop = itos(res);
+    members.push(ntop); 
+    return (0);
+}
+
+void    calculateRNP( char* argv ){
+    std::stack<std::string> members;
+
+    if (argv == NULL){
+        throw (WrongFormat());
+        return ;
+    }
+    while (*argv != 0){
+        if (is_digit(*argv)){
+            members.push(std::string(argv));
+        }
+        else if (is_operator(*argv)){
+            if (calculate(members, *argv)){
+                throw (WrongFormat());
+            }
+        }
+        else if (*argv != ' '){
+            // std::cerr << ">> *argv is neither a digit and an operator." << std::endl;
+            throw (WrongFormat());
+        }
+        argv++;
+    }
+    if (members.size() != 1){
+        // std::cerr << ">> At the end of compute, stack.size() != 1. (stack.size() == " << members.size() << ")" << std::endl;
+        throw (WrongFormat());
+    }
+    std::cout << "Result: " << members.top() << std::endl;
 }
 
 int main( int argc, char** argv ){
-    std::string res;
-    
-    joinArgs(argv, res);
+    if (argc != 2){
+        // std::cerr << ">> The program takes at least two numbers and a operator in this order. <<" << std::endl;
+        return (1);
+    }
+    try{
+        calculateRNP(argv[1]);
+    }
+    catch( std::exception& e){
+        std::cerr << e.what() << std::endl;
+        return (1);
+    }
     return (0);
 }
