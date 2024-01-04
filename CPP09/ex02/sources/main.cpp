@@ -45,6 +45,25 @@ bool    parseArguments( char** argv, std::vector<unsigned int>& list ){
     return (0);
 }
 
+void    fordJohnsonAlgo( std::list<unsigned int>::iterator const& itBegin, std::list<unsigned int>::iterator const& itEnd ){
+    if (std::distance(itBegin, itEnd) > 3){
+        std::list<unsigned int>::iterator itMid = itBegin;
+        for (unsigned int i = 0; i < std::distance(itBegin, itEnd) / 2; i++){
+            itMid++;
+        }
+        fordJohnsonAlgo(itBegin, itMid);
+        ++itMid;
+        fordJohnsonAlgo(itMid, itEnd);
+    }
+    std::list<unsigned int> tmpList(itBegin, itEnd);
+    tmpList.sort();
+    // std::cout << "SubList:";
+    // for(std::list<unsigned int>::iterator itTmp = itBegin; itTmp != itEnd; itTmp++){
+    //     std::cout << " " << *itTmp;
+    // }
+    // std::cout << std::endl;
+}
+
 void    fordJohnsonAlgo( std::vector<unsigned int>::iterator const& itBegin, std::vector<unsigned int>::iterator const& itEnd ){
     if (std::distance(itBegin, itEnd) > 3){
         std::vector<unsigned int>::iterator itMid = itBegin;
@@ -64,26 +83,54 @@ void    fordJohnsonAlgo( std::vector<unsigned int>::iterator const& itBegin, std
 }
 
 int main( int argc, char **argv ){
-    std::vector<unsigned int>    list;
-    if (argc <= 1){
-        // Create an arbitrary vector
-        std::cout << "Information: No Arguments provided.\n>> The list treated will be automatically filled with random values." << std::endl;
-        fillVectorWithRandomNum(list);
-    }
-    else{
-        // Copy the numbers passed in arg to a vector
-        if (parseArguments(argv + 1, list)){
-            std::cerr << "Error: Inputs Invalid." << std::endl;
-            return (1);
+    {
+        std::cout << "Sorting std::vector" << std::endl;
+        std::vector<unsigned int>    list;
+        if (argc <= 1){
+            // Create an arbitrary vector
+            std::cout << "Information: No Arguments provided.\n>> The list treated will be automatically filled with random values." << std::endl;
+            fillVectorWithRandomNum(list);
         }
+        else{
+            // Copy the numbers passed in arg to a vector
+            if (parseArguments(argv + 1, list)){
+                std::cerr << "Error: Inputs Invalid." << std::endl;
+                return (1);
+            }
+        }
+        std::cout << "Begin: ";
+        printVector(list.begin(), list.end());
+        std::cout << std::endl;
+        fordJohnsonAlgo(list.begin(), list.end());
+        std::cout << std::endl;
+        std::cout << "End: ";
+        printVector(list.begin(), list.end());
+        std::cout << std::endl;
+        return (0);
     }
-    std::cout << "Begin: ";
-    printVector(list.begin(), list.end());
-    std::cout << std::endl;
-    fordJohnsonAlgo(list.begin(), list.end());
-    std::cout << std::endl;
-    std::cout << "End: ";
-    printVector(list.begin(), list.end());
-    std::cout << std::endl;
-    return (0);
+    {
+        std::cout << "Sorting std::list" << std::endl;
+        std::list<unsigned int>    list;
+        if (argc <= 1){
+            // Create an arbitrary list
+            std::cout << "Information: No Arguments provided.\n>> The list treated will be automatically filled with random values." << std::endl;
+            fillVectorWithRandomNum(list);
+        }
+        else{
+            // Copy the numbers passed in arg to a list
+            if (parseArguments(argv + 1, list)){
+                std::cerr << "Error: Inputs Invalid." << std::endl;
+                return (1);
+            }
+        }
+        std::cout << "Begin: ";
+        printVector(list.begin(), list.end());
+        std::cout << std::endl;
+        fordJohnsonAlgo(list.begin(), list.end());
+        std::cout << std::endl;
+        std::cout << "End: ";
+        printVector(list.begin(), list.end());
+        std::cout << std::endl;
+        return (0);
+    }
 }
