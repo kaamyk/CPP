@@ -67,7 +67,7 @@ int main( int argc, char **argv ){
     std::vector<unsigned int>    list;
     if (argc <= 1){
         // Create an arbitrary vector
-        std::cout << "Information: No Arguments provided.\n>> The list treated will fill automatically filled with random values." << std::endl;
+        std::cout << "Information: No Arguments provided.\n>> The list treated will be automatically filled with random values." << std::endl;
         fillVectorWithRandomNum(list);
     }
     else{

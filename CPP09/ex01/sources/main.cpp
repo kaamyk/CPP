@@ -28,7 +28,7 @@ std::string    itos( int n ){
 
 bool    calculate( std::stack<std::string>& members, char op){
     if (members.size() < 2){
-        // std::cerr << ">> Too much operator" << std::endl;
+        std::cerr << ">> Too much operator" << std::endl;
         return (1);
     }
     int n1 = stoi(members.top());
@@ -37,6 +37,8 @@ bool    calculate( std::stack<std::string>& members, char op){
     members.pop();
     int res = 0;
 
+    // std::cout << "n1 == " << n1 << " && n2 == " << n2 << std::endl;
+    
     switch(op){
         case '+':
             res = n2 + n1;
@@ -51,10 +53,13 @@ bool    calculate( std::stack<std::string>& members, char op){
             res = n2 / n1;
             break ;
         default:
-            // std::cerr << ">> Operator unvalid." << std::endl;
+            std::cerr << ">> Operator unvalid." << std::endl;
             return (1);
     }
     std::string ntop = itos(res);
+
+    // std::cout << "ntop == " << ntop << std::endl;
+
     members.push(ntop); 
     return (0);
 }
@@ -76,13 +81,13 @@ void    calculateRNP( char* argv ){
             }
         }
         else if (*argv != ' '){
-            // std::cerr << ">> *argv is neither a digit and an operator." << std::endl;
+            std::cerr << ">> One of the members is neither a digit nor an operator." << std::endl;
             throw (WrongFormat());
         }
         argv++;
     }
     if (members.size() != 1){
-        // std::cerr << ">> At the end of compute, stack.size() != 1. (stack.size() == " << members.size() << ")" << std::endl;
+        std::cerr << ">> At the end of compute, stack.size() != 1. (stack.size() == " << members.size() << ")" << std::endl;
         throw (WrongFormat());
     }
     std::cout << "Result: " << members.top() << std::endl;
@@ -90,9 +95,10 @@ void    calculateRNP( char* argv ){
 
 int main( int argc, char** argv ){
     if (argc != 2){
-        // std::cerr << ">> The program takes at least two numbers and a operator in this order. <<" << std::endl;
+        std::cerr << ">> The program takes an RPN expression with at least two numbers and a operator in this order. <<" << std::endl;
         return (1);
     }
+    std::cout << "Expression: " << argv[1] << std::endl;
     try{
         calculateRNP(argv[1]);
     }

@@ -119,7 +119,7 @@ void    BitcoinExchange::calculateAmoutValue( void ){
             std::map<std::string, std::string>::iterator itPrev = it;
             if (itPrev != _csvData.begin())
                 --itPrev;
-            it->first.compare(_inputKey) < (-1) * itPrev->first.compare(_inputKey) ? printResult( _inputKey, _inputValue, it->second ) : printResult( _inputKey, _inputValue, itPrev->second );
+            printResult( _inputKey, _inputValue, itPrev->second );
         }
     }
 }

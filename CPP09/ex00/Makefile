@@ -10,12 +10,12 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	containers
+NAME		=	btc
 
 SRCDIR		=	sources
 
-SRCS		=	$(wildcard $(SRCDIR)/*.cpp)
-# SRCS		=	$(SRCDIR)/main.cpp
+# SRCS		=	$(wildcard $(SRCDIR)/*.cpp)
+SRCS		=	$(SRCDIR)/main.cpp	$(SRCDIR)/BitcoinExchange.cpp
 
 OBJDIR		=	.obj
 

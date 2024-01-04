@@ -14,8 +14,8 @@ NAME		=	RPN
 
 SRCDIR		=	sources
 
-SRCS		=	$(wildcard $(SRCDIR)/*.cpp)
-# SRCS		=	$(SRCDIR)/main.cpp
+# SRCS		=	$(wildcard $(SRCDIR)/*.cpp)
+SRCS		=	$(SRCDIR)/main.cpp	$(SRCDIR)/RPN.cpp
 
 OBJDIR		=	.obj
 
