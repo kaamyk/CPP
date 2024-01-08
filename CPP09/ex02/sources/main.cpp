@@ -3,8 +3,8 @@
 template<typename T>
 void    fillContainerWithRandomNum( T& list ){
     srand(time(NULL));
-    for (unsigned int i = 0; i < 10; ++i){
-        list.push_back(rand() % 10);
+    for (unsigned int i = 0; i < 100; ++i){
+        list.push_back(rand() % 1000);
     }
 }
 
@@ -53,35 +53,55 @@ bool    parseArguments( char** argv, T& list ){
 
 
 template<typename T>
-void    fordJohnsonAlgo( T const& itBegin, T const& itEnd ){
+bool    fordJohnsonAlgo( T const& itBegin, T const& itEnd ){
     if (std::distance(itBegin, itEnd) > 3){
         T itMid = itBegin;
         for (unsigned int i = 0; i < std::distance(itBegin, itEnd) / 2; i++){
             itMid++;
         }
-        fordJohnsonAlgo(itBegin, itMid);
+        if (fordJohnsonAlgo(itBegin, itMid))
+            return (1);
         ++itMid;
-        fordJohnsonAlgo(itMid, itEnd);
+        if (fordJohnsonAlgo(itMid, itEnd))
+            return (1);
     }
-    std::sort(itBegin, itEnd);
+    try{
+        std::sort(itBegin, itEnd);
+    }
+    catch(std::exception& e){
+        std::cout << "std::sort exception: " << e.what() << std::endl;
+        return (1);
+    }
+    return (0);
 }
 
 //          *** LIST ***
 
-void    fordJohnsonAlgo( std::list<unsigned int>& l ){
+bool    fordJohnsonAlgo( std::list<unsigned int>& l ){
     if (l.size() > 3){
         std::list<unsigned int>::iterator itMid = l.begin();
         for (unsigned int i = 0; i < l.size() / 2; i++){
             itMid++;
         }
         std::list<unsigned int> tmpList1 = std::list<unsigned int>(l.begin(), itMid);
-        fordJohnsonAlgo(tmpList1);
-        ++itMid;
+        if (fordJohnsonAlgo(tmpList1))
+            return (1);
         std::list<unsigned int> tmpList2 = std::list<unsigned int>(itMid, l.end());
-        fordJohnsonAlgo(tmpList2);
+        if (fordJohnsonAlgo(tmpList2))
+            return (1);
         tmpList1.merge(tmpList2);
+        l = tmpList1;
     }
-    l.sort();
+    else{
+        try{
+        l.sort();
+        }
+        catch(std::exception& e){
+            std::cout << "std::sort exception: " << e.what() << std::endl;
+            return (1);
+        }
+    }
+    return (0);
 }
 
 template<typename T>
@@ -100,16 +120,17 @@ bool    is_sorted( const T& itBegin, const T& itEnd ){
 }
 
 int main( int argc, char **argv ){
+    std::vector<unsigned int>   autoV;
+    if (argc <= 1){
+        std::cout << "Information: No (Not enough) arguments were provided.\n>> An automatically filled random list will be generated." << std::endl << std::endl;
+        fillContainerWithRandomNum(autoV);
+    }
     {
-        std::cout << "Sorting std::vector" << std::endl;
         std::vector<unsigned int>    list;
         if (argc <= 1){
-            // Create an arbitrary vector
-            std::cout << "Information: No Arguments provided.\n>> The list treated will be automatically filled with random values." << std::endl;
-            fillContainerWithRandomNum(list);
+            list = std::vector<unsigned int>(autoV.begin(), autoV.end());
         }
         else{
-            // Copy the numbers passed in arg to a vector
             if (parseArguments(argv + 1, list)){
                 std::cerr << "Error: Inputs Invalid." << std::endl;
                 return (1);
@@ -119,76 +140,54 @@ int main( int argc, char **argv ){
         printContainer(list.begin(), list.end());
         std::cout << std::endl;
         clock_t  t = clock();
-        fordJohnsonAlgo(list.begin(), list.end());
+        if (fordJohnsonAlgo(list.begin(), list.end()))
+            std::cout << "Error: Sorting Failed." << std::endl;
         t = clock() - t;
         // std::cout << std::endl;
         std::cout << "End: ";
         printContainer(list.begin(), list.end());
         std::cout << std::endl;
-        std::cout << std::endl;
-        std::cout << "Sorting Time for " << list.size() << " elements : " << (float)((float)(t) / CLOCKS_PER_SEC) << " secs." << std::endl;
-        std::cout << "Sorting of the list: " << is_sorted(list.begin(), list.end()) << std::endl;
+        // std::cout << std::endl;
+        std::cout << "Sorting Time for a std::vector of " << list.size() << " elements : " << (float)(((float)(t) / CLOCKS_PER_SEC) * 1000)  << " ms." << std::endl;
+        std::cout << "Sorted == " << is_sorted(list.begin(), list.end()) << std::endl;
     }
     std::cout << std::endl;
-    std::cout << std::endl;
     {
-        std::cout << "Sorting std::deque" << std::endl;
         std::deque<unsigned int>    list;
         if (argc <= 1){
-            // Create an arbitrary list
-            std::cout << "Information: No Arguments provided.\n>> The list treated will be automatically filled with random values." << std::endl;
-            fillContainerWithRandomNum(list);
+            list = std::deque<unsigned int>(autoV.begin(), autoV.end());
         }
         else{
-            // Copy the numbers passed in arg to a list
             if (parseArguments(argv + 1, list)){
                 std::cerr << "Error: Inputs Invalid." << std::endl;
                 return (1);
             }
         }
-        std::cout << "Begin: ";
-        printContainer(list.begin(), list.end());
-        std::cout << std::endl;
         clock_t  t = clock();
-        fordJohnsonAlgo(list.begin(), list.end());
+        if (fordJohnsonAlgo(list.begin(), list.end()))
+            std::cout << "Error: Sorting Failed." << std::endl;
         t = clock() - t;
-        std::cout << "End: ";
-        printContainer(list.begin(), list.end());
-        std::cout << std::endl;
-        std::cout << std::endl;
-        std::cout << "Sorting Time for " << list.size() << " elements : " << (float)((float)(t) / CLOCKS_PER_SEC) << " secs." << std::endl;
-        std::cout << "Sorting of the list: " << is_sorted(list.begin(), list.end()) << std::endl;
+        std::cout << "Sorting Time for std:deque of " << list.size() << " elements : " << (float)(((float)(t) / CLOCKS_PER_SEC) * 1000) << " ms." << std::endl;
+        std::cout << "Sorted == " << is_sorted(list.begin(), list.end()) << std::endl;
     }
     std::cout << std::endl;
-    std::cout << std::endl;
     {
-        std::cout << "Sorting std::list" << std::endl;
         std::list<unsigned int>    list;
         if (argc <= 1){
-            // Create an arbitrary list
-            std::cout << "Information: No Arguments provided.\n>> The list treated will be automatically filled with random values." << std::endl;
-            fillContainerWithRandomNum(list);
+            list = std::list<unsigned int>(autoV.begin(), autoV.end());
         }
         else{
-            // Copy the numbers passed in arg to a list
             if (parseArguments(argv + 1, list)){
                 std::cerr << "Error: Inputs Invalid." << std::endl;
                 return (1);
             }
         }
-        std::cout << "Begin: ";
-        printContainer(list.begin(), list.end());
-        std::cout << std::endl;
         clock_t  t = clock();
-        fordJohnsonAlgo(list);
+        if (fordJohnsonAlgo(list))
+            std::cout << "Error: Sorting Failed." << std::endl;
         t = clock() - t;
-        std::cout << std::endl;
-        std::cout << "End: ";
-        printContainer(list.begin(), list.end());
-        std::cout << std::endl;
-        std::cout << std::endl;
-        std::cout << "Sorting Time for " << list.size() << " elements : " << (float)((float)(t) / CLOCKS_PER_SEC) << " secs." << std::endl;
-        std::cout << "Sorting of the list: " << is_sorted(list.begin(), list.end()) << std::endl;
+        std::cout << "Sorting Time for a std::list of " << list.size() << " elements : " << (float)(((float)(t) / CLOCKS_PER_SEC) * 1000)  << " ms." << std::endl;
+        std::cout << "Sorted == " << is_sorted(list.begin(), list.end()) << std::endl;
     }
     return (0);
 }
