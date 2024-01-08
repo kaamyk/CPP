@@ -7,5 +7,6 @@
 #include <sstream>
 #include <vector>
 #include <list>
+#include <deque>
 
 #endif
