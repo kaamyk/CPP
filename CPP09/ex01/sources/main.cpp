@@ -73,12 +73,18 @@ void    calculateRNP( char* argv ){
     }
     while (*argv != 0){
         if (is_digit(*argv)){
+            if (*(argv + 1) && *(argv + 1) != ' '){
+                throw (WrongFormat());
+            }
             members.push(std::string(argv));
         }
         else if (is_operator(*argv)){
-            if (calculate(members, *argv)){
+            if ((*(argv + 1) && *(argv + 1) != ' ') || calculate(members, *argv)){
                 throw (WrongFormat());
             }
+        }
+        else if (*argv == ' ' && *(argv + 1) && *(argv + 1) == ' '){
+            throw (WrongFormat());
         }
         else if (*argv != ' '){
             std::cerr << ">> One of the members is neither a digit nor an operator." << std::endl;
