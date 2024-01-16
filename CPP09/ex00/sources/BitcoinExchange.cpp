@@ -2,7 +2,7 @@
 
 BitcoinExchange::BitcoinExchange( void ){}
 
-BitcoinExchange::BitcoinExchange( BitcoinExchange const& source){
+BitcoinExchange::BitcoinExchange( BitcoinExchange const& source ){
     *this = source;
 }
 
@@ -29,7 +29,7 @@ bool    BitcoinExchange::parseDate( std::string date ) const {
         return (1);
     ++i;
     if ( date.substr(i, i + 2).compare("12") > 0 || date.substr(i, i + 2).compare("01") < 0 ){
-        std::cout << "Invalid mounth" << std::endl;
+        // std::cout << "Invalid mounth" << std::endl;
         return (1);
     }
     while (i < 7){
@@ -41,7 +41,7 @@ bool    BitcoinExchange::parseDate( std::string date ) const {
         return (1);
     ++i;
     if ( date.size() - i != 2 || date.substr(i, i + 2).compare("31") > 0 || date.substr(i, i + 2).compare("01") < 0 ){
-        std::cout << "Invalid Day" << std::endl;
+        // std::cout << "Invalid Day" << std::endl;
         return (1);
     }
     while (i < date.size()){
