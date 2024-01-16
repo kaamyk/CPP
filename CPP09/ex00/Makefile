@@ -33,18 +33,17 @@ $(OBJDIR)		:
 	@mkdir $(OBJDIR)
 
 $(OBJDIR)/%.o	:	$(SRCDIR)/%.cpp
-	@echo "Compiling " $< " ..."
+	@echo -n "Compiling " $< " ..."
 	@$(CCPP) $(VGFLAGS) $(CFLAGS) $(CPPFLAGS) $(SFMLFLAGS) -c $< -o $@ 
 	@echo -e ' \x1b[32m>>> OK <<<\x1b[37m'
 
 $(NAME)			:	$(OBJS)
 	@clear
-	@echo 'Compiling executable ...'
+	@echo -e '\033[0;34mObjects compilation : \x1b[32m>>> OK <<<\x1b[37m'
+	@echo -e '\033[0;34mCompiling executable ...\x1b[37m'
 	@clear
 	@$(CCPP) $(VGFLAGS) $(CFLAGS) $(CPPFLAGS) $(OBJS) $(SFMLFLAGS) -o $(NAME)
 	@echo -e 'Compiling ' $(NAME) ' \x1b[32m>>> OK <<<\x1b[37m'
-	@sleep 0.3
-	@clear
 
 clean			:
 	@echo 'Removing object files ...'

@@ -17,11 +17,11 @@ void    printContainer( T const& beg, T const& end ){
     T tmp = beg;
     unsigned int i = 0;
 
-    for (; i < 5 && tmp != end; i++){
+    for (; i < 10 && tmp != end; i++){
         std::cout << " " << *tmp;
         tmp++;
     }
-    if (i == 5 && tmp != end){
+    if (i == 10 && tmp != end){
         std::cout << "[...]";
     }
 }
@@ -42,7 +42,7 @@ bool    parseArguments( char** argv, T& list ){
     for (size_t i = 0; argv[i] != NULL; i++){
         for (size_t io = 0; argv[i][io] != 0; io++){
             if (is_num(argv[i][io]) == 0){
-                std::cout << ">>> Wrong Char => argv[" << i << "][" << io << "] == " << argv[i][io] << std::endl;
+                // std::cerr << ">>> Wrong Char => argv[" << i << "][" << io << "] == " << argv[i][io] << std::endl;
                 return (1);
             }
         }
@@ -122,7 +122,7 @@ bool    is_sorted( const T& itBegin, const T& itEnd ){
 int main( int argc, char **argv ){
     std::vector<unsigned int>   autoV;
     if (argc <= 1){
-        std::cout << "Information: No (Not enough) arguments were provided.\n>> An automatically filled random list will be generated." << std::endl << std::endl;
+        std::cout << "Information: No/Not enough arguments were provided.\n>> An automatically filled random list will be generated." << std::endl << std::endl;
         fillContainerWithRandomNum(autoV);
     }
     {
@@ -148,8 +148,8 @@ int main( int argc, char **argv ){
         printContainer(list.begin(), list.end());
         std::cout << std::endl;
         // std::cout << std::endl;
-        std::cout << "Sorting Time for a std::vector of " << list.size() << " elements : " << (float)(((float)(t) / CLOCKS_PER_SEC) * 1000)  << " ms." << std::endl;
-        std::cout << "Sorted == " << is_sorted(list.begin(), list.end()) << std::endl;
+        std::cout << "Sorting Time for a std::vector of " << list.size() << " elements : " << (float)(((float)(t) / CLOCKS_PER_SEC) * 1000)  << " ms. ";
+        std::cout << "( Sorted == " << is_sorted(list.begin(), list.end()) << " )" << std::endl;
     }
     std::cout << std::endl;
     {
@@ -167,8 +167,8 @@ int main( int argc, char **argv ){
         if (fordJohnsonAlgo(list.begin(), list.end()))
             std::cout << "Error: Sorting Failed." << std::endl;
         t = clock() - t;
-        std::cout << "Sorting Time for std:deque of " << list.size() << " elements : " << (float)(((float)(t) / CLOCKS_PER_SEC) * 1000) << " ms." << std::endl;
-        std::cout << "Sorted == " << is_sorted(list.begin(), list.end()) << std::endl;
+        std::cout << "Sorting Time for std:deque of " << list.size() << " elements : " << (float)(((float)(t) / CLOCKS_PER_SEC) * 1000) << " ms. ";
+        std::cout << "( Sorted == " << is_sorted(list.begin(), list.end()) << " )" << std::endl;
     }
     std::cout << std::endl;
     {
@@ -186,8 +186,8 @@ int main( int argc, char **argv ){
         if (fordJohnsonAlgo(list))
             std::cout << "Error: Sorting Failed." << std::endl;
         t = clock() - t;
-        std::cout << "Sorting Time for a std::list of " << list.size() << " elements : " << (float)(((float)(t) / CLOCKS_PER_SEC) * 1000)  << " ms." << std::endl;
-        std::cout << "Sorted == " << is_sorted(list.begin(), list.end()) << std::endl;
+        std::cout << "Sorting Time for a std::list of " << list.size() << " elements : " << (float)(((float)(t) / CLOCKS_PER_SEC) * 1000)  << " ms. ";
+        std::cout << "( Sorted == " << is_sorted(list.begin(), list.end()) << " )" << std::endl;
     }
     return (0);
 }
