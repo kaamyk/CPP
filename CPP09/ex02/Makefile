@@ -30,15 +30,12 @@ VGFLAGS		=	-g3
 all				:	$(OBJDIR) $(OBJS) $(NAME)
 
 $(OBJDIR)		:
-	mkdir $(OBJDIR)
+	@mkdir $(OBJDIR)
 
 $(OBJDIR)/%.o	:	$(SRCDIR)/%.cpp
-	@clear
 	@echo "Compiling " $< " ..."
 	@$(CCPP) $(VGFLAGS) $(CFLAGS) $(CPPFLAGS) $(SFMLFLAGS) -c $< -o $@ 
-	@clear
-	@echo -e 'Compiling ' $< ' \x1b[32m>>> OK <<<\x1b[37m'
-	@sleep 0.1
+	@echo -e ' \x1b[32m>>> OK <<<\x1b[37m'
 
 $(NAME)			:	$(OBJS)
 	@clear
