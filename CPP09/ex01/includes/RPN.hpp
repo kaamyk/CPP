@@ -13,4 +13,11 @@ class   WrongFormat: public std::exception
         virtual const char* what( void ) const throw();
 };
 
+class   DivisionByZero: public std::exception
+{
+    public:
+        virtual const char* what( void ) const throw();
+};
+
+
 #endif

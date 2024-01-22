@@ -36,8 +36,6 @@ bool    calculate( std::stack<std::string>& members, char op){
     int n2 = stoi(members.top());
     members.pop();
     int res = 0;
-
-    // std::cout << "n1 == " << n1 << " && n2 == " << n2 << std::endl;
     
     switch(op){
         case '+':
@@ -50,16 +48,14 @@ bool    calculate( std::stack<std::string>& members, char op){
             res = n2 * n1;
             break ;
         case '/':
-            res = n2 / n1;
+            n1 != 0 ? res = n2 / n1 : throw(DivisionByZero());
             break ;
         default:
             std::cerr << ">> Operator unvalid." << std::endl;
             return (1);
     }
     std::string ntop = itos(res);
-
-    // std::cout << "ntop == " << ntop << std::endl;
-
+    
     members.push(ntop); 
     return (0);
 }
