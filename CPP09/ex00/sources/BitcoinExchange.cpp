@@ -28,8 +28,8 @@ bool    BitcoinExchange::parseDate( std::string date ) const {
     if (date[i] != '-')
         return (1);
     ++i;
-    if ( date.substr(i, i + 2).compare("12") > 0 || date.substr(i, i + 2).compare("01") < 0 ){
-        // std::cout << "Invalid mounth" << std::endl;
+    if ( date.substr(i, 2).compare("12") > 0 || date.substr(i, 2).compare("01") < 0 ){
+        std::cout << "Invalid mounth" << std::endl;
         return (1);
     }
     while (i < 7){
@@ -41,7 +41,7 @@ bool    BitcoinExchange::parseDate( std::string date ) const {
         return (1);
     ++i;
     if ( date.size() - i != 2 || date.substr(i, i + 2).compare("31") > 0 || date.substr(i, i + 2).compare("01") < 0 ){
-        // std::cout << "Invalid Day" << std::endl;
+        std::cout << "Invalid Day" << std::endl;
         return (1);
     }
     while (i < date.size()){
@@ -53,17 +53,16 @@ bool    BitcoinExchange::parseDate( std::string date ) const {
 }
 
 bool    BitcoinExchange::parseValue( std::string value ) const {
-    if ( value.find_first_not_of("1234567890.") != std::string::npos )
-        return (1);
-    else if (value.find('.') == std::string::npos)
-        return ( value.size() > 4
-            || (value.size() == 4 && value.compare("1000") > 0) );
-    else
-        return ( value.size() > 5
-            || value.find_first_of('.') != value.find_last_of('.')
-            || value.find('.') == 0
-            || value.find('.') == value.size() );
-    return (0);
+    std::stringstream    ss;
+
+    std::cout << value << " => ";
+
+    ss.clear();
+    ss << value;
+    float    n_value = 0;
+    ss >> n_value;
+    std::cout << std::setprecision(value.size()) << n_value << std::endl;
+    return (n_value < 0.0f || n_value > 1000.0f);
 }
 
 void    BitcoinExchange::mapCsvFile( void ){
