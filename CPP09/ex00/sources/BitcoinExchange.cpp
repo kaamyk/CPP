@@ -55,13 +55,13 @@ bool    BitcoinExchange::parseDate( std::string date ) const {
 bool    BitcoinExchange::parseValue( std::string value ) const {
     std::stringstream    ss;
 
-    std::cout << value << " => ";
+    // std::cout << value << " => ";
 
     ss.clear();
     ss << value;
     float    n_value = 0;
     ss >> n_value;
-    std::cout << std::setprecision(value.size()) << n_value << std::endl;
+    // std::cout << std::setprecision(value.size()) << n_value << std::endl;
     return (n_value < 0.0f || n_value > 1000.0f);
 }
 
@@ -91,7 +91,7 @@ void    BitcoinExchange::printResult( std::string date, std::string amount, std:
 
     ss.clear();
     ss << amount;
-    float    n_amount = 0;
+    float    n_amount = 0.0f;
     ss >> n_amount;
     std::cout << n_amount << " = ";
 
