@@ -87,23 +87,34 @@ void    BitcoinExchange::mapCsvFile( void ){
 void    BitcoinExchange::printResult( std::string date, std::string amount, std::string value ){
     std::stringstream    ss;
 
-    std::cout << date << " => ";
+    
 
     ss.clear();
     ss << amount;
     float    n_amount = 0.0f;
     ss >> n_amount;
-    std::cout << n_amount << " = ";
 
     ss.clear();
     ss << value;
-    float    n_value = 0;
+    float    n_value = 0.0f;
     ss >> n_value;
-    std::cout << std::setprecision(value.size()) << n_amount * n_value << std::endl;
+
+    ss.clear();
+    ss << n_amount * n_value;
+    std::string n_res;
+    ss >> n_res;
+    // std::cout << "n_res (" << n_res << ") == " <<  n_amount * n_value << std::endl;
+    
+    std::cout << date << " => ";
+    std::cout << n_amount << " = ";
+    std::cout << std::setprecision(n_res.size()) << n_res << std::endl;
 }
 
 void    BitcoinExchange::calculateAmoutValue( void ){
-    if ( _csvData.find(_inputValue) != _csvData.end() ){
+    // std::cout << "CalculateAmoutValue:" << std::endl
+    // << "\t _inputKey == [" << _inputKey << "]" << std::endl
+    // << "\t _inputValue == [" << _inputValue << "]" << std::endl;
+    if ( _csvData.find(_inputKey) != _csvData.end() ){
         printResult( _inputKey, _inputValue, _csvData[_inputKey] );
     }
     else{
